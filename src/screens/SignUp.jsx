@@ -32,7 +32,7 @@ const SignUp = () => {
               placeholder="Password"
               className="rounded-xl border-primary border-2 my-2 max-w-[300px] min-w-[250px]"
             />
-            <p className="px-3 text-black text-lg font-medium">
+            <p className="px-3 py-3 text-black text-lg font-medium">
               Between 8 and &2 character
             </p>
             <button
