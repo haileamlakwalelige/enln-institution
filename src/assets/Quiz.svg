@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg aria-hidden="true" fill="none" focusable="false" height="16" viewBox="0 0 16 16" width="16" data-testid="quiz-icon" id="cds-react-aria-23" class="css-0">
+  <g clip-path="url(#cds-react-aria-23_0)" fill-rule="evenodd" clip-rule="evenodd" fill="currentColor" style="--darkreader-inline-fill: currentColor;" data-darkreader-inline-fill="">
+    <path d="M4.39 3.61h7.22v8.78H4.39V3.61zm1 1v6.78h5.22V4.61H5.39z"/>
+    <path d="M8 1.5a6.5 6.5 0 100 13 6.5 6.5 0 000-13zM.5 8a7.5 7.5 0 1115 0 7.5 7.5 0 01-15 0z"/>
+    <path d="M6.5 6.29h3v1h-3v-1zM6.5 8.71h3v1h-3v-1z"/>
+  </g>
+  <defs>
+    <clipPath id="cds-react-aria-23_0">
+      <path fill="#fff" d="M0 0h16v16H0z" style="--darkreader-inline-fill: #e8e6e3;" data-darkreader-inline-fill=""/>
+    </clipPath>
+  </defs>
+</svg>

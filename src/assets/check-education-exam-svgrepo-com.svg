@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg aria-hidden="true" fill="none" focusable="false" height="16" viewBox="0 0 16 16" width="16" class="css-f2w3r7" id="cds-react-aria-21">
+    <g clip-path="url(#cds-react-aria-21_0)" fill-rule="evenodd" clip-rule="evenodd" fill="currentColor" style="--darkreader-inline-fill: currentColor;" data-darkreader-inline-fill="">
+        <path d="M8 1.5a6.5 6.5 0 100 13 6.5 6.5 0 000-13zM.5 8a7.5 7.5 0 1115 0 7.5 7.5 0 01-15 0z"/>
+        <path d="M5.5 3.59L12.431 8 5.5 12.41V3.59zm1 1.82v5.18L10.569 8 6.5 5.41z"/>
+    </g>
+    <defs>
+        <clipPath id="cds-react-aria-21_0">
+            <path fill="#fff" d="M0 0h16v16H0z" style="--darkreader-inline-fill: #e8e6e3;" data-darkreader-inline-fill=""/>
+        </clipPath>
+    </defs>
+</svg>
+<!-- Uploaded to: SVG Repo, www.svgrepo.com, Generator: SVG Repo Mixer Tools -->
