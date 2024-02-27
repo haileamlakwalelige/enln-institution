@@ -5,6 +5,7 @@ import HomePage from "./screens/HomePage";
 import Footer from "./components/layout/Footer";
 import CourseLine from "./components/courses/CourseLine";
 import SignUp from "./screens/SignUp";
+import Login from "./screens/Login";
 
 const App = () => {
   return (
@@ -14,7 +15,8 @@ const App = () => {
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="course-line" element={<CourseLine />} />
-          <Route path="signup" element={<SignUp />} />
+          <Route path="/signup" element={<SignUp />} />
+          <Route path="/login" element={<Login />} />
         </Routes>
       </BrowserRouter>
       <Footer />
