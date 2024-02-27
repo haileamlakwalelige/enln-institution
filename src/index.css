@@ -1,3 +1,227 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* Font Definitions */
+/* Amiko Bold */
+@font-face {
+  font-family: 'Amiko-Bold';
+  src: url('./fonts/Amiko/Amiko-Bold.ttf') format('truetype');
+  font-weight: bold;
+  font-style: normal;
+}
+.amir{
+  font-family: 'Amiko-Regular';
+}
+.amib{
+  font-family: 'Amiko-Bold';
+}
+/* Amiko Regular */
+@font-face {
+  font-family: 'Amiko-Regular';
+  src: url('./fonts/Amiko/Amiko-Regular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+/* Amiko SemiBold */
+@font-face {
+  font-family: 'Amiko-SemiBold';
+  src: url('./fonts/Amiko/Amiko-SemiBold.ttf') format('truetype');
+  font-weight: 600;
+  font-style: normal;
+}
+/* Merriweather Bold */
+@font-face {
+  font-family: 'Merriweather-Bold';
+  src: url('./fonts/Merriweather/Merriweather-Bold.ttf') format('truetype');
+  font-weight: bold;
+  font-style: normal;
+}
+/* Merriweather Regular */
+@font-face {
+  font-family: 'Merriweather-Regular';
+  src: url('./fonts/Merriweather/Merriweather-Regular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+/* Nunito Regular */
+@font-face {
+  font-family: 'Nunito-Regular';
+  src: url('./fonts/Nunito/Nunito-VariableFont_wght.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+/* Global Variables */
+:root {
+  --base-font-size: 16px; /* Set your base font size here */
+  --primary-color: #025464; /* Define primary color variable */
+}
+
+/* Heading Styles for Large Screens */
+.heading {
+  font-family: 'Merriweather-Bold';
+  font-size: 1.75rem;
+  color: var(--primary-color); /* Use primary color variable */
+  text-align: justify;
+}
+
+/* Heading Styles for Small Screens */
+.phone-heading {
+  font-family: 'Merriweather-Bold';
+  font-size: 1.3125rem;
+  color: var(--primary-color);
+  text-align: justify;
+}
+
+/* Subheading Styles for Large Screens */
+.subheading {
+  font-family: 'Merriweather-Bold';
+  font-size: 1.3125rem;
+  color: black;
+  text-align: justify;
+}
+
+/* Subheading Styles for Small Screens */
+.phone-subheading {
+  font-family: 'Merriweather-Bold';
+  font-size: 1rem;
+  color: black;
+  text-align: justify;
+}
+
+/* Default Text Styles */
+.text {
+  font-family: 'Amiko-Regular';
+  font-size: 1rem;
+  color: black;
+  text-align: justify;
+}
+
+/* Button Text Styles */
+.buttontext {
+  font-family: 'Amiko-Regular';
+  font-size: 1rem;
+  color: white;
+  text-align: justify;
+}
+
+/* Outline Text Styles */
+.btnoutlinetext {
+  font-family: 'Amiko-Regular';
+  font-size: 1rem;
+  color: var(--primary-color);
+  text-align: justify;
+}
+
+/* Hero Inner Text Styles */
+.heroinnertext {
+  font-family: 'Amiko-Regular';
+  font-size: 1rem;
+  color: var(--primary-color);
+  text-align: justify;
+}
+
+/* Small Text Styles */
+.smalltext {
+  font-family: 'Amiko-Regular';
+  font-size: 0.875rem;
+  color: black;
+  text-align: justify;
+}
+
+/* Card Text Styles */
+.cardtext {
+  font-family: 'Amiko-Regular';
+  font-size: 0.75rem;
+  color: black;
+  text-align: justify;
+}
+/* Rating Card Text Styles */
+.ratingcardtext {
+  font-family: 'Amiko-Regular';
+  font-size: 0.75rem;
+  color: var(--primary-color);
+  text-align: justify;
+}
+
+/* Hero Text Styles */
+.herotext {
+  font-family: 'Nunito-Regular';
+  font-size: 3rem;
+  color: #001014; /* Use primary color variable */
+  text-align: justify;
+}
+/* Org Hero Text Styles */
+.orgherotext {
+  font-family: 'Nunito-Regular';
+  font-size: 3rem;
+  color: #001014; /* Use primary color variable */
+  text-align: left;
+}
+/* Phone Org Hero Text Styles */
+.orgphoneherotext {
+  font-family: 'Nunito-Regular';
+  font-size: 2rem;
+  color: var(--primary-color); /* Use primary color variable */
+  text-align: left;
+}
+/* Phone Hero Text Styles */
+.phoneherotext {
+  font-family: 'Nunito-Regular';
+  font-size: 2rem;
+  color: var(--primary-color); /* Use primary color variable */
+  text-align: justify;
+}
+.nun{
+  font-family: 'Nunito-Regular';
+}
+.phonetext {
+  font-family: 'Amiko-Regular';
+  font-size: 1 rem;
+  color: black;
+  text-align: justify;
+}
+.phonecardtext {
+  font-family: 'Amiko-Regular';
+  font-size: 0.875rem;
+  color: black;
+  text-align: justify;
+}
+.phonesmalltext {
+  font-family: 'Amiko-Regular';
+  font-size: 0.875rem;
+  color: black;
+  text-align: justify;
+}
+.phoneratingcardtext {
+  font-family: 'Amiko-Regular';
+  font-size: 0.625rem;
+  color: var(--primary-color);
+  text-align: justify;
+}
+/* THE Following three css class are made fro organization page enhancing experiance part */
+.orgtext {
+  font-family: 'Amiko-Regular';
+  font-size: 1rem;
+  color: #025464;
+  text-align: justify;
+  font:bold;
+}
+/* Org Subheading Styles for Large Screens */
+.orgsubheading {
+  font-family: 'Merriweather-Bold';
+  font-size: 1.3125rem;
+  color: #025464;
+  text-align: justify;
+}
+.merb{
+  font-family: 'Merriweather-Bold';
+}
+/* org Small Text Styles */
+.orgsmalltext {
+  font-family: 'Amiko-Regular';
+  font-size: 0.875rem;
+  color: #025464;
+  text-align: left;
+}
