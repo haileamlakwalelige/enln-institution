@@ -1,0 +1,58 @@
+{
+  "courses": [
+    {
+      "id": 1,
+      "title": "Nutrition Essentials",
+      "description": "Learn the essentials of nutrition and dietary principles for a healthy lifestyle.",
+      "instructor": "Dr. Sarah Johnson",
+      "rating": 4.8,
+      "ratingsCount": 25000,
+      "hours": 15,
+      "difficulty": "Beginner",
+      "type": "online",
+      "price": 99,
+      "image": "/public/nutrition-essentials.svg",
+      "features": [
+        "Understand basic concepts of nutrition and dietary requirements.",
+        "Learn about different food groups and their nutritional values.",
+        "Develop healthy eating habits and meal planning strategies."
+      ]
+    },
+    {
+      "id": 2,
+      "title": "Leadership Development Program",
+      "description": "Develop essential leadership skills and strategies to excel in your career.",
+      "instructor": "Dr. Michael Smith",
+      "rating": 2.9,
+      "ratingsCount": 32000,
+      "hours": 20,
+      "difficulty": "Intermediate",
+      "type": "virtual",
+      "price": 149,
+      "image": "/public/leadership-development-program.svg",
+      "features": [
+        "Learn effective communication and interpersonal skills.",
+        "Develop strategic thinking and decision-making abilities.",
+        "Lead teams and manage conflicts to achieve organizational goals."
+      ]
+    },
+    {
+      "id": 3,
+      "title": "Evidence-Based Policy Making",
+      "description": "Explore the principles and practices of evidence-based policy making for effective governance.",
+      "instructor": "Dr. Emily Brown",
+      "rating": 3.7,
+      "ratingsCount": 18000,
+      "hours": 25,
+      "difficulty": "Intermediate",
+      "type": "hybrid",
+      "price": 199,
+      "image": "/public/evidence-based-policy-making.svg",
+      "features": [
+        "Understand the role of evidence in policy formulation and implementation.",
+        "Analyze data and research findings to inform policy decisions.",
+        "Evaluate the impact of policies and assess their effectiveness."
+      ]
+    }
+  ]
+}
