@@ -2,12 +2,11 @@ import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Link } from "react-router-dom";
 import { TfiClose } from "react-icons/tfi";
-// import HeaderLogo from "/public/header individual.png";
 import HeaderLogo from "../../assets/headerindividual.png";
-import { useSelector } from "react-redux";
+// import { useSelector } from "react-redux";
 
 function Header() {
-  const courses = useSelector((state) => state.courses);
+//   const courses = useSelector((state) => state.courses);
   const [isOpen, setIsOpen] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [activeLink, setActiveLink] = useState("individuals");
@@ -35,13 +34,13 @@ function Header() {
     setIsClicked(false);
   };
   // Function to calculate the total cost of items in the cart
-  const calculateTotalCost = () => {
-    let totalCost = 0;
-    courses.forEach((item) => {
-      totalCost += item.price;
-    });
-    return totalCost;
-  };
+//   const calculateTotalCost = () => {
+//     let totalCost = 0;
+//     courses.forEach((item) => {
+//       totalCost += item.price;
+//     });
+//     return totalCost;
+//   };
 
   return (
     <>
@@ -214,7 +213,8 @@ function Header() {
                     />
                   </svg>
                   <span className="badge indicator-item badge-primary badge-xs lg:badge-sm ">
-                    {courses.length}
+                    {/* {courses.length}  */}
+                    2
                   </span>
                 </div>
               </Link>{" "}
@@ -225,7 +225,8 @@ function Header() {
               >
                 <div className="card-body bg-secondary">
                   <span className="text-lg font-bold">
-                    {courses.length} Items
+                    {/* {courses.length} Items */}
+                    2 Items
                   </span>
                   <span className="text-info">
                     Subtotal: {calculateTotalCost()}
