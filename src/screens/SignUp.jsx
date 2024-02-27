@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import signup from "../assets/signup.svg";
 import google from "../assets/google.png";
 import facebook from "../assets/facebook.png";
+import { FaRegEyeSlash, FaRegEye } from "react-icons/fa";
 import { Link } from "react-router-dom";
 
 const SignUp = () => {
@@ -63,7 +64,7 @@ const SignUp = () => {
           </form>
           <div className="flex gap-3 text-black font-medium">
             <p>Already have an account?</p>
-            <Link to="login" className="text-primary font-bold">
+            <Link to="/login" className="text-primary font-bold">
               Log In
             </Link>
           </div>
