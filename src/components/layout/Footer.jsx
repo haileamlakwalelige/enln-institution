@@ -20,7 +20,7 @@ const Footer = () => {
 
   return (
     <div className="min-h-[40vh] bg-[#001014]">
-      <div className="grid grid-cols-1 items-center justify-center gap-10 px-2 py-10  pt-10 text-[#B3CBD0] sm:px-4 md:grid-cols-2 md:px-12 lg:grid-cols-4 lg:px-20">
+      <div className="grid grid-cols-1 justify-center items-start gap-10 px-2 py-10  pt-10 text-[#B3CBD0] sm:px-4 md:grid-cols-2 md:px-12 lg:grid-cols-4 lg:px-20">
         <div className="flex flex-col items-center justify-center gap-4 lg:items-start lg:justify-start">
           <p className="amib py-3 text-center text-[16px] font-semibold md:text-[18px] lg:text-[20px] xl:text-[24px] xl:font-light">
             CONTACT US
