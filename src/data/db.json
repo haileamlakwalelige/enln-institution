@@ -1,0 +1,46 @@
+{
+  "users": [
+    {
+      "id": "2812",
+      "name": "Haila",
+      "email": "hailw@gmail.com",
+      "password": "haila"
+    },
+    {
+      "id": "0913",
+      "name": "lebam",
+      "email": "lebam@gmail.com",
+      "password": "123456"
+    },
+    {
+      "id": "6dfb",
+      "name": "Haila",
+      "email": "haila@gmail.com",
+      "password": "haila"
+    },
+    {
+      "id": "142f",
+      "name": "Haileab",
+      "email": "haileab@gmail.com",
+      "password": "12345678"
+    },
+    {
+      "id": "d802",
+      "name": "",
+      "email": "",
+      "password": "0000"
+    },
+    {
+      "id": "803b",
+      "name": "Beti Negash",
+      "email": "betelhemnegash10@gmail.com",
+      "password": "1234"
+    },
+    {
+      "id": "d5c6",
+      "name": "abebe",
+      "email": "a@gmail.com",
+      "password": "1234"
+    }
+  ]
+}
