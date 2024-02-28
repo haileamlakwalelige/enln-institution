@@ -18,6 +18,7 @@ import ForgetPassword from "./screens/ForgetPassword";
 import Categories from "./screens/Categories";
 import AddToCart from "./screens/AddToCart";
 import Lessons from "./screens/Lessons";
+import OrganizationHome from "./screens/OrganizationHome";
 
 const App = () => {
   return (
@@ -26,10 +27,11 @@ const App = () => {
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<HomePage />} />
-          <Route path="course-line" element={<CourseLine />} />
+          <Route path="course-content" element={<CourseLine />} />
           <Route path="/sign-up" element={<SignUp />} />
           <Route path="/login" element={<Login />} />
           <Route path="/gov-home" element={<HomeGov />} />
+          <Route path="/org-home" element={<OrganizationHome />} />
           <Route
             path="/certificate"
             element={
