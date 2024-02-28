@@ -15,6 +15,7 @@ import Certificate from "./components/Profile/Certificate";
 import Dashboard from "./components/Profile/Dashboard";
 import Four0four from "./components/Reusable/Four0four";
 import ForgetPassword from "./screens/ForgetPassword";
+import Categories from "./screens/Categories";
 
 const App = () => {
   return (
@@ -69,6 +70,7 @@ const App = () => {
           />
           <Route path="*" element={<Four0four />} />
           <Route path="/forget-password" element={<ForgetPassword />} />
+          <Route path="/categories" element={<Categories />} />
         </Routes>
       </BrowserRouter>
       <Footer />
