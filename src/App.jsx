@@ -14,6 +14,7 @@ import MyCourses from "./components/Profile/MyCourses";
 import Certificate from "./components/Profile/Certificate";
 import Dashboard from "./components/Profile/Dashboard";
 import Four0four from "./components/Reusable/Four0four";
+import ForgetPassword from "./screens/ForgetPassword";
 
 const App = () => {
   return (
@@ -67,6 +68,7 @@ const App = () => {
             }
           />
           <Route path="*" element={<Four0four />} />
+          <Route path="/forget-password" element={<ForgetPassword />} />
         </Routes>
       </BrowserRouter>
       <Footer />
