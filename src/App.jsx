@@ -17,6 +17,7 @@ import Four0four from "./components/Reusable/Four0four";
 import ForgetPassword from "./screens/ForgetPassword";
 import Categories from "./screens/Categories";
 import AddToCart from "./screens/AddToCart";
+import Lessons from "./screens/Lessons";
 
 const App = () => {
   return (
@@ -73,6 +74,7 @@ const App = () => {
           <Route path="/forget-password" element={<ForgetPassword />} />
           <Route path="/categories" element={<Categories />} />
           <Route path="/add-to-cart" element={<AddToCart />} />
+          <Route path="/lesson" element={<Lessons />} />
         </Routes>
       </BrowserRouter>
       <Footer />
