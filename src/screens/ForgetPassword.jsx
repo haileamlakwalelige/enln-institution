@@ -1,11 +1,12 @@
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
+import forget from "../assets/forgotpassword.svg"
 function ForgetPassword() {
   return (
     <div className="hero mx-auto min-h-screen bg-base-200">
       <div className="hero-content w-full flex-col lg:flex-row">
         <img
-          src="/forgot password.svg"
+          src={forget}
           alt="Forgot Password"
           className="w-full lg:w-1/2"
         />
@@ -36,7 +37,7 @@ function ForgetPassword() {
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.9 }}
               transition={{ type: "spring", stiffness: 400, damping: 17 }}
-              className="buttontext btn btn-primary hidden lg:flex lg:items-center"
+              className="buttontext btn btn-primary flex lg:items-center"
             >
               Reset Password
             </motion.a>
