@@ -81,7 +81,7 @@ const Footer = () => {
             FOR UNIVERSITY
           </p>
         </div>
-        <div className="flex flex-col justify-center justify-center gap-4 lg:items-start lg:justify-start">
+        <div className="flex flex-col  justify-center gap-4 lg:items-start lg:justify-start">
           <p className="amib ml-3 py-3 text-center text-[16px] font-semibold md:text-[18px] lg:text-[20px] xl:text-[24px] xl:font-light">
             FOLLOW US
           </p>
