@@ -19,6 +19,7 @@ import Categories from "./screens/Categories";
 import AddToCart from "./screens/AddToCart";
 import Lessons from "./screens/Lessons";
 import OrganizationHome from "./screens/OrganizationHome";
+import Checkout from "./screens/Checkout";
 
 const App = () => {
   return (
@@ -32,6 +33,7 @@ const App = () => {
           <Route path="/login" element={<Login />} />
           <Route path="/gov-home" element={<HomeGov />} />
           <Route path="/org-home" element={<OrganizationHome />} />
+          <Route path="/checkout" element={<Checkout />} />
           <Route
             path="/certificate"
             element={
