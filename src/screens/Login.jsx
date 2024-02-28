@@ -58,7 +58,7 @@ const Login = () => {
           </form>
           <div className="flex gap-3 text-black font-medium">
             <p>Don't have an account?</p>
-            <Link to="/signup" className="text-primary font-bold">
+            <Link to="/sign-up" className="text-primary font-bold">
               Sign Up
             </Link>
           </div>
