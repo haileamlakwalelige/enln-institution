@@ -20,6 +20,8 @@ import AddToCart from "./screens/AddToCart";
 import Lessons from "./screens/Lessons";
 import OrganizationHome from "./screens/OrganizationHome";
 import Checkout from "./screens/Checkout";
+import GovForm from "./screens/GovForm";
+import OrgForm from "./screens/OrgGov";
 
 const App = () => {
   return (
@@ -34,6 +36,8 @@ const App = () => {
           <Route path="/gov-home" element={<HomeGov />} />
           <Route path="/org-home" element={<OrganizationHome />} />
           <Route path="/checkout" element={<Checkout />} />
+          <Route path="/gov-form" element={<GovForm />} />
+          <Route path="org-form" element={<OrgForm />} />
           <Route
             path="/certificate"
             element={
