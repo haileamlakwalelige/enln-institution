@@ -16,7 +16,7 @@ import Dashboard from "./components/Profile/Dashboard";
 import Four0four from "./components/Reusable/Four0four";
 import ForgetPassword from "./screens/ForgetPassword";
 import Categories from "./screens/Categories";
-
+import AddToCart from "./screens/AddToCart";
 
 const App = () => {
   return (
@@ -72,6 +72,7 @@ const App = () => {
           <Route path="*" element={<Four0four />} />
           <Route path="/forget-password" element={<ForgetPassword />} />
           <Route path="/categories" element={<Categories />} />
+          <Route path="/add-to-cart" element={<AddToCart />} />
         </Routes>
       </BrowserRouter>
       <Footer />
