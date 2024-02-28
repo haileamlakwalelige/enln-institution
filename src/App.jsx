@@ -6,6 +6,7 @@ import Footer from "./components/layout/Footer";
 import CourseLine from "./components/courses/CourseLine";
 import SignUp from "./screens/SignUp";
 import Login from "./screens/Login";
+import HomeGov from "./screens/HomeGov";
 
 const App = () => {
   return (
@@ -15,8 +16,9 @@ const App = () => {
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="course-line" element={<CourseLine />} />
-          <Route path="/signup" element={<SignUp />} />
+          <Route path="/sign-up" element={<SignUp />} />
           <Route path="/login" element={<Login />} />
+          <Route path="/gov-home" element={<HomeGov />} />
         </Routes>
       </BrowserRouter>
       <Footer />
