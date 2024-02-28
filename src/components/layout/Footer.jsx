@@ -99,7 +99,7 @@ const Footer = () => {
           </div>
         </div>
       </div>
-      <div className="mx-2 flex flex-wrap items-center justify-center border-t-2 border-[#B3CBD0] pb-10 sm:mx-4 md:mx-12 md:justify-between md:pb-3 lg:mx-20">
+      <div className="mx-2 flex flex-wrap items-center gap-5 justify-center border-t-2 border-[#B3CBD0] pb-10 sm:mx-4 md:mx-12 md:justify-between md:pb-3 lg:mx-20">
         <div>
           <img src={logos} alt="logo" className="h-[105px] w-[101px]" />
         </div>
