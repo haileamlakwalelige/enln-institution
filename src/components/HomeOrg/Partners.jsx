@@ -16,7 +16,7 @@ function Partners() {
       <>
         <div className="mx-5 flex w-11/12 flex-col lg:w-full lg:flex-row ">
           <div className="flex w-full items-center justify-center   border-black p-5 lg:w-1/2 lg:border-r-2 ">
-            <p className=" text-justify amir">
+            <p className=" text-justify amir leading-8 text-xl">
               Connect with organizations worldwide through ENLN Academy. Our
               partnerships include educational institutions, corporations, and
               industry leaders. Join us to elevate your learning experience.
