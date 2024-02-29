@@ -65,6 +65,9 @@
   color: var(--primary-color); /* Use primary color variable */
   text-align: justify;
 }
+.mer{
+  font-family: 'Merriweather-Regular';
+}
 
 /* Heading Styles for Small Screens */
 .phone-heading {
