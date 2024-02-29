@@ -11,7 +11,7 @@ function WhyUs() {
     <>
       <div className="w-full lg:m-3">
         <div className="mx-auto flex py-10 w-11/12 flex-col lg:flex-row lg:p-5">
-          <div className="flex w-full flex-wrap justify-center items-center ">
+          <div className="flex w-full flex-wrap lg:flex-nowrap justify-center items-center ">
             <img src={WhyUsImage} alt="" className="top-0 h-60 lg:mx-auto" />
             <div className=" mx-auto w-full flex flex-col justify-start space-x-2 space-y-3 px-10 ">
               <h1 className="heading mx-6 mt-4 w-28"> Why Us</h1>
