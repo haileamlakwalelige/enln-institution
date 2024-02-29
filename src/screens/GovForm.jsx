@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 
 const GovForm = () => {
   return (
-    <div>
+    <div className="pb-10">
       <p className="nun text-primary text-[20px] md:text-[24px] lg:text-[28px] xl:text-[32]  font-bold px-2 sm:px-6 lg:px-20 md:px-12 py-12 lg:pt-20">
         Get in touch with our team to learn more
       </p>
@@ -159,15 +159,23 @@ const GovForm = () => {
                 What best describes your need?
               </label>
             </div>
+            <div className="flex justify-center items-center">
+              <button
+                type="submit"
+                className="bg-primary lg:min-w-[300px] rounded-lg max-w-[400px] py-2 px-10 text-white nun text-xl mt-10 hover:text-primary hover:bg-white hover:border-[1px] hover:border-gray-400 duration-500"
+              >
+                Submit
+              </button>
+            </div>
           </form>
           <div className="flex justify-center items-center">
             <p className="max-w-[550px] text-start font-normal amir text-[14px] md:text-[16px]">
               By filling out the form, you agree to our{" "}
-              <Link to="term-privacy" className="text-blue-500">
+              <Link to="term-privacy" className="text-blue-500 pr-1">
                 Terms
               </Link>
               of Use and
-              <Link to="term-privacy" className="text-blue-500">
+              <Link to="term-privacy" className="text-blue-500 px-1">
                 Privacy
               </Link>
               Notice. We may contact you and personalize your experience using
