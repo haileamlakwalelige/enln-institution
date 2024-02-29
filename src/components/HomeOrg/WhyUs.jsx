@@ -11,71 +11,18 @@ function WhyUs() {
     <>
       <div className="w-full lg:m-3">
         <div className="mx-auto flex py-10 w-11/12 flex-col lg:flex-row lg:p-5">
-          <div className="w-full space-y-2 lg:w-1/2">
-            <div className="card w-full rounded-sm bg-base-100 shadow-sm shadow-primary">
-              <div className="card-body space-y-2">
-                <div className="flex justify-between">
-                  <h2 className="card-title text-primary">
-                    Customized Course Content
-                  </h2>
-                  <PiCertificateThin className="card-actions justify-end text-4xl text-primary" />
-                </div>
-                <p className="smalltext">
-                  Tailored curriculum designed to meet the specific needs of
-                  professionals in the nutrition field. Courses crafted with
-                  industry insights and the latest trends to ensure relevance
-                  and practicality.
-                </p>
-              </div>
-            </div>
-            <div className="card w-full rounded-sm bg-base-100 shadow-sm shadow-primary">
-              <div className="card-body space-y-2">
-                <div className="flex justify-between">
-                  <h2 className="card-title text-primary">
-                    Customized Course Content
-                  </h2>
-                  <PiCertificateThin className="card-actions justify-end text-4xl text-primary" />
-                </div>
-                <p className="smalltext">
-                  Tailored curriculum designed to meet the specific needs of
-                  professionals in the nutrition field. Courses crafted with
-                  industry insights and the latest trends to ensure relevance
-                  and practicality.
-                </p>
-              </div>
-            </div>
-            <div className="card w-full rounded-sm bg-base-100 shadow-sm shadow-primary">
-              <div className="card-body space-y-2">
-                <div className="flex justify-between">
-                  <h2 className="card-title text-primary">
-                    Customized Course Content
-                  </h2>
-                  <PiCertificateThin className="card-actions justify-end text-4xl text-primary" />
-                </div>
-                <p className="smalltext">
-                  Tailored curriculum designed to meet the specific needs of
-                  professionals in the nutrition field. Courses crafted with
-                  industry insights and the latest trends to ensure relevance
-                  and practicality.
-                </p>
-              </div>
-            </div>
-          </div>
-          <div className="flex w-full flex-col lg:w-1/2 ">
-            <h1 className="heading mx-10 mt-4 w-28 border-b-2 border-primary">
-              {" "}
-              Why Us
-            </h1>
+          <div className="flex w-full flex-wrap justify-center items-center ">
             <img src={WhyUsImage} alt="" className="top-0 h-60 lg:mx-auto" />
-            <div className=" mx-auto w-full space-x-2 space-y-3 px-10 ">
-              <p className="text ">
+            <div className=" mx-auto w-full flex flex-col justify-start space-x-2 space-y-3 px-10 ">
+              <h1 className="heading mx-6 mt-4 w-28"> Why Us</h1>
+              <p className="text py-4 pl-6">
                 Discover ENLN Academy as your premier destination for a holistic
                 approach to nutrition education, where the fusion of
                 contemporary theory and hands-on application paves the way for
                 your journey towards excellence. Our commitment to excellence
                 ensures that your learning experience transcends boundaries,
               </p>
-              <Link to="/categories">
+              <Link to="/categories" className="">
                 <motion.a
                   whileHover={{ scale: 1.1 }}
                   whileTap={{ scale: 0.9 }}
