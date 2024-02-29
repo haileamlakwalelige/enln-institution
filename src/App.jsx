@@ -22,6 +22,7 @@ import OrganizationHome from "./screens/OrganizationHome";
 import Checkout from "./screens/Checkout";
 import GovForm from "./screens/GovForm";
 import OrgForm from "./screens/OrgGov";
+import VerticalCard from "./components/Reusable/VerticalCard";
 
 const App = () => {
   return (
@@ -38,6 +39,7 @@ const App = () => {
           <Route path="/checkout" element={<Checkout />} />
           <Route path="/gov-form" element={<GovForm />} />
           <Route path="org-form" element={<OrgForm />} />
+          <Route path="vertical" element={<VerticalCard />} />
           <Route
             path="/certificate"
             element={
