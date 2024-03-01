@@ -11,7 +11,7 @@
       "difficulty": "Beginner",
       "type": "online",
       "price": 99,
-      "image": "/public/nutrition-essentials.svg",
+      "image": "https://i.ibb.co/5LS0bLh/tom.png",
       "features": [
         "Understand basic concepts of nutrition and dietary requirements.",
         "Learn about different food groups and their nutritional values.",
@@ -29,7 +29,7 @@
       "difficulty": "Intermediate",
       "type": "virtual",
       "price": 149,
-      "image": "/public/leadership-development-program.svg",
+      "image": "https://i.ibb.co/5LS0bLh/tom.png",
       "features": [
         "Learn effective communication and interpersonal skills.",
         "Develop strategic thinking and decision-making abilities.",
@@ -47,11 +47,173 @@
       "difficulty": "Intermediate",
       "type": "hybrid",
       "price": 199,
-      "image": "/public/evidence-based-policy-making.svg",
+      "image": "https://i.ibb.co/5LS0bLh/tom.png",
       "features": [
         "Understand the role of evidence in policy formulation and implementation.",
         "Analyze data and research findings to inform policy decisions.",
         "Evaluate the impact of policies and assess their effectiveness."
+      ]
+    },
+    {
+      "id": 4,
+      "title": "Data Science Fundamentals",
+      "description": "Gain a solid foundation in data science concepts and techniques.",
+      "instructor": "Dr. John Doe",
+      "rating": 4.5,
+      "ratingsCount": 30000,
+      "hours": 30,
+      "difficulty": "Intermediate",
+      "type": "online",
+      "price": 199,
+      "image": "https://i.ibb.co/5LS0bLh/tom.png",
+      "features": [
+        "Learn key data science concepts, including data manipulation and visualization.",
+        "Master popular data science tools and libraries, such as Python and TensorFlow.",
+        "Apply data science techniques to real-world problems and datasets."
+      ]
+    },
+    {
+      "id": 5,
+      "title": "Mobile App Development with Flutter",
+      "description": "Learn to build cross-platform mobile apps using the Flutter framework.",
+      "instructor": "Dr. Jane Smith",
+      "rating": 4.9,
+      "ratingsCount": 28000,
+      "hours": 20,
+      "difficulty": "Intermediate",
+      "type": "online",
+      "price": 149,
+      "image": "https://i.ibb.co/5LS0bLh/tom.png",
+      "features": [
+        "Understand the Flutter framework and its architecture.",
+        "Build engaging user interfaces with Flutter's widget library.",
+        "Develop and deploy cross-platform mobile apps to iOS and Android devices."
+      ]
+    },
+    {
+      "id": 6,
+      "title": "Introduction to Machine Learning",
+      "description": "Discover the fundamentals of machine learning and its applications.",
+      "instructor": "Dr. Alex Johnson",
+      "rating": 4.6,
+      "ratingsCount": 22000,
+      "hours": 20,
+      "difficulty": "Intermediate",
+      "type": "online",
+      "price": 129,
+      "image": "https://i.ibb.co/5LS0bLh/tom.png",
+      "features": [
+        "Learn about supervised and unsupervised learning algorithms.",
+        "Explore common machine learning techniques, such as regression and classification.",
+        "Apply machine learning algorithms to various domains, including healthcare and finance."
+      ]
+    },
+    {
+      "id": 7,
+      "title": "Web Development Bootcamp",
+      "description": "Master the essentials of web development and build dynamic websites and web applications.",
+      "instructor": "Dr. Laura Brown",
+      "rating": 4.7,
+      "ratingsCount": 27000,
+      "hours": 25,
+      "difficulty": "Intermediate",
+      "type": "online",
+      "price": 159,
+      "image": "https://i.ibb.co/5LS0bLh/tom.png",
+      "features": [
+        "Learn HTML, CSS, and JavaScript from scratch.",
+        "Explore advanced web development concepts, such as responsive design and web performance optimization.",
+        "Build and deploy full-stack web applications using modern frameworks and tools."
+      ]
+    },
+    {
+      "id": 8,
+      "title": "Financial Planning and Analysis",
+      "description": "Gain expertise in financial planning and analysis to drive business success and profitability.",
+      "instructor": "Dr. Mark Davis",
+      "rating": 4.4,
+      "ratingsCount": 21000,
+      "hours": 20,
+      "difficulty": "Intermediate",
+      "type": "online",
+      "price": 139,
+      "image": "https://i.ibb.co/5LS0bLh/tom.png",
+      "features": [
+        "Understand financial statements and key performance indicators (KPIs).",
+        "Analyze financial data to support strategic decision-making and business planning.",
+        "Develop financial models and forecasts to evaluate business opportunities and risks."
+      ]
+    },
+    {
+      "id": 9,
+      "title": "Digital Marketing Fundamentals",
+      "description": "Learn the core principles and strategies of digital marketing to grow your online presence.",
+      "instructor": "Dr. Sophia Miller",
+      "rating": 4.9,
+      "ratingsCount": 29000,
+      "hours": 15,
+      "difficulty": "Beginner",
+      "type": "online",
+      "price": 99,
+      "image": "https://i.ibb.co/5LS0bLh/tom.png",
+      "features": [
+        "Explore various digital marketing channels, including SEO, SEM, and social media marketing.",
+        "Develop effective digital marketing campaigns and strategies to reach target audiences.",
+        "Measure and analyze digital marketing performance using key metrics and analytics tools."
+      ]
+    },
+    {
+      "id": 10,
+      "title": "Artificial Intelligence and Ethics",
+      "description": "Examine the ethical implications of artificial intelligence (AI) and its impact on society.",
+      "instructor": "Dr. Rachel Wilson",
+      "rating": 4.7,
+      "ratingsCount": 26000,
+      "hours": 20,
+      "difficulty": "Intermediate",
+      "type": "online",
+      "price": 149,
+      "image": "https://i.ibb.co/5LS0bLh/tom.png",
+      "features": [
+        "Understand the ethical considerations surrounding AI development and deployment.",
+        "Explore AI technologies and their potential societal implications, such as bias and privacy concerns.",
+        "Discuss ethical frameworks and guidelines for responsible AI design and implementation."
+      ]
+    },
+    {
+      "id": 11,
+      "title": "Blockchain Essentials",
+      "description": "Discover the fundamentals of blockchain technology and its applications.",
+      "instructor": "Dr. William Anderson",
+      "rating": 4.6,
+      "ratingsCount": 24000,
+      "hours": 20,
+      "difficulty": "Intermediate",
+      "type": "online",
+      "price": 129,
+      "image": "https://i.ibb.co/5LS0bLh/tom.png",
+      "features": [
+        "Learn about blockchain architecture, consensus mechanisms, and cryptographic principles.",
+        "Explore use cases and applications of blockchain technology, such as cryptocurrency and smart contracts.",
+        "Gain practical experience in blockchain development and deployment through hands-on projects."
+      ]
+    },
+    {
+      "id": 12,
+      "title": "User Experience (UX) Design",
+      "description": "Master the principles of user experience (UX) design to create intuitive and engaging digital products.",
+      "instructor": "Dr. Julia Brown",
+      "rating": 4.8,
+      "ratingsCount": 23000,
+      "hours": 20,
+      "difficulty": "Intermediate",
+      "type": "online",
+      "price": 139,
+      "image": "https://i.ibb.co/5LS0bLh/tom.png",
+      "features": [
+        "Understand the fundamentals of user-centered design and human-computer interaction (HCI).",
+        "Conduct user research and usability testing to inform design decisions and improve user satisfaction.",
+        "Create wireframes, prototypes, and mockups using industry-standard design tools and techniques."
       ]
     }
   ]
