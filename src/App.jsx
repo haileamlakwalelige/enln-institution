@@ -23,12 +23,17 @@ import Checkout from "./screens/Checkout";
 import GovForm from "./screens/GovForm";
 import OrgForm from "./screens/OrgGov";
 import VerticalCard from "./components/Reusable/VerticalCard";
+import HeaderTop from "./components/Reusable/HeaderTop";
+import HeaderMiddle from "./components/Reusable/HeaderMiddle";
 
 const App = () => {
   return (
     <>
       {/* <Header /> */}
-      <BrowserRouter>
+      <div className="mb-32">
+      <HeaderTop />
+      <HeaderMiddle />
+      </div>
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="course-content" element={<CourseLine />} />
@@ -86,7 +91,6 @@ const App = () => {
           <Route path="/add-to-cart" element={<AddToCart />} />
           <Route path="/lesson" element={<Lessons />} />
         </Routes>
-      </BrowserRouter>
       <Footer />
     </>
   );
