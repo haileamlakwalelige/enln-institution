@@ -9,7 +9,7 @@ import RegisterToday from "../components/Reusable/RegisterToday";
 
 const HomePage = () => {
   return (
-    <div className="overflow-x-hidden">
+    <div className="overflow-x-hidden -pt-10 lg:pt-10">
       <Hero />
       <Companies />
       <WhatWeOffer />
