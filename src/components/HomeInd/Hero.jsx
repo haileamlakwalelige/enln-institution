@@ -78,7 +78,7 @@ const Hero = () => {
             </div>
           </div>
           {/* Hero image */}
-          <div className="mt-6 flex hidden w-full items-center justify-center lg:mt-0 lg:block lg:w-1/2">
+          <div className="mt-6  hidden w-full items-center justify-center lg:mt-0 lg:block lg:w-1/2">
             <img
               className="h-full w-full lg:max-w-3xl"
               src={HeroImage}
