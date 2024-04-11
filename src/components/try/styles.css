@@ -1,0 +1,98 @@
+/* styles.css */
+
+/* Cards container */
+.cards-container-vertical {
+  display: flex;
+  overflow-x: auto; /* Enable horizontal scrolling */
+  max-width: 100%; /* Ensure the container takes up full width */
+}
+
+/* Wrapper for individual cards */
+.card-wrapper-vertical {
+  display: flex;
+  flex-direction: row;
+}
+
+/* Individual card */
+.card {
+  width: 300px; /* Adjust card width as needed */
+  margin-right: 16px; /* Adjust spacing between cards */
+  background-color: #f7f7f7; /* Example background color */
+  border-radius: 8px; /* Example border radius */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Example box shadow */
+}
+
+/* Card image */
+.card img {
+  width: 100%;
+  height: auto;
+  border-top-left-radius: 8px; /* Ensure rounded corners for image */
+  border-top-right-radius: 8px; /* Ensure rounded corners for image */
+}
+
+/* Card body */
+.card-body {
+  padding: 16px;
+}
+
+/* Card title */
+.card-title {
+  margin-bottom: 8px;
+  font-size: 1.25rem; /* Example font size */
+  color: #333; /* Example text color */
+}
+
+/* Card description */
+.card p {
+  margin-bottom: 16px;
+  font-size: 1rem; /* Example font size */
+  color: #666; /* Example text color */
+}
+
+/* Card actions */
+.card-actions {
+  display: flex;
+  justify-content: flex-end;
+}
+
+/* Button container */
+.btn-container-vertical {
+  display: flex;
+  justify-content: center;
+  margin-top: 16px; /* Adjust spacing between cards and buttons */
+}
+
+/* Button styles */
+.btn {
+  padding: 8px 16px;
+  margin-right: 8px; /* Adjust spacing between buttons */
+  font-size: 1rem; /* Example font size */
+  border: none;
+  border-radius: 4px; /* Example border radius */
+  background-color: #007bff; /* Example button color */
+  color: #fff; /* Example text color */
+  cursor: pointer;
+}
+
+.btn:hover {
+  background-color: #0056b3; /* Example button color on hover */
+}
+
+.btn:disabled {
+  opacity: 0.5; /* Reduce opacity for disabled button */
+  cursor: not-allowed;
+}
+
+/* Scroll bar */
+.scroll-bar {
+    width: 100%; /* Adjust the width of the scroll bar */
+    height: 4px; /* Adjust the height of the scroll bar */
+    background-color: #007bff; /* Example color for the scroll bar */
+  }
+  
+
+.con {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

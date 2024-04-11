@@ -1,0 +1,63 @@
+[
+    {
+      "id": 1,
+      "title": "Shoes",
+      "description": "Comfortable and stylish shoes for everyday wear.",
+      "imageUrl": "https://daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.jpg"
+    },
+    {
+      "id": 2,
+      "title": "Sneakers",
+      "description": "Classic sneakers for a casual look.",
+      "imageUrl": "https://daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.jpg"
+    },
+    {
+      "id": 3,
+      "title": "Boots",
+      "description": "Stay warm and trendy with our collection of boots.",
+      "imageUrl": "https://daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.jpg"
+    },
+    {
+      "id": 4,
+      "title": "Sandals",
+      "description": "Perfect for summer adventures.",
+      "imageUrl": "https://daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.jpg"
+    },
+    {
+      "id": 5,
+      "title": "High Heels",
+      "description": "Elegant and stylish heels for special occasions.",
+      "imageUrl": "https://daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.jpg"
+    },
+    {
+      "id": 6,
+      "title": "Slippers",
+      "description": "Cozy slippers for lounging at home.",
+      "imageUrl": "https://daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.jpg"
+    },
+    {
+      "id": 7,
+      "title": "Flats",
+      "description": "Versatile flats for everyday comfort.",
+      "imageUrl": "https://daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.jpg"
+    },
+    {
+      "id": 8,
+      "title": "Running Shoes",
+      "description": "Designed for optimal performance during workouts.",
+      "imageUrl": "https://daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.jpg"
+    },
+    {
+      "id": 9,
+      "title": "Formal Shoes",
+      "description": "Classic and sophisticated shoes for formal events.",
+      "imageUrl": "https://daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.jpg"
+    },
+    {
+      "id": 10,
+      "title": "Espadrilles",
+      "description": "Stylish and comfortable shoes perfect for summer.",
+      "imageUrl": "https://daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.jpg"
+    }
+  ]
+  

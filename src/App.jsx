@@ -26,6 +26,7 @@ import VerticalCard from "./components/Reusable/VerticalCard";
 import HeaderTop from "./components/Reusable/HeaderTop";
 import HeaderMiddle from "./components/Reusable/HeaderMiddle";
 import CourseDescription from "./screens/CourseDescription";
+import VerticalCardsTrying from "./components/try/VerticalCardsTrying";
 // import CourseDescription from "./components/CourseDescription";
 
 const App = () => {
@@ -34,11 +35,11 @@ const App = () => {
       {/* <Header /> */}
       <div className="mb-32">
         <HeaderTop />
-        <HeaderMiddle />
+        {/* <HeaderMiddle /> */}
       </div>
       <Routes>
         <Route path="/" element={<HomePage />} />
-        <Route path="course-content" element={<CourseLine />} />
+        <Route path="/course-line" element={<CourseLine />} />
         <Route path="/sign-up" element={<SignUp />} />
         <Route path="/login" element={<Login />} />
         <Route path="/gov-home" element={<HomeGov />} />
@@ -47,6 +48,7 @@ const App = () => {
         <Route path="/gov-form" element={<GovForm />} />
         <Route path="org-form" element={<OrgForm />} />
         <Route path="vertical" element={<VerticalCard />} />
+        <Route path="verti" element={<VerticalCardsTrying />} />
         <Route
           path="/certificate"
           element={
