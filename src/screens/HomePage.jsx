@@ -6,6 +6,7 @@ import Benefits from "../components/HomeInd/Benefit";
 import FAQ from "../components/HomeInd/FAQ";
 import Testimonial from "../components/HomeInd/Testimonials";
 import RegisterToday from "../components/Reusable/RegisterToday";
+import BroadSelection from "../components/HomeInd/BroadSelection";
 
 const HomePage = () => {
   return (
@@ -13,6 +14,7 @@ const HomePage = () => {
       <Hero />
       <Companies />
       <WhatWeOffer />
+      <BroadSelection />
       <Benefits />
       <FAQ />
       <Testimonial />
