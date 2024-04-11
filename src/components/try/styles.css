@@ -15,7 +15,7 @@
 
 /* Individual card */
 .card {
-  width: 300px; /* Adjust card width as needed */
+  width: 100%; /* Adjust card width as needed */
   margin-right: 16px; /* Adjust spacing between cards */
   background-color: #f7f7f7; /* Example background color */
   border-radius: 8px; /* Example border radius */
@@ -25,7 +25,7 @@
 /* Card image */
 .card img {
   width: 100%;
-  height: auto;
+  height: 255px;
   border-top-left-radius: 8px; /* Ensure rounded corners for image */
   border-top-right-radius: 8px; /* Ensure rounded corners for image */
 }
