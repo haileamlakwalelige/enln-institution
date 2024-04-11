@@ -4,12 +4,14 @@ import Companies from "../components/Reusable/Companies";
 import WhyUs from "../components/HomeGov/WhyUs";
 import Testimonial from "../components/HomeInd/Testimonials";
 import GovHub from "../components/HomeGov/GovHub";
+import Container from "../components/HomeGov/Container";
 
 const HomeGov = () => {
   return (
     <div className="overflow-x-hidden">
       <HeroGov />
-      <Companies />
+      <Container />
+      {/* <Companies /> */}
       <WhyUs />
       <GovHub />
       <Testimonial />
