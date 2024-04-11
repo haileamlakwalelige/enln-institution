@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 import CourseImage from "../../assets/courseimage.svg";
 const HorizontalCard = () => {
   return (
-    <Link to="/coursedescription">
+    <Link to="/course-description">
       <motion.div
         className="w-full border-b border-primary px-3 hover:shadow-md"
         whileHover={{ scale: 1 }}
