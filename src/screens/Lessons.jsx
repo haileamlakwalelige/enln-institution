@@ -5,7 +5,7 @@ import Lessonsoftheweek from "../components/Lesson/Lessonsoftheweek";
 
 function Lessons() {
   return (
-    <div >
+    <div className="overflow-hidden pt-60">
       <div className="flex w-full flex-col gap-5 p-2 sm:p-4 lg:flex-row md:gap-0 md:p-6 lg:m-3 ">
         <div className="lg:w-1/4">
           <LeftSideBar />
