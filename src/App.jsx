@@ -35,7 +35,7 @@ const App = () => {
       {/* <Header /> */}
       <div className="mb-32">
         <HeaderTop />
-        {/* <HeaderMiddle /> */}
+        <HeaderMiddle />
       </div>
       <Routes>
         <Route path="/" element={<HomePage />} />
