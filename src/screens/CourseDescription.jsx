@@ -7,6 +7,7 @@ import CourseRequirements from "../components/course description/CourseRequireme
 import DescriptionCourse from "../components/course description/DescriptionCourse";
 import CourseWho from "../components/course description/CourseWho";
 
+
 const CourseDescription = () => {
   return (
     <div className="mt-44">
