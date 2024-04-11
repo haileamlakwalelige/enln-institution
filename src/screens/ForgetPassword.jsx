@@ -14,14 +14,14 @@ function ForgetPassword() {
           <h1 className="heading mb-4 text-3xl font-bold">Forgot Password</h1>
 
           {/* Form for password recovery */}
-          <form className="mb-6 w-full px-5">
+          <form className="mb-6 w-full px-5 justify-center items-center flex flex-col">
             <div className="rounded-lg bg-white p-4 w-full">
               <div className="relative bg-inherit">
                 <input
                   type="text"
                   id="username"
                   name="username"
-                  className="peer h-10 w-72 rounded-lg bg-transparent px-2 text-gray-900 placeholder-transparent ring-1 border-none ring-secondary focus:outline-none focus:ring-primary focus:ring-1"
+                  className="peer h-10 w-72 rounded-lg bg-transparent px-2 text-gray-900 placeholder-transparent ring-1 border-none ring-secondary focus:outline-none focus:ring-primary focus:ring-1 min-w-[300px]"
                   placeholder="Enter your email"
                 />
                 <label
@@ -37,7 +37,7 @@ function ForgetPassword() {
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.9 }}
               transition={{ type: "spring", stiffness: 400, damping: 17 }}
-              className="buttontext btn btn-primary flex lg:items-center"
+              className="buttontext btn btn-primary flex lg:items-center min-w-[300px] ml-3"
             >
               Reset Password
             </motion.a>
