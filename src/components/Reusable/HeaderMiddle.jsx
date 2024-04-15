@@ -34,7 +34,7 @@ const HeaderMiddle = () => {
                   Login
                 </button>
               </Link>
-              <Link to="/signup" className="hidden lg:flex">
+              <Link to="/sign-up" className="hidden lg:flex">
                 <button className="bg-primary text-white border-[1px] px-8 hover:bg-white hover:text-primary py-2 rounded-xl">
                   Sing Up
                 </button>
