@@ -7,6 +7,9 @@ import { Link } from "react-router-dom";
 
 const Login = () => {
   const [passShow, setPassShow] = useState(false);
+  const [email, setEmail]=useState("");
+  const [password, setPassword]=useState("");
+  
   return (
     <div className="py-10 ">
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4  px-2 sm:px-4 md:px-12 lg:px-32 lg:gap-10 justify-center items-center">
@@ -38,9 +41,11 @@ const Login = () => {
                 {passShow ? <FaRegEye /> : <FaRegEyeSlash />}
               </div>
             </div>
-            <p className="px-3 py-3 text-black text-lg font-medium">
-              Forget Password?
-            </p>
+            <Link to="forget-password">
+              <p className="px-3 py-3 text-black text-lg font-medium">
+                Forget Password?
+              </p>
+            </Link>
             <button
               type="submit"
               className="bg-primary rounded-xl text-white font-semibold text-xl py-2 px-10 max-w-[300px] min-w-[250px] my-4"

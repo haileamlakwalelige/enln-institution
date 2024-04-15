@@ -10,7 +10,7 @@ const Support = () => {
         <p className="amir my-4  text-justify text-[16px] md:text-start">
           Welcome to ENLN Academy, where learning meets convenience. If you have
           any questions or encounter any issues, our support team is ready to
-          assist you.{" "}
+          assist you.
         </p>
         <div className="flex flex-col items-center lg:items-start justify-center  lg:flex-row lg:justify-between mt-20">
           <div className="flex flex-col items-start justify-start gap-10">
