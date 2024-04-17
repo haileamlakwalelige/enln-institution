@@ -12,8 +12,32 @@ function Benefits() {
     slidesToShow: 2,
     slidesToScroll: 1,
     autoplay: true,
-    autoplaySpeed: 1000
+    autoplaySpeed: 1000,
+    responsive: [
+      {
+        breakpoint: 1024, // Medium devices (tablets, 768px and up)
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 1,
+        },
+      },
+      {
+        breakpoint: 768, // Small devices (landscape phones, 576px and up)
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 1,
+        },
+      },
+      {
+        breakpoint: 576, // Extra small devices (portrait phones, less than 576px)
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 1,
+        },
+      },
+    ],
   };
+  
   return (
     <div className="m-5 flex w-11/12 flex-col lg:w-full lg:flex-row overflow-x-hidden">
       <div className="flex w-full items-center justify-center p-5 lg:w-1/2 lg:border-r-2 ">
