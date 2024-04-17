@@ -1,7 +1,11 @@
 import React from "react";
 import VerticalCardsTrying from "../try/VerticalCardsTrying";
+import VerticalCardTryings from "../try/VerticalCardTryings";
 
 const BroadSelection = () => {
+  // Check if the screen width is less than lg breakpoint (1024px)
+  const isMobileScreen = window.innerWidth <= 1023;
+
   return (
     <div>
       <div className="px-2 sm:px-6 md:px-12 lg:px-32">
@@ -20,7 +24,7 @@ const BroadSelection = () => {
         </p>
       </div>
       <div>
-        <VerticalCardsTrying />
+        {isMobileScreen ? <VerticalCardTryings /> : <VerticalCardsTrying />}
       </div>
     </div>
   );
