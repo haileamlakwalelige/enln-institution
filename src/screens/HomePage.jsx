@@ -8,9 +8,10 @@ import Testimonial from "../components/HomeInd/Testimonials";
 import RegisterToday from "../components/Reusable/RegisterToday";
 import BroadSelection from "../components/HomeInd/BroadSelection";
 
+
 const HomePage = () => {
   return (
-    <div className="overflow-x-hidden -pt-10 lg:pt-10">
+    <div className="overflow-x-hidden -pt-10 lg:pt-4">
       <Hero />
       <Companies />
       <WhatWeOffer />
