@@ -5,7 +5,7 @@ import telebirr from "../assets/telebirr.svg";
 
 const Checkout = () => {
   return (
-    <div className="my-12 merb font-light">
+    <div className="py-12 lg:py-6 merb font-light">
       <div className="grid grid-cols-2 lg:grid-cols-3 gap-4 justify-center items-center px-6">
         <div className="hidden lg:flex"></div>
         <div className="text-black text-[24px] md:text-[30px] lg:text-[36px] font-bold merb">
