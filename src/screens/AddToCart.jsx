@@ -3,7 +3,7 @@ import HorizontalCard from "../components/Reusable/HorizontalCard";
 
 const AddToCart = () => {
   return (
-    <div className="mt-10 px-2 sm:px-6 md:px-12 lg:px-20">
+    <div className="pt-10 px-2 sm:px-6 md:px-12 lg:px-20">
       <div>
         <p className="text-primary font-semibold merb text-[20px] md:text-[24px] lg:text-[28px] xl:text-[32px] ">
           Add To Cart
