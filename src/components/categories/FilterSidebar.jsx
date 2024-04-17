@@ -1,6 +1,5 @@
 import React, {useState} from 'react'
-import { motion, useAnimation } from "framer-motion";
-import { AiOutlineFilter } from "react-icons/ai";
+
 
 function FilterSidebar() {
     const [isPriceDropdownOpen, setPriceDropdownOpen] = useState(false);
@@ -20,7 +19,7 @@ function FilterSidebar() {
   return (
     <>
       <div className="mx-5 space-y-3">
-        <h1 className="heading">All Leadership Courses</h1>
+        <h1 className="heading text-center lg:text-justify">All Leadership Courses</h1>
         <div className=" ml-5 flex space-x-2 lg:mr-7   lg:justify-end">
           {/* <motion.a
             whileHover={{ scale: 1.1 }}
