@@ -61,7 +61,8 @@
 /* Heading Styles for Large Screens */
 .heading {
   font-family: 'Merriweather-Bold';
-  font-size: 1.75rem;
+  /* font-size: 1.75rem; */
+  @apply text-[25px] md:text-[30px] lg:text-[35px];
   color: var(--primary-color); /* Use primary color variable */
   text-align: justify;
 }
@@ -106,7 +107,7 @@
   font-family: 'Amiko-Regular';
   font-size: 1rem;
   color: white;
-  text-align: justify;
+  /* text-align: justify; */
 }
 
 /* Outline Text Styles */
