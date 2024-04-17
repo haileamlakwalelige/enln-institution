@@ -8,7 +8,7 @@ function ForgetPassword() {
         <img
           src={forget}
           alt="Forgot Password"
-          className="w-full lg:w-1/2"
+          className="w-full h-[300px] md:h-full lg:w-1/2"
         />
         <div className="hero-content flex-col">
           <h1 className="heading mb-4 text-3xl font-bold">Forgot Password</h1>
