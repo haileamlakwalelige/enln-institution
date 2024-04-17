@@ -11,13 +11,13 @@ const Login = () => {
   const [password, setPassword]=useState("");
   
   return (
-    <div className="py-10 ">
+    <div className="py-10 mt-20">
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4  px-2 sm:px-4 md:px-12 lg:px-32 lg:gap-10 justify-center items-center">
         <div className="flex justify-center items-center md:justify-end md:items-end">
           <img
             src={signup}
             alt="Login"
-            className="w-[426px] h-[306px]"
+            className="w-[426px] h-[250px] md:h-[306px]"
             style={{ width: "426px", height: "306px" }}
           />
         </div>
