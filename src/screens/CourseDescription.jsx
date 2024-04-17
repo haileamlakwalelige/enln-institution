@@ -10,7 +10,7 @@ import CourseWho from "../components/course description/CourseWho";
 
 const CourseDescription = () => {
   return (
-    <div className="mt-44">
+    <div className="pt-4">
       <CoursesHero />
       <div className="flex flex-col-reverse lg:flex-row justify-start items-start my-10 mx-2 sm:mx-4 md:mx-6 lg:mx-10 gap-10">
         <div className="lg:w-3/4 flex flex-col justify-center items-center ">
