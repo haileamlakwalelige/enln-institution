@@ -44,7 +44,7 @@ function VerticalCardsTrying() {
   };
 
   return (
-    <div className="py-10 ">
+    <div className="py-10 h-full">
       <div
         className="cards-container-vertical overflow-x-hidden"
         ref={containerRef}
@@ -53,7 +53,7 @@ function VerticalCardsTrying() {
           {cardsData.map((card, index) => (
             <div
               className="card w-96 bg-base-100 shadow-xl relative"
-              key={card.id}
+              key={index}
               onMouseEnter={() => setHoveredCardIndex(index)} // Set hovered card index
               onMouseLeave={() => setHoveredCardIndex(null)} // Reset hovered card index
             >
