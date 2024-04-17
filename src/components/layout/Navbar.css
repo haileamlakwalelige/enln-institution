@@ -1,0 +1,254 @@
+.navbar {
+  height: 80px;
+  display: flex;
+  font-size: 1.2rem;
+  /* @apply md:gap-10 lg:gap-32 lg:bg-transparent; */
+}
+
+.navbar-logo {
+  color: #fff;
+  justify-self: end;
+  margin-left: 20px;
+  cursor: pointer;
+  text-decoration: none;
+  font-size: 2rem;
+  margin-left: 30px;
+}
+
+.des{
+  display: none;
+}
+.lose{
+  display:block;
+}
+.hove {
+  font-weight: normal;
+  /* Ensure the default font weight */
+  position: relative;
+  @apply pb-2;
+  /* Position relative for absolute positioning of pseudo-element */
+}
+
+.hove::after {
+  content: '';
+  /* Add a pseudo-element */
+  position: absolute;
+  /* Position the pseudo-element absolutely */
+  bottom: 0;
+  /* Position it at the bottom */
+  right: 100%;
+  /* Initially position it outside the element */
+  width: 0;
+  /* Set initial width to 0 */
+  height: 3px;
+  /* Set the height of the border */
+  /* background-color: #000; */
+  /* Set the color of the border */
+  transition: width 0.5s ease, right 0.5s ease;
+  /* Add transitions for width and left properties */
+  @apply bg-primary;
+}
+
+.hove:hover::after {
+  width: 100%;
+  /* Expand the border to the full width of the element */
+  right: 0;
+  /* Move the border to the left edge of the element */
+}
+
+.nav-menu {
+  display: grid;
+  grid-template-columns: repeat(8, auto);
+  grid-gap: 10px;
+  list-style: none;
+  text-align: center;
+  justify-content: space-between;
+  width: 100vw;
+  justify-content: start;
+}
+
+.nav-item {
+  display: flex;
+  align-items: center;
+  height: 80px;
+  font-weight: 800px;
+}
+
+.but {
+  display: flex;
+  align-items: center;
+  margin-left: 250px;
+  /* @apply text-[#D2B759]; */
+}
+
+.nav-links {
+  color: white;
+  text-decoration: none;
+  padding: 0.5rem 1rem;
+
+  @apply text-base px-5;
+}
+
+.news:hover {
+  border-radius: 4px;
+  transition: all 0.2s ease-out;
+  @apply lg:duration-200 lg:border-b-4 lg:border-secondary;
+}
+
+.fa-bars {
+  color: #fff;
+}
+
+.nav-links-mobile {
+  display: none;
+}
+
+.menu-icon {
+  display: none;
+}
+
+@media screen and (max-width: 960px) {
+  .NavbarItems {
+    position: relative;
+  }
+
+  .des{
+    display: block;
+  }
+  .lose{
+    display:none;
+  }
+  .but {
+    display: flex;
+    align-items: center;
+    margin-left: 0px;
+    @apply text-primary;
+    /* @apply text-[#D2B759]; */
+  }
+
+  .but:hover {
+    @apply text-white;
+  }
+
+  .hov {
+    @apply w-screen flex justify-center items-center text-white;
+
+  }
+
+  .hove:hover {
+    /* background-color: #FF7700; */
+    color: white;
+    @apply bg-secondary w-screen text-center flex justify-center items-center py-7 duration-500 ease-in-out;
+  }
+
+  .hove {
+    @apply my-2 font-normal;
+  }
+
+  .hove {
+    @apply w-screen;
+  }
+
+  .nav-menu {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 90vh;
+    position: absolute;
+    top: 80px;
+    left: -100%;
+    opacity: 1;
+    padding-top: 80px;
+    transition: all 0.5s ease;
+  }
+
+  .hov.active {
+    background: #212741;
+    left: 0;
+    opacity: 1;
+    transition: all 0.5s ease;
+    z-index: 1;
+  }
+
+  .nav-menu.active {
+    background: #fff;
+    @apply text-primary;
+    left: 0;
+    opacity: 1;
+    transition: all 0.5s ease;
+    z-index: 1;
+  }
+
+  .nav-links {
+    text-align: center;
+    padding: 2rem;
+    width: 100%;
+    display: table;
+    /* @apply w-[80%]; */
+  }
+
+  .nav-links:hover {
+    border-radius: 0;
+    @apply w-screen bg-primary;
+  }
+
+  .navbar-logo {
+    position: absolute;
+    top: 0;
+    left: 0;
+    transform: translate(25%, 50%);
+  }
+
+  .menu-icon {
+    display: block;
+    position: absolute;
+    top: 0;
+    right: 0;
+    transform: translate(-100%, 60%);
+    font-size: 1.8rem;
+    cursor: pointer;
+  }
+
+  .nav-links-mobile {
+    display: block;
+    text-align: center;
+    padding: 1.5rem;
+    margin: 2rem auto;
+    border-radius: 4px;
+    width: 80%;
+    background: #fff;
+    text-decoration: none;
+    color: #0f172a;
+    font-size: 1.5rem;
+  }
+
+  .nav-links-mobile:hover {
+    @apply bg-primary;
+    color: #fff;
+    transition: 250ms;
+
+  }
+
+  .button {
+    display: none;
+  }
+    .hove::after {
+      content: '';
+      /* Add a pseudo-element */
+      position: absolute;
+      /* Position the pseudo-element absolutely */
+      bottom: 0;
+      /* Position it at the bottom */
+      right: 100%;
+      /* Initially position it outside the element */
+      width: 0;
+      /* Set initial width to 0 */
+      height: 3px;
+      /* Set the height of the border */
+      /* background-color: #000; */
+      /* Set the color of the border */
+      transition: width 0.5s ease, right 0.5s ease;
+      /* Add transitions for width and left properties */
+      @apply bg-primary;
+    }
+}
