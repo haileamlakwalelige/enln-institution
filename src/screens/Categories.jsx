@@ -8,7 +8,7 @@ function Categories() {
 
   return (
     <>
-      <div className="w-11/12">
+      <div className="w-11/12 pt-4">
         {/* <GetYouStarted /> */}
         <div className="grid-rows mt-20 grid w-full lg:grid-cols-[30%,70%]">
           <div className="lg:ml-2">
