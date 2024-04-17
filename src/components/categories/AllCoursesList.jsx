@@ -1,7 +1,7 @@
 import React from "react";
-import HorizontalCard from "../Reusable/HorizontalCard";
 import { FaLessThan } from "react-icons/fa6";
 import { FaGreaterThan } from "react-icons/fa";
+import HorizontalCard from "../Reusable/HorizontalCard";
 
 function AllCoursesList() {
   const num = [2, 3, 4, 5];
