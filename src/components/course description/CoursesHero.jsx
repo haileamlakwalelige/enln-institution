@@ -12,14 +12,14 @@ const CoursesHero = () => {
         backgroundPosition: "center",
         backgroundSize: "cover",
         backgroundRepeat: "no-repeat",
-        minHeight: "70vh",
+        minHeight: "80vh",
       }}
     >
-      <div className="flex justify-center items-center min-h-[70vh]">
+      <div className="flex justify-center items-center min-h-[70vh] pt-5 ">
         <div className="grid grid-cols-1 md:grid-cols-2 px-2 sm:px-4 md:px-8 lg:px-20 justify-center items-center flex-wrap gap-10 lg:flex-nowrap">
           <div>
             <div>
-              <p className="text-primary text-[20px] md:text-[24px] lg:text-[28px] xl:text-[32px] font-extrabold nun pb-3">
+              <p className="text-primary text-center text-[20px] md:text-[24px] lg:text-[28px] xl:text-[32px] font-extrabold nun pb-3">
                 The Complete Nutrition Course
               </p>
               <p className="text-primary text-[14px] lg:text-[16px] font-medium py-4">
@@ -28,7 +28,7 @@ const CoursesHero = () => {
                 understanding of nutrition.
               </p>
             </div>
-            <div className="flex gap-2 text-primary">
+            <div className="flex gap-2 text-primary flex-wrap">
               <p>4.6</p>
               <div className="flex gap-1 mt-1">
                 <FaStar className="text-primary" />
