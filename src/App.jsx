@@ -27,6 +27,8 @@ import HeaderTop from "./components/Reusable/HeaderTop";
 import HeaderMiddle from "./components/Reusable/HeaderMiddle";
 import CourseDescription from "./screens/CourseDescription";
 import VerticalCardsTrying from "./components/try/VerticalCardsTrying";
+import Navbar from "./components/Reusable/Navbar";
+import Navbar2 from "./components/layout/Navbar2";
 // import CourseDescription from "./components/CourseDescription";
 
 const App = () => {
@@ -35,7 +37,9 @@ const App = () => {
       {/* <Header /> */}
       <div className="mb-32">
         <HeaderTop />
-        <HeaderMiddle />
+        <Navbar2 />
+        {/* <HeaderMiddle /> */}
+        {/* <Navbar /> */}
       </div>
       <Routes>
         <Route path="/" element={<HomePage />} />
