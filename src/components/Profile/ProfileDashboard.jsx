@@ -51,7 +51,7 @@ const ProfileDashboard = ({ children }) => {
   const email = sessionStorage.getItem("email");
 
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen mt-32">
       <div className="container ">
         <div
           style={{ width: isOpen ? "350px" : "50px" }}

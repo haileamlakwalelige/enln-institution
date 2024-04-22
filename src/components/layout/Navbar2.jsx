@@ -54,9 +54,12 @@ const Navbar2 = () => {
           />
         </Link>
         <div className="flex justify-end items-end">
-          <div className="flex gap-4  ml-32 mt-2">
-            <BsCart size={25} className="font-extrabold des"/>
-            <BiSearch size={29} className="font-extrabold des"/>
+          <div
+            className="flex gap-4 justify-center
+           items-center ml-44 lg:ml-32 mt-2"
+          >
+            <BsCart size={25} className="font-extrabold des" />
+            <BiSearch size={29} className="font-extrabold des" />
           </div>
           <div className="menu-icon text-primary  mt-3" onClick={handleClick}>
             {click ? <FaTimes /> : <FaBars />}

@@ -3,14 +3,8 @@
     {
       "id": "2812",
       "name": "Haila",
-      "email": "hailw@gmail.com",
+      "email": "haila@gmail.com",
       "password": "haila"
-    },
-    {
-      "id": "0913",
-      "name": "lebam",
-      "email": "lebam@gmail.com",
-      "password": "123456"
     },
     {
       "id": "6dfb",
@@ -25,12 +19,6 @@
       "password": "12345678"
     },
     {
-      "id": "d802",
-      "name": "",
-      "email": "",
-      "password": "0000"
-    },
-    {
       "id": "803b",
       "name": "Beti Negash",
       "email": "betelhemnegash10@gmail.com",
@@ -41,6 +29,68 @@
       "name": "abebe",
       "email": "a@gmail.com",
       "password": "1234"
+    },
+    {
+      "id": "3ece",
+      "name": "Helder",
+      "email": "helder@gmail.com",
+      "password": "12345678"
+    },
+    {
+      "id": "ab96",
+      "email": "helder@gmail.com",
+      "password": "12345678"
+    },
+    {
+      "id": "b87e",
+      "email": "helder@gmail.com",
+      "password": "12345678"
+    },
+    {
+      "id": "1818",
+      "email": "haila@gmail.com",
+      "password": "haila"
+    },
+    {
+      "id": "5099",
+      "name": "Lebam",
+      "email": "lebam@gmail.com",
+      "password": "12345678"
+    },
+    {
+      "id": "2986",
+      "email": "lebam@gmail.com",
+      "password": "12345678"
+    },
+    {
+      "id": "d522",
+      "email": "lebam@gmail.com",
+      "password": "12345678"
+    },
+    {
+      "id": "664e",
+      "email": "lebam@gmail.com",
+      "password": "12345678"
+    },
+    {
+      "id": "4086",
+      "email": "lebam@gmail.com",
+      "password": "12345678"
+    },
+    {
+      "id": "5cbf",
+      "email": "lebam@gmail.com",
+      "password": "12345678"
+    },
+    {
+      "id": "7c22",
+      "email": "miki@gmail.com",
+      "password": "12345678"
+    },
+    {
+      "id": "b42c",
+      "email": "mickel@gmail.com",
+      "password": "12345678"
     }
   ]
 }

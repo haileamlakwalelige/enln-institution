@@ -11,7 +11,7 @@ import BroadSelection from "../components/HomeInd/BroadSelection";
 
 const HomePage = () => {
   return (
-    <div className="overflow-x-hidden -pt-10 lg:pt-4">
+    <div className="overflow-x-hidden mt-32 lg:pt-4">
       <Hero />
       <Companies />
       <WhatWeOffer />
