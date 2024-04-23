@@ -106,7 +106,6 @@ const ProfileDashboard = ({ children }) => {
                     ? "link flex-col items-start  justify-center py-2 md:mx-10 md:pl-6 lg:items-center"
                     : "link flex-col items-center justify-center py-1"
                 }`}
-                activeClassName="active"
               >
                 <div className="flex gap-2 md:gap-5 justify-center items-center" onClick={close}>
                   <div className="icon mt-2 justify-center items-center  md:-ml-5 ">{item.icon}</div>
