@@ -9,7 +9,7 @@ function RegisterToday() {
           Unlock the world of learning with ENLN Academy
         </h1>
         <div className="mt-6 shrink-0 md:mx-3 md:mt-0 md:w-auto">
-          <Link to="/signup">
+          <Link to="/sign-up">
             <motion.div
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.9 }}
