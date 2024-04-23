@@ -1,5 +1,5 @@
 import React from "react";
-import {  Route, Routes } from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
 import HomePage from "./screens/HomePage";
 import Footer from "./components/layout/Footer";
 import CourseLine from "./components/courses/CourseLine";
@@ -21,20 +21,22 @@ import OrganizationHome from "./screens/OrganizationHome";
 import Checkout from "./screens/Checkout";
 import GovForm from "./screens/GovForm";
 import OrgForm from "./screens/OrgGov";
-import VerticalCard from "./components/Reusable/VerticalCard";
 import HeaderTop from "./components/Reusable/HeaderTop";
 import Navbar2 from "./components/layout/Navbar2";
 import CourseDescription from "./screens/CourseDescription";
-import VerticalCardsTrying from "./components/try/VerticalCardsTrying";
+import CourseAll from "./components/courses/CourseAll";
+import ScrollToTop from "./ScrollToTop";
 
 const App = () => {
-  const prevPage = localStorage.getItem('prevPage');
+  const prevPage = localStorage.getItem("prevPage");
 
   return (
     <>
       <HeaderTop />
       <Navbar2 />
       <div className="mt-32"></div>
+      <ScrollToTop />
+
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/course-line" element={<CourseLine />} />
@@ -76,7 +78,8 @@ const App = () => {
               <MyCourses />
             </ProfileDashboard>
           }
-        />zz
+        />
+        zz
         <Route
           path="/Dashboard"
           element={
@@ -89,6 +92,7 @@ const App = () => {
         <Route path="/categories" element={<Categories />} />
         <Route path="/add-to-cart" element={<AddToCart />} />
         <Route path="/lesson" element={<Lessons />} />
+        <Route path="/course" element={<CourseAll />} />
         <Route path="/course-description" element={<CourseDescription />} />
         <Route path="*" element={<Four0four />} />
       </Routes>

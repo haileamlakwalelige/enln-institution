@@ -1,6 +1,4 @@
 
-
-
 //Login
 import React, { useState } from "react";
 import { FaRegEyeSlash, FaRegEye } from "react-icons/fa";
