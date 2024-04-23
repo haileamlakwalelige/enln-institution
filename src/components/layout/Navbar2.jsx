@@ -5,10 +5,12 @@ import { FaTimes, FaBars } from "react-icons/fa";
 import logo from "../../assets/logo.png";
 import { BsCart } from "react-icons/bs";
 import { BiSearch } from "react-icons/bi";
+import { useSelector } from "react-redux";
 
 const Navbar2 = () => {
   const [click, setClick] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const cartItems=useSelector(state =>state.cart)
 
   const handleClick = () => setClick(!click);
   const closeMobileMenu = () => setClick(false);
@@ -58,7 +60,9 @@ const Navbar2 = () => {
             className="flex gap-4 justify-center
            items-center ml-44 lg:ml-32 mt-2"
           >
-            <BsCart size={25} className="font-extrabold des" />
+            <Link to="/add-to-cart" className="flex">
+            <BsCart size={25} className="font-extrabold des" /><span className="text-red-500 font-bold text-sm -mt-4 des">{cartItems.length}</span>
+            </Link>
             <BiSearch size={29} className="font-extrabold des" />
           </div>
           <div className="menu-icon text-primary  mt-3" onClick={handleClick}>
@@ -105,13 +109,13 @@ const Navbar2 = () => {
               Sign Up
             </Link>
           </li>
-          <li className="nav-item lose">
+          <li className="nav-item">
             <Link
               to="/add-to-cart"
               className={`py-2 px-3 md:p-0   lg:text-primary  flex justify-center items-center offer lg:text-[20px] font-light md:bg-transparent text-center hove `}
               onClick={closeMobileMenu}
             >
-              <BsCart />
+              <BsCart /><span className="text-red-500 font-bold text-sm -mt-4">{cartItems.length}</span>
             </Link>
           </li>
           {/* <li className="nav-item lg:mr-44 xl:mr-0">
