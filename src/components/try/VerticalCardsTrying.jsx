@@ -3,12 +3,15 @@ import './styles.css'; // Import your CSS file
 import { BiSolidRightArrow, BiSolidLeftArrow } from "react-icons/bi";
 import { FaCheck } from "react-icons/fa6"; // Import tooltip-related icons
 import courses from "./data.json"; // Import card data from data.json
+import { add } from '../../store/cartSlice';
+import { useDispatch } from 'react-redux';
 
 function VerticalCardsTrying() {
   const containerRef = useRef(null);
   const [scrollPercentage, setScrollPercentage] = useState(0);
   const [cardsData, setCardsData] = useState([]);
   const [cardData, setCardData] = useState(courses.courses);
+  const dispatch = useDispatch();
   const [hoveredCardIndex, setHoveredCardIndex] = useState(null); // State to track hovered card index
 
   useEffect(() => {
@@ -18,16 +21,29 @@ function VerticalCardsTrying() {
         (scrollLeft / (scrollWidth - clientWidth)) * 100;
       setScrollPercentage(newScrollPercentage);
     };
-
+  
     // Set the card data from imported JSON
     setCardsData([...cardData, ...cardData]);
-
-    containerRef.current.addEventListener("scroll", handleScroll);
-
+  
+    const container = containerRef.current;
+    if (container) {
+      container.addEventListener("scroll", handleScroll);
+    }
+  
     return () => {
-      containerRef.current.removeEventListener("scroll", handleScroll);
+      const container = containerRef.current;
+      if (container) {
+        container.removeEventListener("scroll", handleScroll);
+      }
     };
   }, []);
+  
+
+  const addToCart=(item)=>{
+    //dispatch an add action
+    dispatch(add(item));
+
+  }
 
   const scrollLeft = () => {
     containerRef.current.scrollBy({
@@ -112,7 +128,7 @@ function VerticalCardsTrying() {
                         ))}
                       </div>
                       <div className="card-actions justify-end">
-                        <button className="bg-primary text-white px-8 py-1.5 rounded font-semibold hover:text-primary hover:bg-white  hover:underline duration-100 hover:font-bold">
+                        <button onClick={()=>addToCart(card)} className="bg-primary text-white px-8 py-1.5 rounded font-semibold hover:text-primary hover:bg-white  hover:underline duration-100 hover:font-bold">
                           Add To Cart
                         </button>
                       </div>

@@ -1,5 +1,5 @@
 import React from "react";
-import { BrowserRouter, Route, Routes, Navigate } from "react-router-dom";
+import {  Route, Routes } from "react-router-dom";
 import HomePage from "./screens/HomePage";
 import Footer from "./components/layout/Footer";
 import CourseLine from "./components/courses/CourseLine";
@@ -34,6 +34,7 @@ const App = () => {
     <>
       <HeaderTop />
       <Navbar2 />
+      <div className="mt-32"></div>
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/course-line" element={<CourseLine />} />
@@ -75,7 +76,7 @@ const App = () => {
               <MyCourses />
             </ProfileDashboard>
           }
-        />
+        />zz
         <Route
           path="/Dashboard"
           element={

@@ -91,6 +91,12 @@
       "id": "b42c",
       "email": "mickel@gmail.com",
       "password": "12345678"
+    },
+    {
+      "id": "3fd9",
+      "name": "Abey Helder",
+      "email": "abey@gmail.com",
+      "password": "12345678"
     }
   ]
 }

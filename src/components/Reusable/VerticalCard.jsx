@@ -3,9 +3,18 @@ import { FaCheck } from "react-icons/fa6";
 import { FaStar } from "react-icons/fa6";
 import { FaStarHalfAlt } from "react-icons/fa";
 import coursesData from "../../data/courses.json";
+import { useDispatch } from "react-redux";
+import { add } from "../../store/cartSlice";
 
 const VerticalCard = () => {
   const [course, setCourse] = useState(coursesData.courses);
+  const dispatch = useDispatch();
+
+  const addToCart=(item)=>{
+    //dispatch an add action
+    dispatch(add(item));
+
+  }
   return (
     <div className="flex flex-col justify-center items-center">
       <div className="my-10 flex justify-center items-center">
@@ -40,9 +49,9 @@ const VerticalCard = () => {
                     ({item.ratingsCount})
                   </div>
                   <p className="text-black amib py-2 font-bold text-[18px]">
-                    Birr 1,099
+                    Birr {item.price}
                   </p>
-                  <button className="bg-primary rounded-xl hover:text-primary hover:bg-white hover:border-[1px] hover:border-gray-100 text-white font-semibold text-xl py-2 px-10 max-w-[300px] min-w-[250px] my-4">
+                  <button onClick={()=>addToCart(item)} className="bg-primary rounded-xl hover:text-primary hover:bg-white hover:border-[1px] hover:border-gray-100 text-white font-semibold text-xl py-2 px-10 max-w-[300px] min-w-[250px] my-4">
                     Add To Cart
                   </button>
                 </div>

@@ -1,9 +1,19 @@
 import React, { useState } from "react";
 import courses from "./data.json"; // Import card data from data.json
+import { add } from '../../store/cartSlice';
+import { useDispatch } from 'react-redux';
 
 const VerticalCardTryings = () => {
   // State to hold the card data
   const [cardData, setCardData] = useState(courses.courses);
+  const dispatch = useDispatch();
+
+  const addToCart=(item)=>{
+    //dispatch an add action
+    dispatch(add(item));
+
+  }
+
 
   return (
     // Container with overflow-x-auto for horizontal scrolling
@@ -34,7 +44,7 @@ const VerticalCardTryings = () => {
               {/* Card actions */}
               <div className="card-actions justify-end">
                 {/* Add to cart button */}
-                <button className="bg-primary text-white px-8 py-1.5 rounded font-semibold hover:text-primary hover:bg-white  hover:underline duration-100 hover:font-bold">
+                <button onClick={()=>addToCart(course)} className="bg-primary text-white px-8 py-1.5 rounded font-semibold hover:text-primary hover:bg-white  hover:underline duration-100 hover:font-bold">
                   Add To Cart
                 </button>
               </div>
