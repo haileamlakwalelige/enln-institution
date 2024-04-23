@@ -342,7 +342,7 @@ function Header() {
                   </li>
                   <li className="mb-1">
                     <Link
-                      to="/addtocart"
+                      to="/add-to-cart"
                       className="block rounded p-4 text-sm font-semibold text-slate-800 hover:bg-secondary hover:text-primary"
                       href="#"
                     >
