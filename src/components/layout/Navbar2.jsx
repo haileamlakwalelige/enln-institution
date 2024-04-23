@@ -84,11 +84,11 @@ const Navbar2 = () => {
           </li>
           <li className="nav-item">
             <Link
-              to="/categories"
+              to="/course"
               className={`py-2 px-3 md:p-0    lg:text-primary flex justify-center items-center offer lg:text-[20px] font-light md:bg-transparent text-center hove`}
               onClick={closeMobileMenu}
             >
-              Categories
+              Course
             </Link>
           </li>{" "}
           <li className="nav-item">
