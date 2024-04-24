@@ -1,6 +1,5 @@
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
-import CourseImage from "../../assets/courseimage.svg";
 import { useSelector,useDispatch } from "react-redux";
 import { FaTimes } from "react-icons/fa";
 import { remove } from "../../store/cartSlice";
@@ -71,7 +70,13 @@ const HorizontalCard = () => {
                   <h2 className="text font-bold">Birr {item.price}</h2>
                 </div>
               </div>
-            </motion.div>
+             
+            </motion.div> 
+            <Link to="/checkout">
+            <div className="flex justify-end items-end text-end">
+              <p className="text-end border-2 border-primary px-8 py-1 rounded-lg mb-5 hover:bg-primary hover:text-white duration-300">Buy Now</p>
+              </div>
+            </Link>
           </motion.div>
         </div>
       ))}
