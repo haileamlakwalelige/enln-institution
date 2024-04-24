@@ -1,7 +1,8 @@
-import React from "react";
+// import React from "react";
 import tom from "../assets/tom.png";
 import chapa from "../assets/chapa.svg";
 import telebirr from "../assets/telebirr.svg";
+import { Link } from "react-router-dom";
 
 const Checkout = () => {
   return (
@@ -73,12 +74,14 @@ const Checkout = () => {
             <img src={chapa} alt="Chapa" className="h-[55px] w-[71px]" />
             <img src={telebirr} alt="telebirr" className="h-[55px] w-[71px]" />
           </div>
+          <Link to="/pay">
           <button
             //   type="submit"
             className="bg-primary rounded-xl text-white font-semibold text-xl py-2 px-10 max-w-[300px] min-w-[250px] my-4"
           >
-            Place Order
+            Finalize Payment
           </button>
+          </Link>
         </div>
       </div>
     </div>
