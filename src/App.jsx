@@ -5,7 +5,7 @@ import Footer from "./components/layout/Footer";
 import CourseLine from "./components/courses/CourseLine";
 import SignUp from "./screens/SignUp";
 import Login from "./screens/Login";
-import HomeGov from "./screens/HomeGov";
+// import HomeGov from "./screens/HomeGov";
 import ProfileDashboard from "./components/Profile/ProfileDashboard";
 import Support from "./components/Profile/Support";
 import { Setting } from "./components/Profile/Setting";
@@ -17,10 +17,10 @@ import ForgetPassword from "./screens/ForgetPassword";
 import Categories from "./screens/Categories";
 import AddToCart from "./screens/AddToCart";
 import Lessons from "./screens/Lessons";
-import OrganizationHome from "./screens/OrganizationHome";
+// import OrganizationHome from "./screens/OrganizationHome";
 import Checkout from "./screens/Checkout";
-import GovForm from "./screens/GovForm";
-import OrgForm from "./screens/OrgGov";
+// import GovForm from "./screens/GovForm";
+// import OrgForm from "./screens/OrgGov";
 import HeaderTop from "./components/Reusable/HeaderTop";
 import Navbar2 from "./components/layout/Navbar2";
 import CourseDescription from "./screens/CourseDescription";
@@ -29,7 +29,7 @@ import ScrollToTop from "./ScrollToTop";
 
 const App = () => {
 
-  
+
   return (
     <>
       <HeaderTop />
@@ -42,11 +42,11 @@ const App = () => {
         <Route path="/course-line" element={<CourseLine />} />
         <Route path="/sign-up" element={<SignUp />} />
         <Route path="/login" element={<Login />} />
-        <Route path="/gov-home" element={<HomeGov />} />
-        <Route path="/org-home" element={<OrganizationHome />} />
+        {/* <Route path="/gov-home" element={<HomeGov />} /> */}
+        {/* <Route path="/org-home" element={<OrganizationHome />} /> */}
         <Route path="/checkout" element={<Checkout />} />
-        <Route path="/gov-form" element={<GovForm />} />
-        <Route path="/org-form" element={<OrgForm />} />
+        {/* <Route path="/gov-form" element={<GovForm />} /> */}
+        {/* <Route path="/org-form" element={<OrgForm />} /> */}
         <Route
           path="/certificate"
           element={
