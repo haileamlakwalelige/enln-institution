@@ -1,4 +1,4 @@
-import React from "react";
+// import React from "react";
 import { Route, Routes } from "react-router-dom";
 import HomePage from "./screens/HomePage";
 import Footer from "./components/layout/Footer";
@@ -28,8 +28,8 @@ import CourseAll from "./components/courses/CourseAll";
 import ScrollToTop from "./ScrollToTop";
 
 const App = () => {
-  const prevPage = localStorage.getItem("prevPage");
 
+  
   return (
     <>
       <HeaderTop />
