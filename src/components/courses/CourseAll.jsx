@@ -1,4 +1,4 @@
-import React from 'react';
+// import React from 'react';
 import coursesData from "../../data/courses.json"; // Import JSON data
 import { Link } from 'react-router-dom';
 import { add } from '../../store/cartSlice';
