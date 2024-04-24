@@ -26,6 +26,7 @@ import Navbar2 from "./components/layout/Navbar2";
 import CourseDescription from "./screens/CourseDescription";
 import CourseAll from "./components/courses/CourseAll";
 import ScrollToTop from "./ScrollToTop";
+import Pay from "./screens/Pay";
 
 const App = () => {
 
@@ -42,6 +43,7 @@ const App = () => {
         <Route path="/course-line" element={<CourseLine />} />
         <Route path="/sign-up" element={<SignUp />} />
         <Route path="/login" element={<Login />} />
+        <Route path="/pay" element={<Pay />} />
         {/* <Route path="/gov-home" element={<HomeGov />} /> */}
         {/* <Route path="/org-home" element={<OrganizationHome />} /> */}
         <Route path="/checkout" element={<Checkout />} />
