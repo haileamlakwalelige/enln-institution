@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { Link } from "react-router-dom";
 import "./Navbar.css";
 import { FaTimes, FaBars } from "react-icons/fa";
@@ -9,35 +9,11 @@ import { useSelector } from "react-redux";
 
 const Navbar2 = () => {
   const [click, setClick] = useState(false);
-  const [scrolled, setScrolled] = useState(false);
   const cartItems=useSelector(state =>state.cart)
 
   const handleClick = () => setClick(!click);
   const closeMobileMenu = () => setClick(false);
 
-  useEffect(() => {
-    const handleScroll = () => {
-      const isScrolled = window.scrollY > 0 || window.innerWidth < 768;
-      setScrolled(isScrolled);
-    };
-
-    const handleResize = () => {
-      // Your resize handling logic goes here
-      handleScroll(); // Update scroll state on resize
-    };
-
-    // Subscribe to the scroll and resize events when the component mounts on the client side
-    if (typeof window !== "undefined") {
-      window.addEventListener("scroll", handleScroll);
-      window.addEventListener("resize", handleResize);
-
-      // Unsubscribe from the events when the component unmounts
-      return () => {
-        window.removeEventListener("scroll", handleScroll);
-        window.removeEventListener("resize", handleResize);
-      };
-    }
-  }, []);
 
   return (
     <div className="fixed w-screen lg:-mt-20 -mt-20 py-2 z-50 bg-secondary">
@@ -58,7 +34,7 @@ const Navbar2 = () => {
         <div className="flex justify-end items-end">
           <div
             className="flex gap-4 justify-center
-           items-center ml-44 lg:ml-32 mt-2"
+           items-center ml-44 md:ml-96 md:mt-4 lg:ml-32 mt-2"
           >
             <Link to="/add-to-cart" className="flex">
             <BsCart size={25} className="font-extrabold des" /><span className="text-red-500 font-bold text-sm -mt-4 des">{cartItems.length}</span>
