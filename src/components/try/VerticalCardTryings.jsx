@@ -1,11 +1,11 @@
-import React, { useState } from "react";
+// import { useState } from "react";
 import courses from "./data.json"; // Import card data from data.json
 import { add } from '../../store/cartSlice';
 import { useDispatch } from 'react-redux';
 
 const VerticalCardTryings = () => {
   // State to hold the card data
-  const [cardData, setCardData] = useState(courses.courses);
+  const cardData=courses.courses;
   const dispatch = useDispatch();
 
   const addToCart=(item)=>{
@@ -21,7 +21,7 @@ const VerticalCardTryings = () => {
       {/* Carousel container */}
       <div className="carousel rounded-box flex p-4">
         {/* Mapping over the card data to render each card */}
-        {cardData.map((course, index) => (
+        {cardData.map((course) => (
           <div
             // Card container with styles
             className="card min-w-[300px] w-full bg-base-100 shadow-xl relative rounded-xl border-2 border-gray-100"
