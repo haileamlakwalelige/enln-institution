@@ -1,4 +1,4 @@
-import React, { useRef, useState, useEffect } from 'react';
+import { useRef, useState, useEffect } from 'react';
 import './styles.css'; // Import your CSS file
 import { BiSolidRightArrow, BiSolidLeftArrow } from "react-icons/bi";
 import { FaCheck } from "react-icons/fa6"; // Import tooltip-related icons
@@ -8,35 +8,35 @@ import { useDispatch } from 'react-redux';
 
 function VerticalCardsTrying() {
   const containerRef = useRef(null);
-  const [scrollPercentage, setScrollPercentage] = useState(0);
+  // const [scrollPercentage, setScrollPercentage] = useState(0);
   const [cardsData, setCardsData] = useState([]);
-  const [cardData, setCardData] = useState(courses.courses);
+  const cardData=courses.courses;
   const dispatch = useDispatch();
   const [hoveredCardIndex, setHoveredCardIndex] = useState(null); // State to track hovered card index
 
   useEffect(() => {
-    const handleScroll = () => {
-      const { scrollWidth, clientWidth, scrollLeft } = containerRef.current;
-      const newScrollPercentage =
-        (scrollLeft / (scrollWidth - clientWidth)) * 100;
-      setScrollPercentage(newScrollPercentage);
-    };
+    // const handleScroll = () => {
+    //   const { scrollWidth, clientWidth, scrollLeft } = containerRef.current;
+    //   const newScrollPercentage =
+    //     (scrollLeft / (scrollWidth - clientWidth)) * 100;
+    //   setScrollPercentage(newScrollPercentage);
+    // };
   
     // Set the card data from imported JSON
     setCardsData([...cardData, ...cardData]);
   
-    const container = containerRef.current;
-    if (container) {
-      container.addEventListener("scroll", handleScroll);
-    }
+    // const container = containerRef.current;
+    // if (container) {
+    //   container.addEventListener("scroll", handleScroll);
+    // }
   
-    return () => {
-      const container = containerRef.current;
-      if (container) {
-        container.removeEventListener("scroll", handleScroll);
-      }
-    };
-  }, []);
+    // return () => {
+    //   // const container = containerRef.current;
+    //   // if (container) {
+    //   //   container.removeEventListener("scroll", handleScroll);
+    //   // }
+    // };
+  }, [cardData]);
   
 
   const addToCart=(item)=>{
