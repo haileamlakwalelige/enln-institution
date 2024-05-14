@@ -14,7 +14,6 @@
       "image": "https://i.ibb.co/5LS0bLh/tom.png",
       "features": [
         "Understand basic concepts of nutrition and dietary requirements.",
-        "Learn about different food groups and their nutritional values.",
         "Develop healthy eating habits and meal planning strategies."
       ]
     },
@@ -32,7 +31,6 @@
       "image": "https://i.ibb.co/5LS0bLh/tom.png",
       "features": [
         "Learn effective communication and interpersonal skills.",
-        "Develop strategic thinking and decision-making abilities.",
         "Lead teams and manage conflicts to achieve organizational goals."
       ]
     },
@@ -50,7 +48,6 @@
       "image": "https://i.ibb.co/5LS0bLh/tom.png",
       "features": [
         "Understand the role of evidence in policy formulation and implementation.",
-        "Analyze data and research findings to inform policy decisions.",
         "Evaluate the impact of policies and assess their effectiveness."
       ]
     },
@@ -68,7 +65,6 @@
       "image": "https://i.ibb.co/5LS0bLh/tom.png",
       "features": [
         "Learn key data science concepts, including data manipulation and visualization.",
-        "Master popular data science tools and libraries, such as Python and TensorFlow.",
         "Apply data science techniques to real-world problems and datasets."
       ]
     },
@@ -86,7 +82,6 @@
       "image": "https://i.ibb.co/5LS0bLh/tom.png",
       "features": [
         "Understand the Flutter framework and its architecture.",
-        "Build engaging user interfaces with Flutter's widget library.",
         "Develop and deploy cross-platform mobile apps to iOS and Android devices."
       ]
     },
@@ -104,7 +99,6 @@
       "image": "https://i.ibb.co/5LS0bLh/tom.png",
       "features": [
         "Learn about supervised and unsupervised learning algorithms.",
-        "Explore common machine learning techniques, such as regression and classification.",
         "Apply machine learning algorithms to various domains, including healthcare and finance."
       ]
     },
@@ -140,7 +134,6 @@
       "image": "https://i.ibb.co/5LS0bLh/tom.png",
       "features": [
         "Understand financial statements and key performance indicators (KPIs).",
-        "Analyze financial data to support strategic decision-making and business planning.",
         "Develop financial models and forecasts to evaluate business opportunities and risks."
       ]
     },
@@ -158,7 +151,6 @@
       "image": "https://i.ibb.co/5LS0bLh/tom.png",
       "features": [
         "Explore various digital marketing channels, including SEO, SEM, and social media marketing.",
-        "Develop effective digital marketing campaigns and strategies to reach target audiences.",
         "Measure and analyze digital marketing performance using key metrics and analytics tools."
       ]
     },
@@ -175,7 +167,6 @@
       "price": 149,
       "image": "https://i.ibb.co/5LS0bLh/tom.png",
       "features": [
-        "Understand the ethical considerations surrounding AI development and deployment.",
         "Explore AI technologies and their potential societal implications, such as bias and privacy concerns.",
         "Discuss ethical frameworks and guidelines for responsible AI design and implementation."
       ]
@@ -193,7 +184,6 @@
       "price": 129,
       "image": "https://i.ibb.co/5LS0bLh/tom.png",
       "features": [
-        "Learn about blockchain architecture, consensus mechanisms, and cryptographic principles.",
         "Explore use cases and applications of blockchain technology, such as cryptocurrency and smart contracts.",
         "Gain practical experience in blockchain development and deployment through hands-on projects."
       ]
@@ -212,8 +202,7 @@
       "image": "https://i.ibb.co/5LS0bLh/tom.png",
       "features": [
         "Understand the fundamentals of user-centered design and human-computer interaction (HCI).",
-        "Conduct user research and usability testing to inform design decisions and improve user satisfaction.",
-        "Create wireframes, prototypes, and mockups using industry-standard design tools and techniques."
+        "Conduct user research and usability testing to inform design decisions and improve user satisfaction."
       ]
     }
   ]
