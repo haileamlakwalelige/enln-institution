@@ -1,4 +1,5 @@
 import { useRef, useState, useEffect } from 'react';
+import './styles.css'; // Import your CSS file
 import { BiSolidRightArrow, BiSolidLeftArrow } from "react-icons/bi";
 import { FaCheck } from "react-icons/fa"; // Import tooltip-related icons
 import courses from "../try/data.json"; // Import card data from data.json
