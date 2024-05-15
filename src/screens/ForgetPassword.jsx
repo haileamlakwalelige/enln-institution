@@ -3,12 +3,13 @@ import { Link } from "react-router-dom";
 import forget from "../assets/forgotpassword.svg"
 function ForgetPassword() {
   return (
-    <div className="hero mx-auto min-h-screen bg-base-200">
-      <div className="hero-content w-full flex-col lg:flex-row">
+    <div className="hero mx-auto min-h-[100vh] bg-base-200">
+      <div className="hero-content w-full flex-col md:flex-row">
         <img
           src={forget}
           alt="Forgot Password"
-          className="w-full h-[300px] md:h-full lg:w-1/2"
+          className="w-[426px] h-[306px] hidden md:flex"
+          style={{ width: "426px", height: "306px" }}
         />
         <div className="hero-content flex-col">
           <h1 className="heading mb-4 text-3xl font-bold">Forgot Password</h1>
