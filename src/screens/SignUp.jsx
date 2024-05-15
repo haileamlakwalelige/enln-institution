@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import signup from "../assets/signup.svg";
 import google from "../assets/google.png";
 import facebook from "../assets/facebook.png";
@@ -63,7 +63,7 @@ const SignUp = () => {
           <img
             src={signup}
             alt="SingUp"
-            className="w-[426px] h-[306px]"
+            className="w-[426px] h-[306px] hidden md:flex"
             style={{ width: "426px", height: "306px" }}
           />
         </div>

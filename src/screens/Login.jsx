@@ -1,6 +1,6 @@
 
 //Login
-import React, { useState } from "react";
+import { useState } from "react";
 import { FaRegEyeSlash, FaRegEye } from "react-icons/fa";
 import { Link, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
@@ -60,7 +60,7 @@ const Login = () => {
           <img
             src={signup}
             alt="Login"
-            className="w-[426px] h-[250px] md:h-[306px]"
+            className="w-[426px] h-[250px] md:h-[306px] hidden md:flex"
           />
         </div>
         <div className="flex flex-col justify-center items-center">
@@ -120,7 +120,7 @@ const Login = () => {
             </div>
           </form>
           <div className="flex gap-3 text-black font-medium">
-            <p>Don't have an account?</p>
+            <p>Don&apos;t have an account?</p>
             <Link to="/sign-up" className="text-primary font-bold">
               Sign Up
             </Link>
