@@ -44,7 +44,7 @@ const BroadSelection = () => {
         <p className={`font-bold text-black cursor-pointer hover:duration-200 ${selectedType === "nutrition courses" ? 'duration-1000 border-b-2 border-b-primary' : ''}`} onClick={() => handleTypeClick("nutrition courses")}>Nutrition Courses</p>
       </div>
     </div>}
-      <div>
+      <div className="mx-2 sm:ml-6 md:ml-10 lg:ml-20">
         {/* Pass the selectedType state as props */}
         {isMobileScreen ? <VerticalCardTryings /> : <BoardCourses type={selectedType}/>}
       </div>

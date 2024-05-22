@@ -1,11 +1,39 @@
-import React from "react";
 import dot from "../../assets/dollar.png";
 import film from "../../assets/flm.png";
 import certi from "../../assets/certificate.png";
 import infi from "../../assets/infi.png";
 import note from "../../assets/note.png";
+import PropTypes from 'prop-types';
+import { Link, useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from 'react-redux';
+import { add } from '../../store/cartSlice';
+import { addSingleItem} from "../../store/singleItemSlice";
 
-const SingleCard = () => {
+
+
+const SingleCard = ({course}) => {
+  const dispatch = useDispatch();
+  const navigate= useNavigate();
+  const cart = useSelector((state) => state.cart) || [];
+
+  const addToCart = (item) => {
+    dispatch(add(item));
+  };
+
+  const isInCart = (itemId) => {
+    return cart.some((cartItem) => cartItem.id === itemId);
+  };
+
+  const handleItemClick=(item)=>{
+    dispatch(addSingleItem(item))
+    navigate("/buy/"+item.id);
+  }
+
+  const singleItem = useSelector(state => state.singleItem.item);
+  
+  console.log("Single Item", singleItem);
+
+
   return (
     <div>
       <div className="flex justify-start items-center gap-5">
@@ -18,7 +46,7 @@ const SingleCard = () => {
             </span>
           </p>
           <p className="merb text-black text-[18px] md:text-[20px] lg:text-[22px] text-center font-bold">
-            Birr 1,500
+            Birr {course.price}
           </p>
         </div>
       </div>
@@ -54,15 +82,41 @@ const SingleCard = () => {
         </div>
       </div>
       <div className="flex flex-col justify-center items-center gap-4 mt-4">
-        <button className="bg-primary text-white min-w-[250px]    px-10  py-2 rounded font-semibold border-primary border-2">
-          Add To Cart
-        </button>
-        <button className="hover:bg-primary text-primary hover:text-white min-w-[250px]   px-10  py-2 rounded font-semibold border-primary border-2">
+         {isInCart(course.id) ? (
+                <Link
+                  to="/add-to-cart"
+                  className="hover:bg-primary text-primary hover:text-white min-w-[250px]   px-10  py-2 rounded font-semibold border-primary border-2 text-center"
+                >
+                  Go to Cart
+                </Link>
+              ) : (
+                <button
+                  onClick={() => addToCart(course)}
+                  className="bg-primary hover:bg-white hover:text-primary text-white min-w-[250px]   px-10  py-2 rounded font-semibold border-primary border-2 text-center "
+                >
+                  Add to Cart
+                </button>
+              )}
+        <button onClick={() => handleItemClick(course)}  className="hover:bg-primary text-primary hover:text-white min-w-[250px]   px-10  py-2 rounded font-semibold border-primary border-2">
           Buy Now
         </button>
       </div>
     </div>
   );
+};
+
+SingleCard.propTypes = {
+  course: PropTypes.shape({
+    title: PropTypes.string.isRequired,
+    id: PropTypes.number.isRequired,
+    price: PropTypes.string.isRequired,
+    // image: PropTypes.string.isRequired,
+    instructor_name: PropTypes.string.isRequired,
+    rate: PropTypes.number.isRequired,
+    // ratingsCount: PropTypes.number.isRequired,
+    // hours: PropTypes.number.isRequired,
+    // difficulty: PropTypes.string.isRequired,
+  }).isRequired,
 };
 
 export default SingleCard;

@@ -6,7 +6,7 @@ import { useSelector } from "react-redux";
 const Checkout = () => {
   const cartItems = useSelector((state) => state.cart);
 
-  const totalPrice = cartItems.reduce((total, item) => total + item.price, 0);
+  const totalPrice = cartItems.reduce((total, item) => total + parseFloat(item.price), 0);
   return (
     <div className="py-12 lg:py-6 merb font-light">
       <div className="grid grid-cols-2 lg:grid-cols-3 gap-4 justify-center items-center px-6">
@@ -21,14 +21,15 @@ const Checkout = () => {
         </div>
       </div>
       <div className="flex flex-wrap flex-col-reverse lg:flex-row-reverse justify-center lg:items-start gap-8 lg:gap-32 my-12 items-center">
+       {cartItems.length > 0 && <>
         <div className="rounded-xl border-[1px] border-gray-200 flex flex-col justify-start items-center px-6 max-w-[526px] min-h-[420px] py-20  shadow-2xl drop-shadow-2xl">
           <p className="text-[20px] font-semibold px-3 pb-6 -mt-10">
             Order Detail
           </p>
           <div className="gap-4 flex flex-col">
             {cartItems.map((item, index) => (
-              <div className="flex justify-start items-start" key={index}>
-                <img src={item.image} alt="" className="w-[140px] h-[105px]" />
+              <div className="flex justify-start gap-2 items-start" key={index}>
+                <img src={item.image} alt="" className="w-[140px] h-[105px] rounded-xl" />
                 <div>
                   <div className="flex flex-col justify-center items-start">
                     <p className="text-black font-medium text-[14px] md:text-[16px]">
@@ -42,7 +43,7 @@ const Checkout = () => {
               </div>
             ))}
           </div>
-        </div>
+        </div></>}
         <div className="shadow-2xl py-2 px-10 rounded-xl border-gray-200 border-[1px]">
           <p className="text-black font-bold  text-[16px] md:text-[18px] lg:text-[22px] nun">
             Order Summary

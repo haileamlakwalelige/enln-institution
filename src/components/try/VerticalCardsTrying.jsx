@@ -1,53 +1,51 @@
-import { useRef, useState, useEffect } from 'react';
-import './styles.css'; // Import your CSS file
+import { useRef, useState } from "react";
+import "./styles.css"; // Import your CSS file
 import { BiSolidRightArrow, BiSolidLeftArrow } from "react-icons/bi";
-import { FaCheck } from "react-icons/fa6"; // Import tooltip-related icons
-import courses from "./data.json"; // Import card data from data.json
-import { add } from '../../store/cartSlice';
-import { useDispatch } from 'react-redux';
+import { FaCheck } from "react-icons/fa"; // Import tooltip-related icons
+import { add } from "../../store/cartSlice";
+import { useDispatch, useSelector } from "react-redux";
+import axios from "axios";
+import { useQuery } from "react-query";
+import { Link } from "react-router-dom";
 
 function VerticalCardsTrying() {
   const containerRef = useRef(null);
-  // const [scrollPercentage, setScrollPercentage] = useState(0);
-  const [cardsData, setCardsData] = useState([]);
-  const cardData=courses.courses;
   const dispatch = useDispatch();
+  const cart = useSelector((state) => state.cart) || [];
   const [hoveredCardIndex, setHoveredCardIndex] = useState(null); // State to track hovered card index
 
-  useEffect(() => {
-    // const handleScroll = () => {
-    //   const { scrollWidth, clientWidth, scrollLeft } = containerRef.current;
-    //   const newScrollPercentage =
-    //     (scrollLeft / (scrollWidth - clientWidth)) * 100;
-    //   setScrollPercentage(newScrollPercentage);
-    // };
-  
-    // Set the card data from imported JSON
-    setCardsData([...cardData, ...cardData]);
-  
-    // const container = containerRef.current;
-    // if (container) {
-    //   container.addEventListener("scroll", handleScroll);
-    // }
-  
-    // return () => {
-    //   // const container = containerRef.current;
-    //   // if (container) {
-    //   //   container.removeEventListener("scroll", handleScroll);
-    //   // }
-    // };
-  }, [cardData]);
-  
+  const {
+    data,
+    isLoading,
+    isError,
+    error,
+  } = useQuery("courses", async () => {
+    const res = await axios.get(
+      "https://orginalenlndashboard.redshiftbusinessgroup.com/api/courses"
+    );
+    return res.data.data;
+  });
 
-  const addToCart=(item)=>{
-    //dispatch an add action
-    dispatch(add(item));
-
+  if (isLoading) {
+    return <div>Loading...</div>;
   }
+
+  if (isError) {
+    return <div>Error: {error.message}</div>;
+  }
+
+  const addToCart = (item) => {
+    // dispatch an add action
+    dispatch(add(item));
+  };
+
+  const isInCart = (itemId) => {
+    return cart.some((cartItem) => cartItem.id === itemId);
+  };
 
   const scrollLeft = () => {
     containerRef.current.scrollBy({
-      left: -300, // Adjust according to scroll amount
+      left: -300,
       behavior: "smooth",
     });
   };
@@ -60,15 +58,15 @@ function VerticalCardsTrying() {
   };
 
   return (
-    <div className="py-10 h-full">
+    <div className="py-10 h-full px-2 sm:px-4 md:px-8 lg:px-16 lg:mx-32">
       <div
-        className="cards-container-vertical overflow-x-hidden"
+        className="cards-container-vertical px-2 sm:px-4 md:px-8 lg:px-16 lg:mx-32 overflow-x-hidden"
         ref={containerRef}
       >
-        <div className="card-wrapper-vertical">
-          {cardsData.map((card, index) => (
+        <div className="card-wrapper-vertical px-2 sm:px-4 md:px-8 lg:px-16 lg:mx-32">
+          {data.map((card, index) => (
             <div
-              className="card w-96 bg-base-100 shadow-xl relative"
+              className="card w-full bg-base-100 shadow-xl relative"
               key={index}
               onMouseEnter={() => setHoveredCardIndex(index)} // Set hovered card index
               onMouseLeave={() => setHoveredCardIndex(null)} // Reset hovered card index
@@ -76,28 +74,21 @@ function VerticalCardsTrying() {
               <figure>
                 <img
                   src={card.image}
-                  alt="Shoes"
+                  alt="Course"
                   className="h-[100px] w-full"
                 />
               </figure>
-              <div className="card-body">
+              <div>
                 <h2 className="card-title">{card.title}</h2>
                 <p>{card.description}</p>
               </div>
-              {/* Tooltip Markup */}
               {hoveredCardIndex === index && ( // Conditionally render tooltip
                 <div
-                  className="text-gray-800 shadow-sm px-3 border-slate-600 border-[1px] rounded-xl tooltip-content top-0 absolute bg-white bg-full min-h-full min-w-full text-center flex flex-col justify-center items-start" // Add your tooltip CSS classes here
+                  className="text-gray-800 shadow-sm px-3 border-slate-600 border-[1px] rounded-xl tooltip-content top-0 absolute bg-white bg-full min-h-full min-w-full text-center flex flex-col justify-center items-start"
                 >
-                  <div
-                    className="tooltip-arrow"
-                    data-tooltip-target={`tooltip-right- ${index}`}
-                    data-tooltip-placement="right"
-                  ></div>
                   <div className="tooltip-inner">
-                    {/* Tooltip content here */}
                     <div>
-                      <p className="text-black text-[14px] amib font-semibold ">
+                      <p className="text-black text-[10px] amib font-semibold">
                         {card.title}
                       </p>
                       <div className="flex gap-2 justify-between px-4 items-center py-1">
@@ -115,8 +106,8 @@ function VerticalCardsTrying() {
                         {card.description}
                       </p>
                       <div className="flex flex-col gap-3 px-2">
-                        {card.features.map((feature, index) => (
-                          <div className="flex  gap-3 px-2" key={index}>
+                        {card.features.map((feature, idx) => (
+                          <div className="flex gap-3 px-2" key={idx}>
                             <FaCheck
                               size={30}
                               className="text-primary font-bold"
@@ -128,9 +119,21 @@ function VerticalCardsTrying() {
                         ))}
                       </div>
                       <div className="card-actions justify-end">
-                        <button onClick={()=>addToCart(card)} className="bg-primary text-white px-8 py-1.5 rounded font-semibold hover:text-primary hover:bg-white  hover:underline duration-100 hover:font-bold">
-                          Add To Cart
-                        </button>
+                        {isInCart(card.id) ? (
+                          <Link
+                            to="/add-to-cart"
+                            className="py-2 rounded-lg bg-black hover:bg-white text-white px-10 mt-6 mb-2 hover:text-primary hover:border-2 hover:border-primary"
+                          >
+                            Go to cart section
+                          </Link>
+                        ) : (
+                          <button
+                            onClick={() => addToCart(card)}
+                            className="py-2 rounded-lg bg-primary hover:bg-white text-white px-10 mt-6 mb-2 hover:text-primary hover:border-2 hover:border-primary"
+                          >
+                            Add
+                          </button>
+                        )}
                       </div>
                     </div>
                   </div>
@@ -140,7 +143,6 @@ function VerticalCardsTrying() {
           ))}
         </div>
       </div>
-
       <div className="btn-container-vertical gap-x-10">
         <BiSolidLeftArrow
           className="text-black font-bold cursor-pointer"

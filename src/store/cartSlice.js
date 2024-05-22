@@ -22,10 +22,15 @@ const cartSlice = createSlice({
         // Save updated state to localStorage
         localStorage.setItem("cart", JSON.stringify(state));
       }
-    }
+    },
+    setCurrentItem(state, action) {
+      const index = state.findIndex(item => item.id === action.payload.id);
+      if (index !== -1) {
+        state.currentItem = state[index];
+      }
+    },
   }
 });
 
-
-export const { add, remove } = cartSlice.actions;
+export const { add, remove, setCurrentItem } = cartSlice.actions;
 export default cartSlice.reducer;

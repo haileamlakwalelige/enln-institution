@@ -1,112 +1,99 @@
-import React, {useState} from 'react'
+import axios from 'axios';
+import { useState, useEffect } from 'react';
+import { useQuery } from 'react-query';
+import PropTypes from 'prop-types';
 
+function FilterSidebar({ onFilter }) {
+  const [isPriceDropdownOpen, setPriceDropdownOpen] = useState(false);
+  const [isLevelsDropdownOpen, setLevelsDropdownOpen] = useState(false);
+  // eslint-disable-next-line no-unused-vars
+  const [filteredCourses, setFilteredCourses] = useState([]);
+  const [selectedPriceFilter, setSelectedPriceFilter] = useState(null);
+  const [selectedLevelFilter, setSelectedLevelFilter] = useState(null);
 
-function FilterSidebar() {
-    const [isPriceDropdownOpen, setPriceDropdownOpen] = useState(false);
-    const [isSortDropdownOpen, setSortDropdownOpen] = useState(false);
-    const [isLevelsDropdownOpen, setLevelsDropdownOpen] = useState(false);
+  const togglePriceDropdown = () => {
+    setPriceDropdownOpen((prev) => !prev);
+  };
 
-    const togglePriceDropdown = () => {
-      setPriceDropdownOpen((prev) => !prev);
-    };
-    const toggleSortDropdown = () => {
-      setSortDropdownOpen((prev) => !prev);
-    };
-    const toggleLevelsDropdown = () => {
-      setLevelsDropdownOpen((prev) => !prev);
-    };
+  const toggleLevelsDropdown = () => {
+    setLevelsDropdownOpen((prev) => !prev);
+  };
+
+  const { data: courses, isLoading, isError, error } = useQuery(['courses'], async () => {
+    const res = await axios.get('https://orginalenlndashboard.redshiftbusinessgroup.com/api/courses');
+    return res.data.data; // Assuming your API response is structured like this
+  });
+
+  useEffect(() => {
+    if (courses) {
+      setFilteredCourses(courses);
+      // onFilter(courses); // Update parent component with all courses initially
+    }
+  }, [courses, onFilter]);
+
+  if (isLoading) {
+    return <div>Loading...</div>;
+  }
+
+  if (isError) {
+    return <div>Error: {error.message}</div>;
+  }
+
+  // Function to filter courses by price
+  const filterCoursesByPrice = (priceType) => {
+    let filteredData = courses;
+    if (priceType === 'free') {
+      filteredData = courses.filter(course => course.price === 0);
+    } else if (priceType === 'paid') {
+      filteredData = courses.filter(course => course.price > 0);
+    } else {
+      filteredData = courses; // Show all courses
+    }
+    setFilteredCourses(filteredData);
+    setSelectedPriceFilter(priceType);
+    setSelectedLevelFilter(null); // Reset level filter
+    onFilter(filteredData); // Update parent component with filtered data
+  };
+
+  // Function to filter courses by level
+  const filterCoursesByLevel = (level) => {
+    let filteredData = [];
+    if (level === 'all') {
+      filteredData = courses; // Show all courses
+    } else {
+      filteredData = courses.filter(course => course.level === level);
+    }
+    setFilteredCourses(filteredData);
+    setSelectedLevelFilter(level);
+    setSelectedPriceFilter(null); // Reset price filter
+    onFilter(filteredData); // Update parent component with filtered data
+  };
+
+  // Function to reset filters
+  const resetFilters = () => {
+    setFilteredCourses(courses); // Show all courses
+    setSelectedPriceFilter(null);
+    setSelectedLevelFilter(null);
+    onFilter(courses); // Update parent component with unfiltered data
+  };
 
   return (
     <>
-      <div className="mx-5 space-y-3">
+      <div className="mx-5 space-y-3 py-5">
         <h1 className="heading text-center lg:text-justify">All Leadership Courses</h1>
-        <div className=" ml-5 flex space-x-2 lg:mr-7   lg:justify-end">
-          {/* <motion.a
-            whileHover={{ scale: 1.1 }}
-            whileTap={{ scale: 0.9 }}
-            transition={{ type: "spring", stiffness: 400, damping: 17 }}
-            className="btn smalltext btn-md"
-          >
-            <AiOutlineFilter className='w-5 h-5'/> Filter
-          </motion.a> */}
-
-          <div className="relative inline-block text-left ">
-            <button
-              onClick={toggleSortDropdown}
-              type="button"
-              className="items-cenetr smalltext btn-md  inline-flex w-full justify-center rounded-md border border-gray-700 bg-white px-4 py-2 shadow-sm hover:bg-gray-50  focus:outline-none"
-              style={{ display: "flex", alignItems: "center" }}
-            >
-              Sort By
-              <svg
-                className="ms-3 h-2.5 w-2.5"
-                aria-hidden="true"
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 10 6"
-              >
-                <path
-                  stroke="currentColor"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="m1 1 4 4 4-4"
-                />
-              </svg>
-            </button>
-
-            {isSortDropdownOpen && (
-              <div className="absolute lg:right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5">
-                <div
-                  className="py-1"
-                  role="menu"
-                  aria-orientation="vertical"
-                  aria-labelledby="options-menu"
-                >
-                  <a
-                    href="#"
-                    className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900"
-                    role="menuitem"
-                  >
-                    Most Popular
-                  </a>
-                  <a
-                    href="#"
-                    className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900"
-                    role="menuitem"
-                  >
-                    New
-                  </a>
-                  <a
-                    href="#"
-                    className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900"
-                    role="menuitem"
-                  >
-                    Ascending
-                  </a>
-                  <a
-                    href="#"
-                    className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900"
-                    role="menuitem"
-                  >
-                    Descending
-                  </a>
-                </div>
-              </div>
-            )}
-          </div>
+        <div className="ml-5 flex space-x-2 lg:mr-7 lg:justify-end">
+          {/* Your filter UI */}
         </div>
         <h1 className='subheading mx-3'>Filter By</h1>
         <div className='flex flex-col'>
-          <div className="relative lg:ml-5  inline-block lg:w-3/4 w-11/12 border-t-2 text-left">
+          <div className="relative lg:ml-5 inline-block lg:w-3/4 w-11/12 border-t-2 text-left">
             <div
               onClick={togglePriceDropdown}
-              className=" text inline-flex w-full justify-between bg-white px-4 py-2 font-bold   focus:outline-none"
+              className="text inline-flex w-full justify-between bg-white px-4 py-2 font-bold focus:outline-none"
             >
-              <span> Pricing</span>
-
+              <span>Pricing</span>
               <svg
-                className=" h-2.5 w-2.5"
+                className={`h-2.5 w-2.5 ${isPriceDropdownOpen ? 'transform rotate-180' : ''}`}
                 aria-hidden="true"
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
@@ -121,43 +108,51 @@ function FilterSidebar() {
                 />
               </svg>
             </div>
-
             {isPriceDropdownOpen && (
-              <div className="relative mt-2  w-full origin-top-right rounded-md  bg-white pl-5  ring-0">
+              <div className="relative mt-2 w-full origin-top-right rounded-md bg-white pl-5 ring-1 ring-gray-300 py-2">
                 <div className="mb-4 ml-3 flex items-center">
                   <input
-                    id="default-checkbox"
+                    id="free-checkbox"
                     type="checkbox"
-                    defaultValue=""
-                    className="h-4 w-4  rounded-sm border-gray-700 bg-white text-primary focus:ring-1 focus:ring-primary dark:border-gray-500 dark:bg-gray-100 dark:ring-offset-gray-500 dark:focus:ring-primary"
+                    checked={selectedPriceFilter === 'free'}
+                    onChange={() => filterCoursesByPrice('free')}
+                    className="h-4 w-4 rounded-sm border-gray-700 bg-white text-primary focus:ring-1 focus:ring-primary dark:border-gray-500 dark:bg-gray-100 dark:ring-offset-gray-500 dark:focus:ring-primary"
                   />
-                  <label htmlFor="default-checkbox" className="smalltext ms-2 ">
-                    Paid (1,000)
+                  <label htmlFor="free-checkbox" className="smalltext ml-2">
+                    Free ({courses.filter(course => course.price === 0).length})
                   </label>
                 </div>
                 <div className="mb-4 ml-3 flex items-center">
                   <input
-                    id="default-checkbox"
+                    id="paid-checkbox"
                     type="checkbox"
-                    defaultValue=""
-                    className="h-4 w-4  rounded-sm border-gray-700 bg-white text-primary  focus:ring-0 dark:border-gray-500 dark:bg-gray-100"
+                    checked={selectedPriceFilter === 'paid'}
+                    onChange={() => filterCoursesByPrice('paid')}
+                    className="h-4 w-4 rounded-sm border-gray-700 bg-white text-primary focus:ring-1 focus:ring-primary dark:border-gray-500 dark:bg-gray-100 dark:ring-offset-gray-500 dark:focus:ring-primary"
                   />
-                  <label htmlFor="default-checkbox" className="smalltext ms-2 ">
-                    Free (100)
+                  <label htmlFor="paid-checkbox" className="smalltext ml-2">
+                    Paid ({courses.filter(course => course.price > 0).length})
                   </label>
+                </div>
+                <div className="mb-4 ml-3 flex items-center">
+                  <button
+                    onClick={resetFilters}
+                    className="text-sm text-gray-600 hover:text-gray-900 focus:outline-none"
+                  >
+                    Clear Filters
+                  </button>
                 </div>
               </div>
             )}
           </div>
-          <div className="relative lg:ml-5 mt-2  inline-block lg:w-3/4 w-11/12 border-b-2 border-t-2 text-left">
+          <div className="relative lg:ml-5 mt-2 inline-block lg:w-3/4 w-11/12 border-b-2 border-t-2 text-left">
             <div
               onClick={toggleLevelsDropdown}
-              className=" text inline-flex w-full justify-between bg-white px-4 py-2 font-bold   focus:outline-none"
+              className="text inline-flex w-full justify-between bg-white px-4 py-2 font-bold focus:outline-none"
             >
-              <span> Levels</span>
-
+              <span>Levels</span>
               <svg
-                className=" h-2.5 w-2.5"
+                className={`h-2.5 w-2.5 ${isLevelsDropdownOpen ? 'transform rotate-180' : ''}`}
                 aria-hidden="true"
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
@@ -172,52 +167,63 @@ function FilterSidebar() {
                 />
               </svg>
             </div>
-
             {isLevelsDropdownOpen && (
-              <div className="relative mt-2  w-full origin-top-right rounded-md  bg-white pl-5  ring-0">
+              <div className="relative mt-2 w-full origin-top-right rounded-md bg-white pl-5 ring-1 ring-gray-300 py-2">
                 <div className="mb-4 ml-3 flex items-center">
                   <input
-                    id="default-checkbox"
+                    id="all-levels-checkbox"
                     type="checkbox"
-                    defaultValue=""
-                    className="h-4 w-4  rounded-sm border-gray-700 bg-white text-primary focus:ring-1 focus:ring-primary dark:border-gray-500 dark:bg-gray-100 dark:ring-offset-gray-500 dark:focus:ring-primary"
+                    checked={selectedLevelFilter === 'all'}
+                    onChange={() => filterCoursesByLevel('all')}
+                    className="h-4 w-4 rounded-sm border-gray-700 bg-white text-primary focus:ring-1 focus:ring-primary dark:border-gray-500 dark:bg-gray-100 dark:ring-offset-gray-500 dark:focus:ring-primary"
                   />
-                  <label htmlFor="default-checkbox" className="smalltext ms-2 ">
-                    All (1,000)
+                  <label htmlFor="all-levels-checkbox" className="smalltext ml-2">
+                    All ({courses.length})
                   </label>
                 </div>
                 <div className="mb-4 ml-3 flex items-center">
                   <input
-                    id="default-checkbox"
+                    id="beginner-checkbox"
                     type="checkbox"
-                    defaultValue=""
-                    className="h-4 w-4  rounded-sm border-gray-700 bg-white text-primary  focus:ring-0 dark:border-gray-500 dark:bg-gray-100"
+                    checked={selectedLevelFilter === 'beginner'}
+                    onChange={() => filterCoursesByLevel('beginner')}
+                    className="h-4 w-4 rounded-sm border-gray-700 bg-white text-primary focus:ring-1 focus:ring-primary dark:border-gray-500 dark:bg-gray-100 dark:ring-offset-gray-500 dark:focus:ring-primary"
                   />
-                  <label htmlFor="default-checkbox" className="smalltext ms-2 ">
-                    Beginners (100)
+                  <label htmlFor="beginner-checkbox" className="smalltext ml-2">
+                    Beginner ({courses.filter(course => course.level === 'beginner').length})
                   </label>
                 </div>
                 <div className="mb-4 ml-3 flex items-center">
                   <input
-                    id="default-checkbox"
+                    id="intermediate-checkbox"
                     type="checkbox"
-                    defaultValue=""
-                    className="h-4 w-4  rounded-sm border-gray-700 bg-white text-primary  focus:ring-0 dark:border-gray-500 dark:bg-gray-100"
+                    checked={selectedLevelFilter === 'intermediate'}
+                    onChange={() => filterCoursesByLevel('intermediate')}
+                    className="h-4 w-4 rounded-sm border-gray-700 bg-white text-primary focus:ring-1 focus:ring-primary dark:border-gray-500 dark:bg-gray-100 dark:ring-offset-gray-500 dark:focus:ring-primary"
                   />
-                  <label htmlFor="default-checkbox" className="smalltext ms-2 ">
-                    Intermediate (100)
+                  <label htmlFor="intermediate-checkbox" className="smalltext ml-2">
+                  Intermediate ({courses.filter(course => course.level === 'intermediate').length})
                   </label>
                 </div>
                 <div className="mb-4 ml-3 flex items-center">
                   <input
-                    id="default-checkbox"
+                    id="expert-checkbox"
                     type="checkbox"
-                    defaultValue=""
-                    className="h-4 w-4  rounded-sm border-gray-700 bg-white text-primary  focus:ring-0 dark:border-gray-500 dark:bg-gray-100"
+                    checked={selectedLevelFilter === 'expert'}
+                    onChange={() => filterCoursesByLevel('expert')}
+                    className="h-4 w-4 rounded-sm border-gray-700 bg-white text-primary focus:ring-1 focus:ring-primary dark:border-gray-500 dark:bg-gray-100 dark:ring-offset-gray-500 dark:focus:ring-primary"
                   />
-                  <label htmlFor="default-checkbox" className="smalltext ms-2 ">
-                    Expert (100)
+                  <label htmlFor="expert-checkbox" className="smalltext ml-2">
+                    Expert ({courses.filter(course => course.level === 'expert').length})
                   </label>
+                </div>
+                <div className="mb-4 ml-3 flex items-center">
+                  <button
+                    onClick={resetFilters}
+                    className="text-sm text-gray-600 hover:text-gray-900 focus:outline-none"
+                  >
+                    Clear Filters
+                  </button>
                 </div>
               </div>
             )}
@@ -228,4 +234,8 @@ function FilterSidebar() {
   );
 }
 
-export default FilterSidebar
+FilterSidebar.propTypes = {
+  onFilter: PropTypes.func.isRequired,
+};
+
+export default FilterSidebar;

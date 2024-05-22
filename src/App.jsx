@@ -1,11 +1,9 @@
-// import React from "react";
 import { Route, Routes } from "react-router-dom";
 import HomePage from "./screens/HomePage";
 import Footer from "./components/layout/Footer";
 import CourseLine from "./components/courses/CourseLine";
 import SignUp from "./screens/SignUp";
 import Login from "./screens/Login";
-// import HomeGov from "./screens/HomeGov";
 import ProfileDashboard from "./components/Profile/ProfileDashboard";
 import Support from "./components/Profile/Support";
 import { Setting } from "./components/Profile/Setting";
@@ -17,20 +15,18 @@ import ForgetPassword from "./screens/ForgetPassword";
 import Categories from "./screens/Categories";
 import AddToCart from "./screens/AddToCart";
 import Lessons from "./screens/Lessons";
-// import OrganizationHome from "./screens/OrganizationHome";
 import Checkout from "./screens/Checkout";
-// import GovForm from "./screens/GovForm";
-// import OrgForm from "./screens/OrgGov";
 import HeaderTop from "./components/Reusable/HeaderTop";
 import Navbar2 from "./components/layout/Navbar2";
 import CourseDescription from "./screens/CourseDescription";
 import CourseAll from "./components/courses/CourseAll";
 import ScrollToTop from "./ScrollToTop";
 import Pay from "./screens/Pay";
+import Coursa from "./components/try/Coursa";
+import Buy from "./screens/Buy";
+import Payment from "./screens/Payment";
 
 const App = () => {
-
-
   return (
     <>
       <HeaderTop />
@@ -44,11 +40,10 @@ const App = () => {
         <Route path="/sign-up" element={<SignUp />} />
         <Route path="/login" element={<Login />} />
         <Route path="/pay" element={<Pay />} />
-        {/* <Route path="/gov-home" element={<HomeGov />} /> */}
-        {/* <Route path="/org-home" element={<OrganizationHome />} /> */}
+        <Route path="/payment" element={<Payment />} />
+        <Route path="/buy/:id" element={<Buy />} />{" "}
         <Route path="/checkout" element={<Checkout />} />
-        {/* <Route path="/gov-form" element={<GovForm />} /> */}
-        {/* <Route path="/org-form" element={<OrgForm />} /> */}
+        <Route path="/coursa" element={<Coursa />} />
         <Route
           path="/certificate"
           element={
@@ -95,7 +90,7 @@ const App = () => {
         <Route path="/add-to-cart" element={<AddToCart />} />
         <Route path="/lesson" element={<Lessons />} />
         <Route path="/course" element={<CourseAll />} />
-        <Route path="/course-description" element={<CourseDescription />} />
+        <Route path="/course/:id" element={<CourseDescription />} />
         <Route path="*" element={<Four0four />} />
       </Routes>
       <Footer />

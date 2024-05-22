@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import "./Navbar.css";
 import { FaTimes, FaBars } from "react-icons/fa";
@@ -9,6 +9,20 @@ import { useSelector } from "react-redux";
 
 const Navbar2 = () => {
   const [click, setClick] = useState(false);
+  const [isMobile, setIsMobile] = useState(window.innerWidth <= 960);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth <= 960);
+    };
+  
+    window.addEventListener('resize', handleResize);
+  
+    // Clean up the event listener on component unmount
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
   const cartItems=useSelector(state =>state.cart)
 
   const handleClick = () => setClick(!click);
@@ -48,7 +62,7 @@ const Navbar2 = () => {
         <ul
           className={
             click
-              ? "nav-menu active lg:gap-10  -mr-20 overflow-x-hidden flex  justify-center items-center"
+              ? "nav-menu active lg:gap-10 -mr-20 overflow-x-hidden flex  justify-center items-center"
               : "nav-menu lg:gap-10 -mr-20 overflow-x-hidden  flex justify-center font-normal items-center"
           }
         >
@@ -58,13 +72,13 @@ const Navbar2 = () => {
               className="lose w-auto min-w-[300px] lg:min-w-[400px] h-[35px] rounded-xl text-primary focus:outline-none outline-none"
             />
           </li>
-          <li className="nav-item">
+          <li className={`nav-item ${isMobile ? "-mt-40":""}`}>
             <Link
-              to="/course"
+              to="/categories"
               className={`py-2 px-3 md:p-0    lg:text-primary flex justify-center items-center offer lg:text-[20px] font-light md:bg-transparent text-center hove`}
               onClick={closeMobileMenu}
             >
-              Course
+              Categories
             </Link>
           </li>{" "}
           <li className="nav-item">

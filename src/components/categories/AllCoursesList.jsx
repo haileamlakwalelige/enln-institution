@@ -1,45 +1,58 @@
-import React from "react";
-import { FaLessThan } from "react-icons/fa6";
+import { FaLessThan } from "react-icons/fa";
 import { FaGreaterThan } from "react-icons/fa";
-import HorizontalCard from "../Reusable/HorizontalCard";
+import CatCard from "./CatCard";
+import PropTypes from 'prop-types';
+import { useState } from "react";
 
-function AllCoursesList() {
-  const num = [2, 3, 4, 5];
+function AllCoursesList({ courses }) {
+  const totalPages = Math.ceil(courses.length / 4);
+  const [currentPage, setCurrentPage] = useState(1);
+
+  const handlePageChange = (pageNumber) => {
+    setCurrentPage(pageNumber);
+  };
+
+  const startIndex = (currentPage - 1) * 4;
+  const endIndex = startIndex + 4;
+  const visibleCourses = courses.slice(startIndex, endIndex);
+
   return (
     <div>
       <div className="mt-12 flex flex-col justify-center items-center">
         <p className="text flex lg:w-full w-10/12 justify-end font-semibold py-5 px-4">
-          1000 results
+          {courses.length} results
         </p>
-        <HorizontalCard />
-        <HorizontalCard />
-        <HorizontalCard />
-        <HorizontalCard />
-        <HorizontalCard />
+        <CatCard items={visibleCourses} />
       </div>
       <div>
-        <div className="py-12 flex justify-center items-center md:gap-1 ">
-          <button className="bg-primary rounded-full md:h-[50px] md:w-[50px] h-[30px] w-[30px] flex justify-center items-center text-white font-bold text-xl">
+        <div className="py-12 flex justify-center items-center md:gap-1">
+          <button
+            className={`bg-primary rounded-full md:h-[50px] md:w-[50px] h-[30px] w-[30px] flex justify-center items-center text-white font-bold text-xl ${
+              currentPage === 1 ? 'opacity-50 cursor-not-allowed' : ''
+            }`}
+            onClick={() => handlePageChange(currentPage - 1)}
+            disabled={currentPage === 1}
+          >
             <FaLessThan />
           </button>
-          <button className="bg-primary rounded-full md:h-[50px] md:w-[50px] h-[30px] w-[30px] flex justify-center items-center text-white font-medium md:font-bold text-xl mx-2">
-            1
-          </button>
-          <div className="py-12 flex justify-center items-center gap-1 ">
-            {num.map((item, index) => (
-              <button
-                key={index}
-                className="rounded-full md:h-[50px] md:w-[50px] h-[30px] w-[30px] flex justify-center items-center text-black hover:bg-primary hover:text-white hover:text-xl font-medium text-base md:hover:font-bold hover:mx-2"
-              >
-                {item}
-              </button>
-            ))}
-          </div>
-          <p>. . .</p>
-          <button className="rounded-full md:h-[50px] md:w-[50px] h-[30px] w-[30px] flex justify-center items-center text-black font-medium text-base hover:bg-primary hover:text-white hover:text-xl md:hover:font-bold hover:mx-2">
-            56
-          </button>
-          <button className="bg-primary rounded-full md:h-[50px] md:w-[50px] h-[30px] w-[30px] flex justify-center items-center text-white font-bold text-xl">
+          {Array.from({ length: totalPages }, (_, index) => index + 1).map((pageNumber) => (
+            <button
+              key={pageNumber}
+              className={`rounded-full md:h-[50px] md:w-[50px] h-[30px] w-[30px] flex justify-center items-center text-black hover:bg-primary hover:text-white hover:text-xl font-medium text-base md:hover:font-bold hover:mx-2 ${
+                pageNumber === currentPage ? 'bg-primary text-white' : ''
+              }`}
+              onClick={() => handlePageChange(pageNumber)}
+            >
+              {pageNumber}
+            </button>
+          ))}
+          <button
+            className={`bg-primary rounded-full md:h-[50px] md:w-[50px] h-[30px] w-[30px] flex justify-center items-center text-white font-bold text-xl ${
+              currentPage === totalPages ? 'opacity-50 cursor-not-allowed' : ''
+            }`}
+            onClick={() => handlePageChange(currentPage + 1)}
+            disabled={currentPage === totalPages}
+          >
             <FaGreaterThan />
           </button>
         </div>
@@ -47,5 +60,9 @@ function AllCoursesList() {
     </div>
   );
 }
+
+AllCoursesList.propTypes = {
+  courses: PropTypes.array.isRequired,
+};
 
 export default AllCoursesList;

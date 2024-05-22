@@ -4,7 +4,7 @@
 .cards-container-vertical {
     display: flex;
     overflow-x: auto; /* Enable horizontal scrolling */
-    max-width: 100%; /* Ensure the container takes up full width */
+    @apply max-w-full
   }
   
   /* Wrapper for individual cards */

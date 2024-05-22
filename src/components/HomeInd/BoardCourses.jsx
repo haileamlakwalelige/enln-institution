@@ -6,6 +6,8 @@ import courses from "../try/data.json"; // Import card data from data.json
 import { add } from '../../store/cartSlice';
 import { useDispatch } from 'react-redux';
 import PropTypes from 'prop-types';
+import { useQuery } from 'react-query';
+import axios from 'axios';
 
 function BoardCourses({ type }) {
   const containerRef = useRef(null);
@@ -14,17 +16,38 @@ function BoardCourses({ type }) {
   const [hoveredCardIndex, setHoveredCardIndex] = useState(null);
 
   
+  const {
+    data:result,
+    isLoading,
+    isError,
+    error,
+  } = useQuery("courses", async () => {
+    const res = await axios.get(
+      "https://orginalenlndashboard.redshiftbusinessgroup.com/api/courses"
+    );
+    return res.data.data;
+  });
 
-  useEffect(() => {
-    // Filter cards based on the field property
-    const filteredCards = courses.courses.filter((card) => card.type === type);
-    setCardsData(filteredCards);
-  }, [type]);
+  if (isLoading) {
+    return <div>Loading...</div>;
+  }
+
+  if (isError) {
+    return <div>Error: {error.message}</div>;
+  }
 
   const addToCart = (item) => {
-    // Dispatch an add action
+    // dispatch an add action
     dispatch(add(item));
-  }
+  };
+
+  // useEffect(() => {
+  //   // Filter cards based on the field property
+  //   const filteredCards = data.filter((card) => card.type === type);
+  //   setCardsData(filteredCards);
+  // }, [type, data]);
+
+
 
   const scrollLeft = () => {
     containerRef.current.scrollBy({
