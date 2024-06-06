@@ -1,7 +1,9 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { FaAngleDown, FaAngleUp } from "react-icons/fa";
+import PropTypes from 'prop-types';
 
-const CourseRequirements = () => {
+
+const CourseRequirements = ({course}) => {
   const [showAll, setShowAll] = useState(true);
   return (
     <div className="min-h-[8vh] px-10 py-4 w-full mt-4">
@@ -14,28 +16,7 @@ const CourseRequirements = () => {
             showAll ? "line-clamp-none" : "line-clamp-4"
           }`}
         >
-          Before embarking on this learning journey, ensure that you have the
-          prerequisites to maximize engagement and success in the course. You
-          should be comfortable using a computer, navigating software, and
-          browsing the internet. A reliable internet connection is essential for
-          accessing course materials and online resources. Whether using a
-          computer, laptop, tablet, or smartphone, ensure your device has modern
-          browsers for compatibility. Familiarity with common productivity tools
-          like word processors and PDF readers is necessary. Proficiency in the
-          language of instruction is vital for comprehending lectures and
-          written materials. Dedicate sufficient time for reading, watching
-          videos, and completing assignments according to the course schedule.
-          Have note-taking tools, either digital or traditional, ready to
-          capture key concepts. Approach the course with an open mindset,
-          engaging with diverse perspectives and actively participating in
-          discussions and collaborative projects. Intrinsic motivation and a
-          positive learning attitude are key. Check for any hardware
-          requirements specified in the course description and ensure
-          familiarity with prerequisite subjects, if applicable. Enroll or have
-          access to the designated learning platform for course materials and
-          communication. For any questions or concerns about the requirements,
-          feel free to reach out to the course instructor or support team for
-          assistance.
+          {course.requirement}
         </p>
 
         <div
@@ -57,6 +38,13 @@ const CourseRequirements = () => {
       </div>
     </div>
   );
+};
+
+
+CourseRequirements.propTypes = {
+  course: PropTypes.shape({
+    requirement: PropTypes.string.isRequired,
+  }).isRequired,
 };
 
 export default CourseRequirements;
