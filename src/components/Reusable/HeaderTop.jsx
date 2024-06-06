@@ -1,4 +1,3 @@
-import React from "react";
 import { Link } from "react-router-dom";
 
 const HeaderTop = () => {
@@ -14,7 +13,7 @@ const HeaderTop = () => {
               Individuals
             </p>
           </Link>
-          <Link to="/org-home">
+          <Link to="https://enlnorganization-qd81a70fu-haileamlakwaleliges-projects.vercel.app">
             <p className="hidden lg:flex font-normal text-lg hover:border-gray-100 hover:border-b-2 duration-500 cursor-pointer">
               For Organizations
             </p>
@@ -22,7 +21,7 @@ const HeaderTop = () => {
               Organizations
             </p>
           </Link>
-          <Link to="/gov-home">
+          <Link to="https://enlngovernment-dfc56atgq-haileamlakwaleliges-projects.vercel.app/">
             <p className="hidden lg:flex font-normal text-lg hover:border-gray-100 hover:border-b-2 duration-500 cursor-pointer">
               For Government
             </p>

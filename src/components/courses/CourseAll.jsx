@@ -1,15 +1,15 @@
 import { useQuery } from 'react-query';
-import axios from 'axios';
 import { Link } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { add } from '../../store/cartSlice';
+import api from '../../api/api';
 
 const CourseAll = () => {
   const dispatch = useDispatch();
   const cart = useSelector(state => state.cart) || [];
 
   const { data: result, isLoading, isError, error } = useQuery(['courses'], async () => {
-    const res = await axios.get('https://orginalenlndashboard.redshiftbusinessgroup.com/api/courses');
+    const res = await api.get('/courses');
     return res.data.data;
   });
 
@@ -38,25 +38,32 @@ const CourseAll = () => {
             key={item.id}
             className='border-2 p-4 hover:shadow-2xl rounded-xl border-gray-200 shadow-md flex flex-col justify-center items-center'
           >
-            <Link to={`/course/${item.id}`} className='p-3 flex flex-col justify-center items-center'>
-              <img src={item.image} alt={item.title} className='max-w-[300px]' />
+            <Link to={`/course/${item.slug}`} className='p-3 flex flex-col justify-center items-center'>
+              <img src={item.image} alt={item.title} className='w-full lg:max-w-[300px]' />
               <p className='font-bold text-center py-2'>{item.title}</p>
               <p className='font-light line-clamp-2 px-2'>{item.description}</p>
               <p className='py-2'>{item.instructor}</p>
             </Link>
-            {isInCart(item.id) ? (
+            {item.price == 0 ? (
               <Link
-                to="/checkout"
+                to={`/course/${item.slug}`}
                 className='py-2 rounded-lg bg-primary hover:bg-white text-white px-10 mt-6 mb-2 hover:text-primary hover:border-2 hover:border-primary'
               >
-                Go to Checkout
+                Go to Course
+              </Link>
+            ) : isInCart(item.id) ? (
+              <Link
+                to={`/buy/${item.slug}`}
+                className='py-2 rounded-lg bg-primary hover:bg-white text-white px-10 mt-6 mb-2 hover:text-primary hover:border-2 hover:border-primary'
+              >
+                Buy Now
               </Link>
             ) : (
               <button
                 onClick={() => addToCart(item)}
                 className='py-2 rounded-lg bg-primary hover:bg-white text-white px-10 mt-6 mb-2 hover:text-primary hover:border-2 hover:border-primary'
               >
-                Add to Cart
+                Add to Favorite
               </button>
             )}
           </div>

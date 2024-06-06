@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Link } from "react-router-dom";
 import { TfiClose } from "react-icons/tfi";
@@ -40,7 +40,7 @@ function Header() {
       <div className="hidden  overflow-y-auto whitespace-nowrap bg-accent px-4 py-3 lg:block">
         <div className="flex">
           <Link
-            to="/individualhomepage"
+            to="/"
             className={`smalltext group relative mx-4 transform uppercase leading-5 text-white  duration-300 dark:text-secondary md:my-0`}
             onClick={() => setActiveLink("individuals")}
           >
@@ -57,7 +57,7 @@ function Header() {
           </Link>
 
           <Link
-            to="/governmenthome"
+            to="/"
             className={`smalltext group relative mx-4 transform uppercase leading-5 text-secondary duration-300 dark:text-secondary md:my-0`}
             onClick={() => setActiveLink("government")}
           >
@@ -73,7 +73,7 @@ function Header() {
             )}
           </Link>
           <Link
-            to="/organizationhome"
+            to="/"
             className={`smalltext group relative mx-4 transform uppercase leading-5 text-secondary duration-300 dark:text-secondary md:my-0`}
             onClick={() => setActiveLink("organization")}
           >
@@ -93,7 +93,7 @@ function Header() {
       <div className="sticky top-0 z-50 bg-slate-300">
         <nav className="relative mx-auto flex w-11/12  items-center justify-between px-4 py-2">
           <div className="flex items-center">
-            <Link to="/individualhomepage" className="mx-4 hidden lg:block">
+            <Link to="/" className="mx-4 hidden lg:block">
               <img src={HeaderLogo} className="h-8" alt="Header Logo" />
             </Link>
             <div className="lg:hidden">
@@ -182,12 +182,12 @@ function Header() {
               </div>
             </div>
           </div>
-          <Link to="/individualhomepage" className="mx-4  lg:hidden">
+          <Link to="/" className="mx-4  lg:hidden">
             <img src={HeaderLogo} className="h-8" alt="Header Logo" />
           </Link>
           <div className="flex space-x-3">
             <div className="dropdown dropdown-end dropdown-hover">
-              <Link to="/addtocart" className="btn btn-circle btn-ghost">
+              <Link to="/favorite" className="btn btn-circle btn-ghost">
                 {/* Modify this line */}
                 <div className="indicator">
                   <svg
@@ -278,7 +278,7 @@ function Header() {
                 <ul>
                   <li className="mb-1">
                     <Link
-                      to="/individualhomepage"
+                      to="/"
                       className="block rounded p-4 text-sm font-semibold text-slate-800 hover:bg-secondary hover:text-primary"
                       href="#"
                     >

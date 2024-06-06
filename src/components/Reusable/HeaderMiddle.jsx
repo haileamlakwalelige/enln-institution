@@ -1,4 +1,4 @@
-import React from "react";
+// import React from "react";
 import logo from "../../assets/demo2.png";
 import { FaCartShopping } from "react-icons/fa6";
 import { Link } from "react-router-dom";

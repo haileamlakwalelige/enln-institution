@@ -1,8 +1,9 @@
 import { useEffect, useState } from 'react';
 import FilterSidebar from '../components/categories/FilterSidebar';
 import AllCoursesList from '../components/categories/AllCoursesList';
-import axios from 'axios';
+// import axios from 'axios';
 import { useQuery } from 'react-query';
+import api from '../api/api';
 // import axios from 'axios'; // Import axios if needed
 
 function Categories() {
@@ -13,7 +14,7 @@ function Categories() {
   }, []);
 
   const { data: courses, isLoading, isError, error } = useQuery(['courses'], async () => {
-    const res = await axios.get('https://orginalenlndashboard.redshiftbusinessgroup.com/api/courses');
+    const res = await api.get('/courses');
     return res.data.data; // Assuming your API response is structured like this
   });
 

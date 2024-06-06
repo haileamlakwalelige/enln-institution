@@ -4,9 +4,9 @@ import { BiSolidRightArrow, BiSolidLeftArrow } from "react-icons/bi";
 import { FaCheck } from "react-icons/fa"; // Import tooltip-related icons
 import { add } from "../../store/cartSlice";
 import { useDispatch, useSelector } from "react-redux";
-import axios from "axios";
 import { useQuery } from "react-query";
 import { Link } from "react-router-dom";
+import api from "../../api/api";
 
 function VerticalCardsTrying() {
   const containerRef = useRef(null);
@@ -14,14 +14,9 @@ function VerticalCardsTrying() {
   const cart = useSelector((state) => state.cart) || [];
   const [hoveredCardIndex, setHoveredCardIndex] = useState(null); // State to track hovered card index
 
-  const {
-    data,
-    isLoading,
-    isError,
-    error,
-  } = useQuery("courses", async () => {
-    const res = await axios.get(
-      "https://orginalenlndashboard.redshiftbusinessgroup.com/api/courses"
+  const { data, isLoading, isError, error } = useQuery("courses", async () => {
+    const res = await api.get(
+      "/courses"
     );
     return res.data.data;
   });
@@ -35,7 +30,6 @@ function VerticalCardsTrying() {
   }
 
   const addToCart = (item) => {
-    // dispatch an add action
     dispatch(add(item));
   };
 
@@ -52,7 +46,7 @@ function VerticalCardsTrying() {
 
   const scrollRight = () => {
     containerRef.current.scrollBy({
-      left: 300, // Adjust according to scroll amount
+      left: 300,
       behavior: "smooth",
     });
   };
@@ -119,12 +113,19 @@ function VerticalCardsTrying() {
                         ))}
                       </div>
                       <div className="card-actions justify-end">
-                        {isInCart(card.id) ? (
+                        {card.price == 0 ? (
                           <Link
-                            to="/add-to-cart"
+                            to={`/course/${card.slug}`}
+                            className="py-2 rounded-lg bg-primary hover:bg-white text-white px-10 mt-6 mb-2 hover:text-primary hover:border-2 hover:border-primary"
+                          >
+                            Go to Course
+                          </Link>
+                        ) : isInCart(card.id) ? (
+                          <Link
+                            to="/favorite"
                             className="py-2 rounded-lg bg-black hover:bg-white text-white px-10 mt-6 mb-2 hover:text-primary hover:border-2 hover:border-primary"
                           >
-                            Go to cart section
+                            Go to Favorite
                           </Link>
                         ) : (
                           <button

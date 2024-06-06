@@ -1,16 +1,14 @@
 import { add } from '../../store/cartSlice';
 import { useDispatch, useSelector } from 'react-redux';
 import { useQuery } from "react-query";
-import axios from "axios";
 import { Link } from 'react-router-dom';
+import api from '../../api/api';
 
 const VerticalCardTryings = () => {
   const dispatch = useDispatch();
   const cart = useSelector(state => state.cart) || [];
 
-
-  const addToCart=(item)=>{
-    //dispatch an add action
+  const addToCart = (item) => {
     dispatch(add(item));
   }
 
@@ -19,13 +17,13 @@ const VerticalCardTryings = () => {
   };
 
   const {
-    data:result,
+    data: result,
     isLoading,
     isError,
     error,
   } = useQuery("courses", async () => {
-    const res = await axios.get(
-      "https://orginalenlndashboard.redshiftbusinessgroup.com/api/courses"
+    const res = await api.get(
+      "/courses"
     );
     return res.data.data;
   });
@@ -37,7 +35,6 @@ const VerticalCardTryings = () => {
   if (isError) {
     return <div>Error: {error.message}</div>;
   }
-
 
   return (
     // Container with overflow-x-auto for horizontal scrolling
@@ -52,37 +49,47 @@ const VerticalCardTryings = () => {
             key={course.id} // Unique key for each card
           >
             {/* Card image */}
+            <Link to={`/course/${course.slug}`}>
             <figure>
               <img
-                // src={course.image} // Image source
-                src=''
+                src={course.image} // Image source
                 alt={course.title} // Alternative text for image
                 className="max-w-[300px]" // Image styles
               />
             </figure>
+            </Link>
             {/* Card body */}
             <div className="card-body p-4">
               {/* Card title */}
+              <Link to={`/course/${course.slug}`}>
               <h2 className="card-title">{course.title}</h2>
+              </Link>
               {/* Card description */}
               <p>{course.description}</p>
               <div className="card-actions justify-end">
-                {/* Add to cart button */}
-                {isInCart(course.id) ? (
-              <Link
-                to="/add-to-cart"
-                className='py-2 rounded-lg bg-primary hover:bg-white text-white px-10 mt-6 mb-2 hover:text-primary hover:border-2 hover:border-primary'
-              >
-                Go to Cart
-              </Link>
-            ) : (
-              <button
-                onClick={() => addToCart(course)}
-                className='py-2 rounded-lg bg-primary hover:bg-white text-white px-10 mt-6 mb-2 hover:text-primary hover:border-2 hover:border-primary'
-              >
-                Add to Cart
-              </button>
-            )}
+                {/* Conditionally render buttons based on price and cart status */}
+                {course.price == 0 ? (
+                  <Link
+                    to={`/course/${course.slug}`}
+                    className="py-2 rounded-lg bg-black hover:bg-white text-white px-10 mt-6 mb-2 hover:text-primary hover:border-2 hover:border-primary"
+                  >
+                    Go to Course
+                  </Link>
+                ) : isInCart(course.id) ? (
+                  <Link
+                    to="/favorite"
+                    className='py-2 rounded-lg bg-primary hover:bg-white text-white px-10 mt-6 mb-2 hover:text-primary hover:border-2 hover:border-primary'
+                  >
+                    Go to Favorite
+                  </Link>
+                ) : (
+                  <button
+                    onClick={() => addToCart(course)}
+                    className='py-2 rounded-lg bg-primary hover:bg-white text-white px-10 mt-6 mb-2 hover:text-primary hover:border-2 hover:border-primary'
+                  >
+                    Add to Favorite
+                  </button>
+                )}
               </div>
             </div>
           </div>
@@ -91,20 +98,5 @@ const VerticalCardTryings = () => {
     </div>
   );
 };
-
-// VerticalCardTryings.propTypes = {
-//   items: PropTypes.arrayOf(
-//     PropTypes.shape({
-//       id: PropTypes.number.isRequired,
-//       price: PropTypes.string.isRequired,
-//     //   image: PropTypes.string.isRequired,
-//       title: PropTypes.string.isRequired,
-//       instructor_name: PropTypes.string.isRequired,
-//       rate: PropTypes.number.isRequired,
-//     //   hours: PropTypes.number.isRequired,
-//     //   difficulty: PropTypes.string.isRequired,
-//     })
-//   ).isRequired,
-// };
 
 export default VerticalCardTryings;

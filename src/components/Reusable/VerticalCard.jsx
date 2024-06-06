@@ -1,4 +1,3 @@
-import React, { useState } from "react";
 import { FaCheck } from "react-icons/fa6";
 import { FaStar } from "react-icons/fa6";
 import { FaStarHalfAlt } from "react-icons/fa";
@@ -7,7 +6,7 @@ import { useDispatch } from "react-redux";
 import { add } from "../../store/cartSlice";
 
 const VerticalCard = () => {
-  const [course, setCourse] = useState(coursesData.courses);
+  const course = coursesData.courses;
   const dispatch = useDispatch();
 
   const addToCart=(item)=>{
@@ -52,7 +51,7 @@ const VerticalCard = () => {
                     Birr {item.price}
                   </p>
                   <button onClick={()=>addToCart(item)} className="bg-primary rounded-xl hover:text-primary hover:bg-white hover:border-[1px] hover:border-gray-100 text-white font-semibold text-xl py-2 px-10 max-w-[300px] min-w-[250px] my-4">
-                    Add To Cart
+                    Add To Favorite
                   </button>
                 </div>
                 <div className="hidden md:block">

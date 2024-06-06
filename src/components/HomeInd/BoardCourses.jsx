@@ -1,59 +1,45 @@
-import { useRef, useState, useEffect } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import './styles.css'; // Import your CSS file
 import { BiSolidRightArrow, BiSolidLeftArrow } from "react-icons/bi";
-import { FaCheck } from "react-icons/fa"; // Import tooltip-related icons
-import courses from "../try/data.json"; // Import card data from data.json
 import { add } from '../../store/cartSlice';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import PropTypes from 'prop-types';
 import { useQuery } from 'react-query';
-import axios from 'axios';
+import api from '../../api/api';
+import { Link } from 'react-router-dom';
 
 function BoardCourses({ type }) {
   const containerRef = useRef(null);
   const [cardsData, setCardsData] = useState([]);
   const dispatch = useDispatch();
   const [hoveredCardIndex, setHoveredCardIndex] = useState(null);
+  const cart = useSelector(state => state.cart) || [];
 
-  
-  const {
-    data:result,
-    isLoading,
-    isError,
-    error,
-  } = useQuery("courses", async () => {
-    const res = await axios.get(
-      "https://orginalenlndashboard.redshiftbusinessgroup.com/api/courses"
-    );
+  const { data, isLoading, isError, error } = useQuery("courses", async () => {
+    const res = await api.get("/courses");
     return res.data.data;
   });
 
-  if (isLoading) {
-    return <div>Loading...</div>;
-  }
+  useEffect(() => {
+    if (data) {
+      const filteredCards = data.filter((card) => card.type === type);
+      setCardsData(filteredCards);
+    }
+  }, [type, data]);
 
-  if (isError) {
-    return <div>Error: {error.message}</div>;
-  }
-
-  const addToCart = (item) => {
-    // dispatch an add action
-    dispatch(add(item));
+  const addToCart = (card) => {
+    dispatch(add(card));
   };
-
-  // useEffect(() => {
-  //   // Filter cards based on the field property
-  //   const filteredCards = data.filter((card) => card.type === type);
-  //   setCardsData(filteredCards);
-  // }, [type, data]);
-
-
 
   const scrollLeft = () => {
     containerRef.current.scrollBy({
       left: -300, // Adjust according to scroll amount
       behavior: "smooth",
     });
+  };
+
+  const isInCart = (itemId) => {
+    return cart.some(cartItem => cartItem.id === itemId);
   };
 
   const scrollRight = () => {
@@ -63,78 +49,71 @@ function BoardCourses({ type }) {
     });
   };
 
+  if (isLoading) {
+    return <div>Loading...</div>;
+  }
+
+  if (isError) {
+    return <div>Error: {error.message}</div>;
+  }
+
   return (
     <div className="py-10 h-full">
-      <div
-        className="cards-container-vertical overflow-x-hidden"
-        ref={containerRef}
-      >
+      <div className="cards-container-vertical overflow-x-hidden" ref={containerRef}>
         <div className="card-wrapper-vertical">
           {cardsData.map((card) => (
             <div
-              className="card w-96 bg-base-100 shadow-xl relative"
+              className="card w-96 bg-base-100 shadow-xl relative max-h-fit"
               key={card.id}
-              onMouseEnter={() => setHoveredCardIndex(card.id)} // Set hovered card index
-              onMouseLeave={() => setHoveredCardIndex(null)} // Reset hovered card index
+              onMouseEnter={() => setHoveredCardIndex(card.id)}
+              onMouseLeave={() => setHoveredCardIndex(null)}
             >
-              <figure>
-                <img
-                  src={card.image}
-                  alt="Shoes"
-                  className="h-[100px] w-full"
-                />
-              </figure>
+              <Link to={`/course/${card.slug}`}>
+                <figure>
+                  <img src={card.image} alt="Shoes" className="h-[100px] w-full" />
+                </figure>
+              </Link>
               <div className="card-body">
-                <h2 className="card-title">{card.title}</h2>
-                <p>{card.description}</p>
+                <Link to={`/course/${card.slug}`}>
+                  <h2 className="card-title">{card.title}</h2>
+                </Link>
+                <p className='line-clamp-3'>{card.description}</p>
               </div>
-              {/* Tooltip Markup */}
-              {hoveredCardIndex === card.id && ( // Conditionally render tooltip
-                <div
-                  className="text-gray-800 shadow-sm px-3 border-slate-600 border-[1px] rounded-xl tooltip-content top-0 absolute bg-white bg-full min-h-full min-w-full text-center flex flex-col justify-center items-start" // Add your tooltip CSS classes here
-                >
-                  <div
-                    className="tooltip-arrow"
-                    data-tooltip-target={`tooltip-right-${card.id}`}
-                    data-tooltip-placement="right"
-                  ></div>
+              {hoveredCardIndex === card.id && (
+                <div className="text-gray-800 shadow-sm px-3 border-slate-600 border-[1px] rounded-xl tooltip-content top-0 absolute bg-white bg-full min-h-full min-w-full text-center flex flex-col justify-center cards-start">
+                  <div className="tooltip-arrow" data-tooltip-target={`tooltip-right-${card.id}`} data-tooltip-placement="right"></div>
                   <div className="tooltip-inner">
-                    {/* Tooltip content here */}
                     <div>
-                      <p className="text-black text-[14px] amib font-semibold ">
-                        {card.title}
-                      </p>
+                      <p className="text-black text-[14px] amib font-semibold ">{card.title}</p>
                       <div className="flex gap-2 justify-between px-4 items-center py-1">
-                        <p className="text-[#7E7E7E] text-[10px]">
-                          {card.hours} total hours
-                        </p>
-                        <p className="text-[#7E7E7E] text-[10px]">
-                          . {card.difficulty}
-                        </p>
-                        <p className="rounded-xl border-primary border-[1px] px-5 py-1">
-                          {card.way}
-                        </p>
+                        <p className="text-[#7E7E7E] text-[10px]">{card.hours} total hours</p>
+                        <p className="text-[#7E7E7E] text-[10px]"> {card.level}</p>
+                        <p className="rounded-xl border-primary border-[1px] px-5 py-1">{card.status}</p>
                       </div>
-                      <p className="text-black font-normal leading-5 text-[12px] amir text-start">
-                        {card.description}
-                      </p>
-                      <div className="flex flex-col gap-3 px-2">
-                        {card.features.map((feature, index) => (
-                          <div className="flex gap-3 px-2" key={index}>
-                            <FaCheck
-                              size={30}
-                              className="text-primary font-bold"
-                            />
-                            <p className="text-black font-normal leading-5 text-[12px] amir text-start">
-                              {feature}
-                            </p>
-                          </div>
-                        ))}
-                      </div>
+                      <p className="text-black font-normal line-clamp-6 leading-5 text-[12px] amir text-start">{card.description}</p>
                       <div className="card-actions justify-end">
-                        <button onClick={() => addToCart(card)} className="bg-primary text-white px-8 py-1.5 rounded font-semibold hover:text-primary hover:bg-white  hover:underline duration-100 hover:font-bold">
-                          Add To Cart
-                        </button>
+                      {card.price == 0 ? (
+              <Link
+                to={`/course/${card.slug}`}
+                className='py-2 rounded-lg bg-primary hover:bg-white text-white px-10 mt-6 mb-2 hover:text-primary hover:border-2 hover:border-primary'
+              >
+                Go to Course
+              </Link>
+            ) : isInCart(card.id) ? (
+              <Link
+                to={`/buy/${card.id}`}
+                className='py-2 rounded-lg bg-primary hover:bg-white text-white px-10 mt-6 mb-2 hover:text-primary hover:border-2 hover:border-primary'
+              >
+                Buy Now
+              </Link>
+            ) : (
+              <button
+                onClick={() => addToCart(card)}
+                className='py-2 rounded-lg bg-primary hover:bg-white text-white px-10 mt-6 mb-2 hover:text-primary hover:border-2 hover:border-primary'
+              >
+                Add to Favorite
+              </button>
+            )}
                       </div>
                     </div>
                   </div>
@@ -144,25 +123,16 @@ function BoardCourses({ type }) {
           ))}
         </div>
       </div>
-
       <div className="btn-container-vertical gap-x-10">
-        <BiSolidLeftArrow
-          className="text-black font-bold cursor-pointer"
-          size={30}
-          onClick={scrollLeft}
-        />
-        <BiSolidRightArrow
-          className="text-black font-bold cursor-pointer"
-          size={30}
-          onClick={scrollRight}
-        />
+        <BiSolidLeftArrow className="text-black font-bold cursor-pointer" size={30} onClick={scrollLeft} />
+        <BiSolidRightArrow className="text-black font-bold cursor-pointer" size={30} onClick={scrollRight} />
       </div>
     </div>
   );
 }
 
-export default BoardCourses;
-
 BoardCourses.propTypes = {
   type: PropTypes.string.isRequired,
 };
+
+export default BoardCourses;

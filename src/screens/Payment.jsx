@@ -1,12 +1,7 @@
 // import React from 'react'
 
-// import { useSelector } from "react-redux";
 
 const Payment = () => {
-
-    // const singleItem = useSelector(state => state.singleItem.item);
-  
-    // console.log("Single Item", singleItem);
 
 
     return (

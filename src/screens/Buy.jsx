@@ -3,12 +3,9 @@ import chapa from "../assets/chapa.svg";
 import telebirr from "../assets/telebirr.svg";
 import { Link } from "react-router-dom";
 
-
 const Buy = () => {
+  const singleItem = useSelector((state) => state.singleItem.item);
 
-    const singleItem = useSelector(state => state.singleItem.item);
-  
-    console.log("Single Item", singleItem);
 
   return (
     <div className="py-12 lg:py-6 merb font-light">
@@ -30,11 +27,11 @@ const Buy = () => {
           </p>
           <div className="gap-4 flex flex-col">
             <div className="flex justify-start gap-2 items-start">
-              <img
-                src={singleItem.image}
-                alt=""
-                className="w-[140px] h-[105px] rounded-xl"
-              />
+              {singleItem.image ? (
+                <img src={singleItem.image} alt="description" />
+              ) : (
+                <div>No image available</div>
+              )}
               <div>
                 <div className="flex flex-col justify-center items-start">
                   <p className="text-black font-medium text-[14px] md:text-[16px]">
@@ -58,21 +55,11 @@ const Buy = () => {
             <p>ETB {singleItem.price}</p>
           </div>
           <div className="flex justify-center items-center gap-6 mt-6">
-            <img
-              src={chapa}
-              alt="Chapa"
-              className="h-[55px] w-[71px]"
-            />
-            <img
-              src={telebirr}
-              alt="telebirr"
-              className="h-[55px] w-[71px]"
-            />
+            <img src={chapa} alt="Chapa" className="h-[55px] w-[71px]" />
+            <img src={telebirr} alt="telebirr" className="h-[55px] w-[71px]" />
           </div>
           <Link to="/pay">
-            <button
-              className="bg-primary rounded-xl text-white font-semibold text-xl py-2 px-10 max-w-[300px] min-w-[250px] my-4"
-            >
+            <button className="bg-primary rounded-xl text-white font-semibold text-xl py-2 px-10 max-w-[300px] min-w-[250px] my-4">
               Finalize Payment
             </button>
           </Link>

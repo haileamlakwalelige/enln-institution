@@ -1,7 +1,9 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { FaAngleDown, FaAngleUp } from "react-icons/fa";
+import PropTypes from 'prop-types';
 
-const CourseWho = () => {
+
+const CourseWho = ({course}) => {
   const [showAll, setShowAll] = useState(true);
   return (
     <div className="min-h-[8vh] px-10 py-4 w-full mt-4">
@@ -9,25 +11,12 @@ const CourseWho = () => {
         <p className="text-primary text-start text-[20px] md:text-[24px] lg:text-[28px] xl:text-[32px] font-bold merb py-3">
           Who is this Course is for
         </p>
-        <p
+        <div
+          dangerouslySetInnerHTML={{ __html: course.description }}
           className={`text-black font-normal text-[14px] amir text-justify ${
             showAll ? "line-clamp-none" : "line-clamp-4"
           }`}
-        >
-          This course is designed for individuals seeking a comprehensive
-          understanding of nutrition and its impact on overall well-being.
-          Whether you're a health enthusiast, a parent wanting to provide
-          optimal nutrition for your family, or someone interested in pursuing a
-          career in nutrition or wellness, this course caters to a diverse
-          audience. It is especially beneficial for those who want to make
-          informed decisions about their diet, learn practical strategies for
-          maintaining a healthy lifestyle, or contribute to promoting
-          nutritional awareness in their communities. The content is presented
-          in a user-friendly manner, making it accessible to beginners while
-          offering valuable insights for those with a more advanced interest in
-          the field of nutrition.
-        </p>
-
+        />
         <div
           onClick={() => setShowAll(!showAll)}
           className="text-primary font-semibold mt-5"
@@ -47,6 +36,13 @@ const CourseWho = () => {
       </div>
     </div>
   );
+};
+
+
+CourseWho.propTypes = {
+  course: PropTypes.shape({
+    description: PropTypes.string.isRequired,
+  }).isRequired,
 };
 
 export default CourseWho;

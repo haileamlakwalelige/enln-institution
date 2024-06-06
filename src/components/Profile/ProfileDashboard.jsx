@@ -10,6 +10,7 @@ import { RxDashboard } from "react-icons/rx";
 import { MdContactSupport } from "react-icons/md";
 import { IoSettingsOutline } from "react-icons/io5";
 import PropTypes from "prop-types";
+import api from "../../api/api";
 
 const ProfileDashboard = ({ children }) => {
   const [isOpen, setIsOpen] = useState(false);
@@ -40,15 +41,31 @@ const ProfileDashboard = ({ children }) => {
       path: "/settings",
       name: "Settings",
       icon: <IoSettingsOutline />,
-    },
-    {
-      path: "/logout",
-      name: "Logout",
-      icon: <MdLogout />,
-    },
+    }
   ];
 
-  const email = sessionStorage.getItem("email");
+  const handleLogout = async () => {
+    try {
+      // Make a POST request to the logout API endpoint
+      await api.post('/logout', {}, {
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${localStorage.getItem('token')}`,
+        },
+      });
+
+      // Remove the token from local storage
+      localStorage.removeItem('token');
+
+      // Remove the isAuthenticated from local storage
+      localStorage.removeItem('isAuthenticated');
+
+      // Redirect the user to the login page or the desired logout page
+      window.location.href = '/';
+    } catch (error) {
+      console.error('Error logging out:', error);
+    }
+  };
 
   return (
     <div className="min-h-screen mt-32">
@@ -81,12 +98,12 @@ const ProfileDashboard = ({ children }) => {
                   : "rounded-full"
               }`}
             />
-            <p
+            {/* <p
               style={{ display: isOpen ? "block " : "none" }}
               className="merb font-semibold text-xl text-center text-[#025464]"
             >
               {email}
-            </p>
+            </p> */}
           </div>
           <div
             className={`${
@@ -103,11 +120,9 @@ const ProfileDashboard = ({ children }) => {
                   isOpen
                     ? "link flex-col items-start  justify-center py-2 md:mx-10 md:pl-6 lg:items-center"
                     : "link flex-col items-center justify-center py-1"
-                    ? "link flex-col items-start  justify-center py-2 md:mx-10 md:pl-6 lg:items-center"
-                    : "link flex-col items-center justify-center py-1"
                 }`}
               >
-                <div className="flex gap-2 md:gap-5 justify-center items-center" onClick={close}>
+                <div className="flex hover:text-primary gap-2 md:gap-5 justify-center items-center" onClick={close}>
                   <div className="icon mt-2 justify-center items-center  md:-ml-5 ">{item.icon}</div>
                   <div
                     style={{ display: isOpen ? "block " : "none" }}
@@ -119,6 +134,11 @@ const ProfileDashboard = ({ children }) => {
               </NavLink>
             ))}
           </div>
+          <div onClick={handleLogout} className={` active:text-primary active:font-bold hover:text-primary hover:font-bold hover:text-lg ${isOpen ? "flex first-letter justify-start pl-1 md:pl-[45px]  items-center gap-2 cursor-pointer": "flex first-letter justify-start md:ml-2  items-center gap-2 cursor-pointer pl-4 sm:pl-1"}`}>
+                <MdLogout className={`${isOpen ? "icon mt-2 justify-center items-center font-extrabold" : "icon mt-2 -ml-3 justify-center items-center"}`}/>
+                <p onClick={handleLogout} style={{ display: isOpen ? "block " : "none" }}
+                    className="link_text mt-1">Logout</p>
+              </div>
         </div>
         <main className={isOpen ? "hidden sm:block" : "block"}>{children}</main>
       </div>

@@ -6,19 +6,18 @@ import DescriptionCourse from "../components/course description/DescriptionCours
 import CourseWho from "../components/course description/CourseWho";
 import { useParams } from "react-router-dom";
 import { useQuery } from "react-query";
-import axios from "axios";
+import api from "../api/api";
 
 
 const CourseDescription = () => {
 
-  const { id } = useParams();
+  const { slug } = useParams();
 
-  const { data: course, isLoading, isError, error } = useQuery(['course', id], async () => {
-    const response = await axios.get(`https://orginalenlndashboard.redshiftbusinessgroup.com/api/courses/${id}`);
+  const { data: course, isLoading, isError, error } = useQuery(['course', slug], async () => {
+    const response = await api.get(`/courses/${slug}`);
     return response.data.data;
   });
 
-  console.log("Course", course);
 
   if (isLoading) {
     return <div>Loading...</div>;
@@ -39,11 +38,10 @@ const CourseDescription = () => {
       <CoursesHero course={course} />
       <div className="flex flex-col-reverse lg:flex-row justify-start items-start my-10 mx-2 sm:mx-4 md:mx-6 lg:mx-10 gap-10">
         <div className="lg:w-3/4 flex flex-col justify-center items-center ">
-          <WhatWeLearn />
-          {/* <CourseContent /> */}
-          <CourseRequirements />
-          <DescriptionCourse />
-          <CourseWho />
+          <WhatWeLearn course={course}/>
+          <CourseRequirements course={course}/>
+          <DescriptionCourse course={course}/>
+          <CourseWho course={course}/>
         </div>
         <div className="lg:w-1/4">
           <SingleCard course={course}/>

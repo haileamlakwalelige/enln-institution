@@ -14,7 +14,7 @@ ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
     <Router>
       <Provider store={store}>
-        <ToastContainer />
+        <ToastContainer stacked />
         <QueryClientProvider client={queryClient}>
           <App />
         </QueryClientProvider>

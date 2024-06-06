@@ -4,8 +4,8 @@ import { useDispatch } from "react-redux";
 import { FaTimes } from "react-icons/fa";
 import { remove } from "../../store/cartSlice";
 import PropTypes from 'prop-types';
-import { IoStarSharp } from "react-icons/io5";
 import { addSingleItem} from "../../store/singleItemSlice";
+import RatingsDisplay from "./RatingsDisplay";
 
 const HorizontalCard = ({ items }) => {
   const dispatch = useDispatch();
@@ -22,7 +22,7 @@ const HorizontalCard = ({ items }) => {
 
   const handleItemClick=(item)=>{
     dispatch(addSingleItem(item))
-    navigate("/buy/"+item.id);
+    navigate("/buy/"+item.slug);
   }
 
   return (
@@ -56,7 +56,7 @@ const HorizontalCard = ({ items }) => {
                   <FaTimes className="text-red-500 min-w-[40px] min-h-full items-end justify-end flex font-bold text-end justify-self-end" />
                 </div>
                 <div className="card-actions justify-between items-center flex">
-                  <Link to={`/course/${item.id}`}>
+                  <Link to={`/course/${item.slug}`}>
                     <h2 className="text font-bold text-center md:text-start">
                       {item.title}
                     </h2>
@@ -73,15 +73,7 @@ const HorizontalCard = ({ items }) => {
 
                 <div className="flex items-center space-x-1">
                   <div className="flex items-center">
-                    {/* Render star ratings */}
-                    {[...Array(item.rate)].map((_, index) => (
-                      <IoStarSharp key={index} size={20} className="text-primary" />
-                    ))}
-                  </div>
-                  <div className="flex items-center">
-                    <p className="ratingcardtext font-medium">
-                      {item.rate}.0
-                    </p>
+                    <RatingsDisplay rating={item.rate}/>
                   </div>
                 </div>
 
@@ -119,7 +111,7 @@ HorizontalCard.propTypes = {
       // image: PropTypes.string.isRequired,
       title: PropTypes.string.isRequired,
       instructor_name: PropTypes.string.isRequired,
-      rate: PropTypes.number.isRequired,
+      rate: PropTypes.string.isRequired,
       // ratingsCount: PropTypes.number.isRequired,
       // hours: PropTypes.number.isRequired,
       // difficulty: PropTypes.string.isRequired,

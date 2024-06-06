@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import dot from "../../assets/dot.png";
 import { FaAngleDown, FaAngleUp } from "react-icons/fa";
 

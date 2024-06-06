@@ -33,12 +33,12 @@ const Support = () => {
                 <input
                   type="text"
                   id="name"
-                  className="border-1 peer block w-full min-w-[250px] lg:min-w-[300px] appearance-none rounded-lg border-gray-300 bg-transparent px-2.5 pb-2.5 pt-4 text-sm text-gray-900 focus:border-blue-600 focus:outline-none focus:ring-0 dark:border-gray-600 dark:text-white dark:focus:border-blue-500"
+                  className="border-1 peer block w-full min-w-[250px] lg:min-w-[300px] appearance-none rounded-lg border-gray-300 bg-transparent px-2.5 pb-2.5 pt-4 text-sm text-gray-900 focus:border-blue-600 focus:outline-none focus:ring-0 dark:border-gray-600  dark:focus:border-blue-500"
                   placeholder=" "
                 />
                 <label
                   htmlFor="name"
-                  className="absolute text-[16px] start-1 top-2 z-10 origin-[0] -translate-y-4 scale-75 transform bg-white px-2 text-sm text-gray-500 duration-300 peer-placeholder-shown:top-1/2 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:scale-100 peer-focus:top-2 peer-focus:-translate-y-4 peer-focus:scale-75 peer-focus:px-2 peer-focus:text-blue-600 rtl:peer-focus:left-auto rtl:peer-focus:translate-x-1/4 dark:bg-gray-900 dark:text-gray-400 peer-focus:dark:text-blue-500"
+                  className="absolute text-[16px] start-1 top-2 z-10 origin-[0] -translate-y-4 scale-75 transform bg-white px-2 text-sm text-black duration-300 peer-placeholder-shown:top-1/2 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:scale-100 peer-focus:top-2 peer-focus:-translate-y-4 peer-focus:scale-75 peer-focus:px-2 peer-focus:text-blue-600 rtl:peer-focus:left-auto rtl:peer-focus:translate-x-1/4  peer-focus:dark:text-blue-500"
                 >
                   Full Name <span className="text-red-500 ml-1">*</span>
                 </label>
@@ -47,12 +47,12 @@ const Support = () => {
                 <input
                   type="email"
                   id="email"
-                  className="border-1 peer block w-full min-w-[250px] lg:min-w-[300px] appearance-none rounded-lg border-gray-300 bg-transparent px-2.5 pb-2.5 pt-4 text-sm text-gray-900 focus:border-blue-600 focus:outline-none focus:ring-0 dark:border-gray-600 dark:text-white dark:focus:border-blue-500"
+                  className="border-1 peer block w-full min-w-[250px] lg:min-w-[300px] appearance-none rounded-lg border-gray-300 bg-transparent px-2.5 pb-2.5 pt-4 text-sm text-gray-900 focus:border-blue-600 focus:outline-none focus:ring-0 dark:border-gray-600  dark:focus:border-blue-500"
                   placeholder=" "
                 />
                 <label
                   htmlFor="email"
-                  className="absolute lg:text-[16px] text-sm start-1 top-2 z-10 origin-[0] -translate-y-4 scale-75 transform bg-white px-2  text-gray-500 duration-300 peer-placeholder-shown:top-1/2 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:scale-100 peer-focus:top-2 peer-focus:-translate-y-4 peer-focus:scale-75 peer-focus:px-2 peer-focus:text-blue-600 rtl:peer-focus:left-auto rtl:peer-focus:translate-x-1/4 dark:bg-gray-900 dark:text-gray-400 peer-focus:dark:text-blue-500"
+                  className="absolute lg:text-[16px] text-sm start-1 top-2 z-10 origin-[0] -translate-y-4 scale-75 transform bg-white px-2  text-black duration-300 peer-placeholder-shown:top-1/2 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:scale-100 peer-focus:top-2 peer-focus:-translate-y-4 peer-focus:scale-75 peer-focus:px-2 peer-focus:text-blue-600 rtl:peer-focus:left-auto rtl:peer-focus:translate-x-1/4  peer-focus:dark:text-blue-500"
                 >
                   Email <span className="text-red-500 ml-1">*</span>
                 </label>
@@ -61,12 +61,12 @@ const Support = () => {
                 <input
                   type="text"
                   id="subject"
-                  className="border-1 peer block w-full lg:min-w-[300px] min-w-[250px] appearance-none rounded-lg border-gray-300 bg-transparent px-2.5 pb-2.5 pt-4 text-sm text-gray-900 focus:border-blue-600 focus:outline-none focus:ring-0 dark:border-gray-600 dark:text-white dark:focus:border-blue-500"
+                  className="border-1 peer block w-full lg:min-w-[300px] min-w-[250px] appearance-none rounded-lg border-gray-300 bg-transparent px-2.5 pb-2.5 pt-4 text-sm text-gray-900 focus:border-blue-600 focus:outline-none focus:ring-0 dark:border-gray-600  dark:focus:border-blue-500"
                   placeholder=" "
                 />
                 <label
                   htmlFor="subject"
-                  className="absolute lg:text-[16px] text-sm start-1 top-2 z-10 origin-[0] -translate-y-4 scale-75 transform bg-white px-2 text-gray-500 duration-300 peer-placeholder-shown:top-1/2 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:scale-100 peer-focus:top-2 peer-focus:-translate-y-4 peer-focus:scale-75 peer-focus:px-2 peer-focus:text-blue-600 rtl:peer-focus:left-auto rtl:peer-focus:translate-x-1/4 dark:bg-gray-900 dark:text-gray-400 peer-focus:dark:text-blue-500"
+                  className="absolute lg:text-[16px] text-sm start-1 top-2 z-10 origin-[0] -translate-y-4 scale-75 transform bg-white px-2 text-black duration-300 peer-placeholder-shown:top-1/2 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:scale-100 peer-focus:top-2 peer-focus:-translate-y-4 peer-focus:scale-75 peer-focus:px-2 peer-focus:text-blue-600 rtl:peer-focus:left-auto rtl:peer-focus:translate-x-1/4  peer-focus:dark:text-blue-500"
                 >
                   Subject 
                 </label>
@@ -77,16 +77,17 @@ const Support = () => {
                 rows={4}
                   type="text"
                   id="message"
-                  className="border-1 peer block w-full min-w-[250px] lg:min-w-[300px] appearance-none rounded-lg border-gray-300 bg-transparent px-2.5 pb-2.5 pt-4 text-sm text-gray-900 focus:border-blue-600 focus:outline-none focus:ring-0 dark:border-gray-600 dark:text-white dark:focus:border-blue-500"
+                  className="border-1 peer block w-full min-w-[250px] lg:min-w-[300px] appearance-none rounded-lg border-gray-300 bg-transparent px-2.5 pb-2.5 pt-4 text-sm text-gray-900 focus:border-blue-600 focus:outline-none focus:ring-0 dark:border-gray-600  dark:focus:border-blue-500"
                   placeholder=" "
                 />
                 <label
                   htmlFor="message"
-                  className="absolute lg:text-[16px] -mt-8 peer-focus:mt-0  start-1 top-2 z-10 origin-[0] -translate-y-4 scale-75 transform bg-white px-2 text-sm text-gray-500 duration-300 peer-placeholder-shown:top-1/2 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:scale-100 peer-focus:top-2 peer-focus:-translate-y-4 peer-focus:scale-75 peer-focus:px-2 peer-focus:text-blue-600 rtl:peer-focus:left-auto rtl:peer-focus:translate-x-1/4 dark:bg-gray-900 dark:text-gray-400 peer-focus:dark:text-blue-500"
+                  className="absolute lg:text-[16px] -mt-8 peer-focus:mt-0  start-1 top-2 z-10 origin-[0] -translate-y-4 scale-75 transform bg-white px-2 text-sm text-black duration-300 peer-placeholder-shown:top-1/2 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:scale-100 peer-focus:top-2 peer-focus:-translate-y-4 peer-focus:scale-75 peer-focus:px-2 peer-focus:text-blue-600 rtl:peer-focus:left-auto rtl:peer-focus:translate-x-1/4  peer-focus:dark:text-blue-500"
                 >
                   Message <span className="text-red-500 ml-1">*</span>
                 </label>
               </div>
+              <button type="submit" className="border-primary border-[1px] px-8 py-1 rounded flex justify-center items-center bg-gray-300 hover:bg-primary hover:text-white duration-300 ">Submit</button>
             </form>
           </div>
         </div>

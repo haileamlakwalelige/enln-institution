@@ -1,7 +1,14 @@
 import { useState, useEffect } from "react";
-import blog from '../../data/data.json';
-import { FaArrowRight } from "react-icons/fa";
-import { FaArrowLeft } from "react-icons/fa";
+import { FaArrowRight, FaArrowLeft } from "react-icons/fa";
+import { Link, useNavigate, useParams } from "react-router-dom";
+import { Worker, Viewer } from "@react-pdf-viewer/core";
+import "@react-pdf-viewer/core/lib/styles/index.css";
+import { defaultLayoutPlugin } from '@react-pdf-viewer/default-layout';
+import '@react-pdf-viewer/default-layout/lib/styles/index.css';
+import Ask from "../Reusable/Ask";
+import api from "../../api/api";
+import { useQuery } from "react-query";
+import { toast } from "react-toastify";
 
 const convertToEmbeddedURL = (inputUrl) => {
   const parts = inputUrl.split("/");
@@ -10,79 +17,68 @@ const convertToEmbeddedURL = (inputUrl) => {
 };
 
 const CourseLine = () => {
+  const defaultLayoutPluginInstance = defaultLayoutPlugin();
+  const { slug } = useParams();
   const [selectedItemIndex, setSelectedItemIndex] = useState(0);
-  const [selectedAnswers, setSelectedAnswers] = useState({});
-  const [element, setElement] = useState(1);
-  const [showResult, setShowResult] = useState(false);
-  const [quizResult, setQuizResult] = useState(null);
-  const [submitted, setSubmitted] = useState(false); // Flag to indicate if quiz is submitted
+  const [single, setSingle] = useState({});
+  const [userId, setUserId] = useState(null);
+
+  const navigate = useNavigate();
+
+  const { data: course, isLoading: isLoadingCourse, isError: isErrorCourse, error: errorCourse } = useQuery(['course', slug], async () => {
+    const response = await api.get(`/courses/${slug}`);
+    return response.data.data;
+  });
+
+  const { data: chapters, isLoading: isLoadingChapter, isError: isErrorChapter, error: errorChapter } = useQuery(['chapters'], async () => {
+    const response = await api.get('/chapters');
+    return response.data.data;
+  });
+
+  const { data: payments, isLoading: isLoadingPayment, isError: isErrorPayment, error: errorPayment } = useQuery(['payments'], async () => {
+    const response = await api.get('/payments');
+    return response.data.data;
+  });
 
   useEffect(() => {
-    // Initialize selectedAnswers state with an empty object
-    setSelectedAnswers({});
-    setShowResult(false);
-    setQuizResult(null);
-    setSubmitted(false); // Reset submitted flag when item changes
-  }, [selectedItemIndex]);
-
-  const handleAnswerChange = (questionIndex, choiceIndex) => {
-    setSelectedAnswers({
-      ...selectedAnswers,
-      [questionIndex]: choiceIndex,
-    });
-  };
-
-  const renderChoiceStyle = (questionIndex, choiceIndex) => {
-    if (!submitted) return ""; // Don't apply styles if quiz is not submitted
-    const selectedAnswerIndex = selectedAnswers[questionIndex];
-    const question = blog[selectedItemIndex].quiz_questions[questionIndex];
-    const correctAnswerIndex = question.choices.indexOf(
-      question.correct_answer,
-    );
-    if (
-      selectedAnswerIndex !== undefined &&
-      selectedAnswerIndex === choiceIndex
-    ) {
-      return correctAnswerIndex === choiceIndex ? "bg-green-500" : "bg-red-500";
+    if (course) {
+      setSingle(course);
     }
-    return correctAnswerIndex === choiceIndex ? "bg-green-500" : "";
-  };
+  }, [course]);
 
-  const handleSubmitQuiz = () => {
-    // Calculate the quiz result
-    const questions = blog[selectedItemIndex].quiz_questions;
-    let correctAnswers = 0;
-    for (let i = 0; i < questions.length; i++) {
-      const question = questions[i];
-      const selectedAnswerIndex = selectedAnswers[i];
-      const correctAnswerIndex = question.choices.indexOf(
-        question.correct_answer,
-      );
-      if (
-        selectedAnswerIndex !== undefined &&
-        selectedAnswerIndex === correctAnswerIndex
-      ) {
-        correctAnswers++;
+  useEffect(() => {
+    const user = localStorage.getItem("user");
+    if (user) {
+      const userData = JSON.parse(user);
+      setUserId(userData[0].id);
+    }
+  }, []);
+
+  useEffect(() => {
+    if (userId && single.id && payments) {
+      const pay = payments.find(pay => pay.course_id === single.id && pay.user_id === userId);
+
+      if (single.price == 0) {
+        toast.success(`Welcome to ${single.title} Course`);
+      } else if (pay && pay.status === "Completed") {
+        toast.success(`Welcome to ${single.title} Course`);
+      } else {
+        toast.warn("Please Buy Course First");
+        navigate(`/course/${single.slug}`);
       }
     }
+  }, [userId, single, payments, navigate]);
 
-    // Calculate percentage
-    const percentage = (correctAnswers / questions.length) * 100;
+  if (isLoadingCourse || isLoadingChapter || isLoadingPayment) {
+    return <div>Loading...</div>;
+  }
 
-    // Set the quiz result
-    setQuizResult(percentage);
-    // Show the result
-    setShowResult(true);
-    // Set submitted flag to true
-    setSubmitted(true);
-  };
-
-  const handleElement = (element) => {
-    setElement(element);
-  };
+  if (isErrorCourse || isErrorChapter || isErrorPayment) {
+    return <div>Error: {errorCourse?.message || errorChapter?.message || errorPayment?.message}</div>;
+  }
 
   const handleNextItem = () => {
-    if (selectedItemIndex < blog.length - 1) {
+    if (selectedItemIndex < chapters.length - 1) {
       setSelectedItemIndex(selectedItemIndex + 1);
     }
   };
@@ -94,238 +90,77 @@ const CourseLine = () => {
   };
 
   return (
-    <div className="grid grid-cols-1 gap-6 bg-[#B3CBD0] py-6 md:grid-cols-2 lg:grid-cols-4">
+    <div className="grid grid-cols-1 gap-6 bg-[#B3CBD0] py-6 md:grid-cols-2 lg:grid-cols-4 overflow-x-hidden">
       <div className="col-span-1 min-h-screen border-2 border-gray-100 bg-white py-5 shadow-xl">
-        <p className="merb mb-5 pt-2 text-center text-[20px]">
-          Course Progress
-        </p>
+        <p className="merb mb-5 pt-2 text-center text-[20px]">Course Progress</p>
         <div className="flex items-center justify-between border-b-2 border-gray-300 px-3 pb-5 lg:px-6">
           <p className="amir text-[18px] text-[#445D6E]">Videos Watched</p>
-          <p className="font-serif font-semibold">0/12</p>
+          <p className="font-serif font-semibold">0/{chapters.length}</p>
         </div>
-        {blog.map((item, index) => (
+        {chapters.map((item, index) => (
           <div
             key={index}
-            className={`cursor-pointer justify-center px-2 pt-8 text-black md:px-6 ${
-              selectedItemIndex === index ? "bg-gray-200" : ""
-            }`}
+            className={`cursor-pointer justify-center px-2 pt-8 text-black md:px-6 ${selectedItemIndex === index ? "bg-gray-200" : ""}`}
             onClick={() => setSelectedItemIndex(index)}
           >
             <div className="flex items-start justify-start gap-3">
-              <img
-                src={item.icon}
-                alt={item.title}
-                className="h-[25px] w-[25px] rounded-xl"
-              />
+              <img src={item.icon} alt={item.title} className="h-[25px] w-[25px] rounded-xl" />
               <div>
-                <h1 className="amir amir text-[17px]">{item.title}</h1>
-                <p className="amir mt-1 text-[16px] text-gray-500">
-                  {item.min}
-                </p>
+                <h1 className="amir text-[17px]">{item.title}</h1>
+                <p className="amir mt-1 text-[16px] text-gray-500">{item.min}</p>
               </div>
             </div>
           </div>
         ))}
       </div>
       <div className="col-span-1 min-h-screen rounded border-2 border-gray-100 bg-white p-5 text-black shadow-xl lg:col-span-3">
-        <p className="amir mt-4 font-semibold text-gray-700">
-          Home &gt; Nutrition Leadership &gt; Introduction
-        </p>
-        {blog[selectedItemIndex] && (
+        <div className="amir flex gap-2 mt-4 font-semibold text-gray-700">
+          <Link to="/course">Home</Link> &gt; <p>{single.title}</p>
+        </div>
+        {chapters[selectedItemIndex] && (
           <div>
             <p className="py-5 text-[20px] font-semibold text-gray-800 md:text-[22px] lg:text-[24px] ">
-              {selectedItemIndex + 1}- {blog[selectedItemIndex].title}
+              {selectedItemIndex + 1}- {chapters[selectedItemIndex].title}
             </p>
             <p className="pop text-[16px] font-medium text-[#445D6E]">
-              {blog[selectedItemIndex].description}
+              {chapters[selectedItemIndex].description}
             </p>
-            {blog[selectedItemIndex].content_type === "video" && (
+            {chapters[selectedItemIndex].video ? (
               <iframe
-                src={convertToEmbeddedURL(blog[selectedItemIndex].video_url)}
-                title={blog[selectedItemIndex].title}
+                src={convertToEmbeddedURL(chapters[selectedItemIndex].video)}
+                title={chapters[selectedItemIndex].title}
                 frameBorder="0"
                 allowFullScreen
                 className="mt-10 h-[600.44px] w-full lg:max-w-full"
               ></iframe>
-            )}
-            {blog[selectedItemIndex].content_type === "text" && (
-              <div
-                className="amir text-gray-600"
-                dangerouslySetInnerHTML={{
-                  __html: blog[selectedItemIndex].text_content,
-                }}
-              ></div>
-            )}
-            {blog[selectedItemIndex].content_type === "quiz" && (
-              <div>
-                {blog[selectedItemIndex].quiz_questions.map((question, idx) => (
-                  <div
-                    key={idx}
-                    className="flex flex-col items-start justify-start px-2 text-black sm:px-4 md:px-8"
-                  >
-                    <h3 className="amir py-4 text-[18px] font-semibold text-gray-700">
-                      {question.question}
-                    </h3>
-                    <div className="flex flex-col">
-                      {question.choices.map((choice, cIdx) => (
-                        <label
-                          key={cIdx}
-                          className={`mb-2 flex items-center px-2 text-[16px] font-medium text-gray-600 ${renderChoiceStyle(
-                            idx,
-                            cIdx,
-                          )}`}
-                        >
-                          <input
-                            type="radio"
-                            value={cIdx}
-                            checked={selectedAnswers[idx] === cIdx}
-                            onChange={() => handleAnswerChange(idx, cIdx)}
-                            className="mr-2"
-                          />
-                          <span>
-                            {String.fromCharCode(65 + cIdx)}. {choice}
-                          </span>
-                        </label>
-                      ))}
-                    </div>
-                  </div>
-                ))}
-                <button
-                  onClick={handleSubmitQuiz}
-                  className="mt-4 w-full max-w-[200px] rounded border-2 border-green-500 bg-green-500 px-10  py-2 font-semibold  text-white hover:bg-white hover:text-green-500"
-                >
-                  Submit Answer
-                </button>
-                {showResult && (
-                  <p
-                    className={`mt-4 w-full max-w-[200px] rounded border-2 border-green-500 px-10 py-2 font-semibold text-green-500 ${
-                      quizResult >= 50 ? "bg-green-200" : "bg-red-200"
-                    }`}
-                  >
-                    Your result: {quizResult}%
-                  </p>
-                )}
-              </div>
+            ) : (
+              <Worker workerUrl="https://unpkg.com/pdfjs-dist@3.4.120/build/pdf.worker.min.js">
+                <Viewer fileUrl={chapters[selectedItemIndex].pdf} plugins={[defaultLayoutPluginInstance]} />
+              </Worker>
             )}
           </div>
         )}
         <div>
           <div className="my-10 w-screen bg-[#B3CBD0] md:w-full">
-            <div className="mx-0 my-5 flex w-full flex-col flex-wrap items-center justify-between gap-3 bg-white px-2 py-3 pt-8 sm:px-4 md:flex-row md:px-8 lg:gap-32">
-              {selectedItemIndex > 0 && (
-                <button
-                  onClick={handlePrevItem}
-                  className="flex items-center  justify-start rounded-xl bg-white px-16 py-2 font-semibold text-gray-600"
-                >
-                  <FaArrowLeft className="mr-3 text-slate-800" size={30} />
-                  <div className="flex flex-col items-start justify-start">
-                    <p className="amir font-normal">
-                      {" "}
-                      Lesson {selectedItemIndex}
-                    </p>
-                    <p className="amir items-start justify-start text-lg">
-                      {blog[selectedItemIndex - 1].title}
-                    </p>
-                  </div>
-                </button>
-              )}
-              {selectedItemIndex < blog.length - 1 && (
-                <button
-                  onClick={handleNextItem}
-                  className="flex items-center  justify-end rounded-xl bg-white px-16 py-2 font-semibold text-gray-600"
-                >
-                  <div className="flex flex-col items-end justify-end">
-                    <p className="amir font-normal">
-                      Lesson {selectedItemIndex + 2}
-                    </p>
-                    <p className="amir text-lg">
-                      {blog[selectedItemIndex + 1].title}
-                    </p>
-                  </div>
-                  <FaArrowRight className="ml-3 text-slate-800" size={30} />
-                </button>
-              )}
-            </div>
-          </div>
-          <div>
-            <div className="mt-10 flex flex-col flex-wrap items-center justify-center gap-5 border-b-[1px] border-t-[1px] border-gray-300 px-2 py-3 sm:px-4 md:flex-row md:px-10 lg:justify-between lg:gap-2 lg:px-20">
-              <p
-                onClick={() => handleElement(1)}
-                className={
-                  element === 1
-                    ? "merb cursor-pointer  border-b-2 border-gray-500 px-3 text-2xl font-bold sm:block"
-                    : "amir cursor-pointer  text-xl font-semibold sm:block"
-                }
+            <div className="mx-0 my-5 flex w-full flex-col flex-wrap items-center justify-between gap-3 bg-white px-3 py-5 shadow-xl md:my-20 md:flex-row md:flex-nowrap md:gap-0">
+              <button
+                onClick={handlePrevItem}
+                disabled={selectedItemIndex === 0}
+                className="mx-5 flex cursor-pointer items-center justify-center gap-3 rounded border-2 border-green-500 bg-green-500 px-10 py-2 text-center font-serif text-[17px] font-semibold text-white hover:bg-white hover:text-green-500 disabled:cursor-not-allowed disabled:opacity-50"
               >
-                Description
-              </p>
-              <p
-                onClick={() => handleElement(2)}
-                className={
-                  element === 2
-                    ? "merb cursor-pointer  border-b-2 border-gray-500 px-3 text-2xl font-bold sm:block"
-                    : "amir cursor-pointer  text-xl font-semibold sm:block"
-                }
+                <FaArrowLeft /> Previous
+              </button>
+              <button
+                onClick={handleNextItem}
+                disabled={selectedItemIndex === chapters.length - 1}
+                className="mx-5 flex cursor-pointer items-center justify-center gap-3 rounded border-2 border-green-500 bg-green-500 px-10 py-2 text-center font-serif text-[17px] font-semibold text-white hover:bg-white hover:text-green-500 disabled:cursor-not-allowed disabled:opacity-50"
               >
-                Q&A
-              </p>
-              <p
-                onClick={() => handleElement(3)}
-                className={
-                  element === 3
-                    ? "merb cursor-pointer  border-b-2 border-gray-500 px-3 text-2xl font-bold sm:block"
-                    : "amir cursor-pointer  text-xl font-semibold sm:block"
-                }
-              >
-                Comments
-              </p>
-              <p
-                onClick={() => handleElement(4)}
-                className={
-                  element === 4
-                    ? "merb cursor-pointer  border-b-2 border-gray-500 px-3 text-2xl font-bold sm:block"
-                    : "amir cursor-pointer  text-xl font-semibold sm:block"
-                }
-              >
-                Resource
-              </p>
-            </div>
-            <div>
-              <div style={{ display: element === 1 ? "block" : "none" }}>
-                <div className="flex flex-col items-center justify-center ">
-                  <p className="amir py-2 pt-10 text-center text-2xl font-bold">
-                    Elevate Your Impact: Unleash Your Inner Nutrition Leader
-                  </p>
-                  <br />
-                  <p className="amir px-2 text-[16px] font-medium text-gray-600 md:px-6 ">
-                    Your description content
-                  </p>
-                </div>
-              </div>
-              <div style={{ display: element === 2 ? "block" : "none" }}>
-                <div className="flex flex-col items-center justify-center ">
-                  <p className="amir px-2 text-[16px] font-medium text-gray-600 md:px-6 ">
-                    Q&A Detail
-                  </p>
-                </div>
-              </div>
-              <div style={{ display: element === 3 ? "block" : "none" }}>
-                <div className="flex flex-col items-center justify-center ">
-                  <p className="amir px-2 text-[16px] font-medium text-gray-600 md:px-6 ">
-                    Comments Detail
-                  </p>
-                </div>
-              </div>
-              <div style={{ display: element === 4 ? "block" : "none" }}>
-                <div className="flex flex-col items-center justify-center ">
-                  <p className="amir px-2 text-[16px] font-medium text-gray-600 md:px-6 ">
-                    Resource Detail
-                  </p>
-                </div>
-              </div>
+                Next <FaArrowRight />
+              </button>
             </div>
           </div>
         </div>
+        <Ask slug={single.slug} />
       </div>
     </div>
   );
