@@ -1,7 +1,7 @@
-import axios from 'axios';
 import { useState, useEffect } from 'react';
 import { useQuery } from 'react-query';
 import PropTypes from 'prop-types';
+import api from '../../api/api';
 
 function FilterSidebar({ onFilter }) {
   const [isPriceDropdownOpen, setPriceDropdownOpen] = useState(false);
@@ -20,7 +20,7 @@ function FilterSidebar({ onFilter }) {
   };
 
   const { data: courses, isLoading, isError, error } = useQuery(['courses'], async () => {
-    const res = await axios.get('https://orginalenlndashboard.redshiftbusinessgroup.com/api/courses');
+    const res = await api.get('/courses');
     return res.data.data; // Assuming your API response is structured like this
   });
 
@@ -43,7 +43,7 @@ function FilterSidebar({ onFilter }) {
   const filterCoursesByPrice = (priceType) => {
     let filteredData = courses;
     if (priceType === 'free') {
-      filteredData = courses.filter(course => course.price === 0);
+      filteredData = courses.filter(course => course.price == 0);
     } else if (priceType === 'paid') {
       filteredData = courses.filter(course => course.price > 0);
     } else {
@@ -58,10 +58,18 @@ function FilterSidebar({ onFilter }) {
   // Function to filter courses by level
   const filterCoursesByLevel = (level) => {
     let filteredData = [];
-    if (level === 'all') {
+    if (level === 'All') {
       filteredData = courses; // Show all courses
+    } else if(level === "Begginer") {
+      filteredData = courses.filter(course => course.level === 'Begginer');
+    }
+    else if(level === "Intermidate") {
+      filteredData = courses.filter(course => course.level === "Intermidate");
+    }
+    else if(level === "expert") {
+      filteredData = courses.filter(course => course.level === "Expert");
     } else {
-      filteredData = courses.filter(course => course.level === level);
+      filteredData = courses;
     }
     setFilteredCourses(filteredData);
     setSelectedLevelFilter(level);
@@ -114,12 +122,12 @@ function FilterSidebar({ onFilter }) {
                   <input
                     id="free-checkbox"
                     type="checkbox"
-                    checked={selectedPriceFilter === 'free'}
+                    checked={selectedPriceFilter == 'free'}
                     onChange={() => filterCoursesByPrice('free')}
                     className="h-4 w-4 rounded-sm border-gray-700 bg-white text-primary focus:ring-1 focus:ring-primary dark:border-gray-500 dark:bg-gray-100 dark:ring-offset-gray-500 dark:focus:ring-primary"
                   />
                   <label htmlFor="free-checkbox" className="smalltext ml-2">
-                    Free ({courses.filter(course => course.price === 0).length})
+                    Free ({courses.filter(course => course.price == 0).length})
                   </label>
                 </div>
                 <div className="mb-4 ml-3 flex items-center">
@@ -173,8 +181,8 @@ function FilterSidebar({ onFilter }) {
                   <input
                     id="all-levels-checkbox"
                     type="checkbox"
-                    checked={selectedLevelFilter === 'all'}
-                    onChange={() => filterCoursesByLevel('all')}
+                    checked={selectedLevelFilter === 'All'}
+                    onChange={() => filterCoursesByLevel('All')}
                     className="h-4 w-4 rounded-sm border-gray-700 bg-white text-primary focus:ring-1 focus:ring-primary dark:border-gray-500 dark:bg-gray-100 dark:ring-offset-gray-500 dark:focus:ring-primary"
                   />
                   <label htmlFor="all-levels-checkbox" className="smalltext ml-2">
@@ -185,24 +193,24 @@ function FilterSidebar({ onFilter }) {
                   <input
                     id="beginner-checkbox"
                     type="checkbox"
-                    checked={selectedLevelFilter === 'beginner'}
-                    onChange={() => filterCoursesByLevel('beginner')}
+                    checked={selectedLevelFilter === 'Begginer'}
+                    onChange={() => filterCoursesByLevel('Begginer')}
                     className="h-4 w-4 rounded-sm border-gray-700 bg-white text-primary focus:ring-1 focus:ring-primary dark:border-gray-500 dark:bg-gray-100 dark:ring-offset-gray-500 dark:focus:ring-primary"
                   />
                   <label htmlFor="beginner-checkbox" className="smalltext ml-2">
-                    Beginner ({courses.filter(course => course.level === 'beginner').length})
+                    Beginner ({courses.filter(course => course.level === 'Begginer').length})
                   </label>
                 </div>
                 <div className="mb-4 ml-3 flex items-center">
                   <input
                     id="intermediate-checkbox"
                     type="checkbox"
-                    checked={selectedLevelFilter === 'intermediate'}
-                    onChange={() => filterCoursesByLevel('intermediate')}
+                    checked={selectedLevelFilter === 'Intermidate'}
+                    onChange={() => filterCoursesByLevel('Intermidate')}
                     className="h-4 w-4 rounded-sm border-gray-700 bg-white text-primary focus:ring-1 focus:ring-primary dark:border-gray-500 dark:bg-gray-100 dark:ring-offset-gray-500 dark:focus:ring-primary"
                   />
                   <label htmlFor="intermediate-checkbox" className="smalltext ml-2">
-                  Intermediate ({courses.filter(course => course.level === 'intermediate').length})
+                  Intermediate ({courses.filter(course => course.level === 'Intermidate').length})
                   </label>
                 </div>
                 <div className="mb-4 ml-3 flex items-center">
@@ -214,7 +222,7 @@ function FilterSidebar({ onFilter }) {
                     className="h-4 w-4 rounded-sm border-gray-700 bg-white text-primary focus:ring-1 focus:ring-primary dark:border-gray-500 dark:bg-gray-100 dark:ring-offset-gray-500 dark:focus:ring-primary"
                   />
                   <label htmlFor="expert-checkbox" className="smalltext ml-2">
-                    Expert ({courses.filter(course => course.level === 'expert').length})
+                    Expert ({courses.filter(course => course.level === 'Expert').length})
                   </label>
                 </div>
                 <div className="mb-4 ml-3 flex items-center">
