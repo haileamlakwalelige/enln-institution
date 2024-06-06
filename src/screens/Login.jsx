@@ -1,6 +1,4 @@
-
-//Login
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { FaRegEyeSlash, FaRegEye } from "react-icons/fa";
 import { Link, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
@@ -8,50 +6,76 @@ import "react-toastify/dist/ReactToastify.css";
 import signup from "../assets/login.png";
 import google from "../assets/google.png";
 import facebook from "../assets/facebook.png";
-import axios from "axios";
+import { useDispatch, useSelector } from "react-redux";
+import { loginSuccess, loginFailure } from "../store/authSlice";
+import { useMutation } from "react-query";
+import api from "../api/api";
+
+const login = async ({ email, password }) => {
+  const response = await api.post("/login", { email, password });
+  return response.data;
+};
+
+
 
 const Login = () => {
   const [passShow, setPassShow] = useState(false);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [error, setError] = useState(""); // State for error handling
-  const navigation = useNavigate();
+  const [allUsers, setAllUsers] = useState([]);
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    try {
-      // Check if the email is already registered
-      const emailCheckResponse = await axios.get(`http://localhost:3001/users?email=${email}`);
-      const existingUser = emailCheckResponse.data[0];
-      
-      if (!existingUser) {
-        setError("Email is not registered");
-        toast.error("Email is not Registered");
-        return;
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const { loading, error } = useSelector((state) => state.auth);
+
+
+  useEffect(() => {
+    const fetchUsers = async () => {
+      try {
+        const response = await api.get('/users');
+        setAllUsers(response.data);
+      } catch (error) {
+        console.error('Error fetching users:', error);
       }
+    };
+
+    fetchUsers();
+  }, []);
+
   
-      // If the email is registered, attempt login
-      const loginResponse = await axios.get(`http://localhost:3001/users?email=${email}&password=${password}`);
-      const loggedInUser = loginResponse.data[0];
-      
-      if (!loggedInUser) {
-        setError("Invalid email or password");
-        toast.error("Invalid email or password");
-        return;
-      }
-      
-      // If login is successful, you can handle it accordingly
-      console.log("Login successful:", loggedInUser);
+  const mutation = useMutation(login, {
+    onSuccess: (data) => {
+      dispatch(loginSuccess(data));
+      localStorage.setItem("token", data); // Store token in local storage
+  
+      // Filter users and store in localStorage
+      const filterUser = (users, email) => {
+        return users.filter(user => user.email === email);
+      };
+      const filteredUsers = filterUser(allUsers, email);
+      localStorage.setItem('user', JSON.stringify(filteredUsers));
+  
       toast.success("Login successful");
-      navigation("/dashboard")
-    } catch (error) {
-      console.error("Login error:", error);
-      setError("An error occurred during login");
-      toast.error("An error occurred during login");
+      navigate("/dashboard");
+    },
+    onError: (error) => {
+      dispatch(loginFailure(error.response.data.message));
+      toast.error("Invalid email or password!");
+    }
+  });
+
+
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    mutation.mutate({ email, password });
+    // Clear error state to force refresh of error message on next attempt
+    if (error) {
+      dispatch(loginFailure(null));
     }
   };
-  
-  
+
+  {loading && <div>Loading...</div>}
 
   return (
     <div className="py-10 mt-20">
@@ -64,15 +88,16 @@ const Login = () => {
           />
         </div>
         <div className="flex flex-col justify-center items-center">
-          <p className="text-4xl py-2 font-bold amir text-primary ">
+          <p className="text-4xl py-2 font-bold amir text-primary">
             Welcome Back
           </p>
           {error && (
             <p
+              key="error-message"
               style={{ color: "red" }}
               className="font-light text-2xl w-full text-center"
             >
-              {error}
+              Invalid email or password!
             </p>
           )}
           <form className="flex flex-col" onSubmit={handleSubmit}>
@@ -107,8 +132,9 @@ const Login = () => {
             <button
               type="submit"
               className="bg-primary rounded-xl text-white font-semibold text-xl py-2 px-10 max-w-[300px] min-w-[250px] my-4"
+              disabled={mutation.isLoading}
             >
-              Log in
+              {mutation.isLoading ? "Logging in..." : "Log in"}
             </button>
             <div className="bg-white rounded-xl flex text-lg text-black font-semibold gap-4 justify-start items-start py-2 px-4 max-w-[300px] min-w-[250px] my-4 border-primary border-2">
               <img src={google} alt="" className="h-[25px] w-[25px]" />
@@ -121,7 +147,7 @@ const Login = () => {
           </form>
           <div className="flex gap-3 text-black font-medium">
             <p>Don&apos;t have an account?</p>
-            <Link to="/sign-up" className="text-primary font-bold">
+            <Link to="/signup" className="text-primary font-bold">
               Sign Up
             </Link>
           </div>
