@@ -47,7 +47,7 @@ function AllCoursesList({ courses }) {
             </button>
           ))}
           <button
-            className={`bg-primary rounded-full md:h-[50px] md:w-[50px] h-[30px] w-[30px] flex justify-center items-center text-white font-bold text-xl ${
+            className={`bg-primary duration-300 rounded-full md:h-[50px] md:w-[50px] h-[30px] w-[30px] flex justify-center items-center text-white font-bold text-xl ${
               currentPage === totalPages ? 'opacity-50 cursor-not-allowed' : ''
             }`}
             onClick={() => handlePageChange(currentPage + 1)}
