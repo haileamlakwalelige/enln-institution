@@ -1,9 +1,13 @@
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import PropTypes from "prop-types";
-import { IoStarSharp } from "react-icons/io5";
+// import { IoStarSharp } from "react-icons/io5";
+import RatingsDisplay from "../Reusable/RatingsDisplay";
 
 const CatCard = ({ items }) => {
+
+  
+
   return (
     <div>
       {items.map((item, index) => (
@@ -29,7 +33,7 @@ const CatCard = ({ items }) => {
               </div>
               <div className="md:w-4/6 space-y-1 p-5 md:space-y-2">
                 <div className="card-actions justify-between items-start flex flex-col">
-                  <Link to={`/course/${item.id}`}>
+                  <Link to={`/course/${item.slug}`}>
                     <h2 className="text font-bold text-center md:text-start">
                       {item.title}
                     </h2>
@@ -47,16 +51,7 @@ const CatCard = ({ items }) => {
                 <div className="flex items-center space-x-1">
                   <div className="flex items-center">
                     {/* Render star ratings */}
-                    {[...Array(item.rate)].map((_, index) => (
-                      <IoStarSharp
-                        key={index}
-                        size={20}
-                        className="text-primary"
-                      />
-                    ))}
-                  </div>
-                  <div className="flex items-center">
-                    <p className="ratingcardtext font-medium">{item.rate}.0</p>
+                    <RatingsDisplay rating={Number(item.rate)} />
                   </div>
                 </div>
 
@@ -74,7 +69,7 @@ const CatCard = ({ items }) => {
                 </div>
               </div>
             </motion.div>
-            <Link to={`/course/${item.id}`}>
+            <Link to={`/course/${item.slug}`}>
               <div className="flex justify-end items-end text-end">
                 <button className="text-end border-2 border-primary px-8 py-1 rounded-lg mb-5 hover:bg-primary hover:text-white duration-300">
                   See Detail
@@ -95,7 +90,7 @@ CatCard.propTypes = {
       price: PropTypes.string.isRequired,
       title: PropTypes.string.isRequired,
       instructor_name: PropTypes.string.isRequired,
-      rate: PropTypes.number.isRequired,
+      rate: PropTypes.string.isRequired,
       // imageUrl: PropTypes.string.isRequired,
     }).isRequired
   ).isRequired,
