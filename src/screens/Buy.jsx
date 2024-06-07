@@ -1,11 +1,24 @@
 import { useSelector } from "react-redux";
 import chapa from "../assets/chapa.svg";
 import telebirr from "../assets/telebirr.svg";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { useEffect } from "react";
 
 const Buy = () => {
+  const navigate = useNavigate();
   const singleItem = useSelector((state) => state.singleItem.item);
 
+  useEffect(() => {
+    if (!singleItem) {
+      navigate("/favorite"); // or handle this scenario appropriately
+    }
+  }, [singleItem, navigate]);
+
+  if (!singleItem) {
+    return null; // or return a loading spinner, or some other UI
+  }
+
+  // console.log("Single Item", singleItem);
 
   return (
     <div className="py-12 lg:py-6 merb font-light">
@@ -20,15 +33,19 @@ const Buy = () => {
           </Link>
         </div>
       </div>
-      <div className="flex flex-wrap flex-col-reverse lg:flex-row-reverse justify-center lg:items-start gap-8 lg:gap-32 my-12 items-center">
-        <div className="rounded-xl border-[1px] border-gray-200 flex flex-col justify-start items-center px-6 max-w-[526px] min-h-[420px] py-20 shadow-2xl drop-shadow-2xl">
+      <div className="flex flex-wrap lg:flex-nowrap lg:flex-row-reverse justify-center lg:items-start gap-8 lg:gap-32 my-12 items-center">
+        <div className="rounded-xl flex flex-col border-[1px] border-gray-200 justify-start items-center px-6 max-w-[526px] min-h-[420px] py-20 shadow-2xl drop-shadow-2xl">
           <p className="text-[20px] font-semibold px-3 pb-6 -mt-10">
             Order Detail
           </p>
-          <div className="gap-4 flex flex-col">
-            <div className="flex justify-start gap-2 items-start">
+          <div className="gap-8 flex flex-col ">
+            <div className="flex flex-wrap xl:flex-nowrap gap-4 justify-start items-start">
               {singleItem.image ? (
-                <img src={singleItem.image} alt="description" />
+                <img
+                  src={`https://admindashbordforenln.redshiftbusinessgroup.com/${singleItem.image}`}
+                  alt="description"
+                  className="h-[200px] w-[200px]"
+                />
               ) : (
                 <div>No image available</div>
               )}

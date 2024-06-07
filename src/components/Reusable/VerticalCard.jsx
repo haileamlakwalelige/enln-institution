@@ -29,7 +29,7 @@ const VerticalCard = () => {
                 >
                   <div className="flex justify-center items-center py-5 ">
                     <img
-                      src={item.image}
+                      src={`https://admindashbordforenln.redshiftbusinessgroup.com/${item.image}`}
                       alt="Burger"
                       className="h-[200px] w-[200px] rounded-3xl"
                     />

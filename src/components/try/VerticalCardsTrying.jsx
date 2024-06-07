@@ -67,7 +67,7 @@ function VerticalCardsTrying() {
             >
               <figure>
                 <img
-                  src={card.image}
+                  src={`https://admindashbordforenln.redshiftbusinessgroup.com/${card.image}`}
                   alt="Course"
                   className="h-[100px] w-full"
                 />

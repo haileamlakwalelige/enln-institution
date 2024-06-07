@@ -52,7 +52,7 @@ const VerticalCardTryings = () => {
             <Link to={`/course/${course.slug}`}>
             <figure>
               <img
-                src={course.image} // Image source
+                src={`https://admindashbordforenln.redshiftbusinessgroup.com/${course.image}`} // Image source
                 alt={course.title} // Alternative text for image
                 className="max-w-[300px]" // Image styles
               />

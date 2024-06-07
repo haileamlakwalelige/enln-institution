@@ -26,6 +26,8 @@ import Buy from "./screens/Buy";
 import Payment from "./screens/Payment";
 import ProtectedRoute from "./components/ProtectedRoute";
 import { useEffect, useState } from "react";
+import Navbar from "./components/layout/Navbar";
+import UpdatePassword from "./screens/UpdatePasswrod";
 
 const App = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -38,7 +40,8 @@ const App = () => {
   return (
     <>
       <HeaderTop />
-      <Navbar2 />
+      {isLoggedIn ? <Navbar />:<Navbar2 />}
+      {/* <Navbar2 /> */}
       <div className="mt-32"></div>
       <ScrollToTop />
 
@@ -57,6 +60,7 @@ const App = () => {
           }
         />
         <Route path="/coursa" element={<Coursa />} />
+        <Route path="/update-password" element={<UpdatePassword />} />
 
         <Route element={<ProtectedRoute />}>
           <Route path="/pay" element={<Pay />} />

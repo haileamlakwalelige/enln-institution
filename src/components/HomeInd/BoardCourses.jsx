@@ -70,7 +70,7 @@ function BoardCourses({ type }) {
             >
               <Link to={`/course/${card.slug}`}>
                 <figure>
-                  <img src={card.image} alt="Shoes" className="h-[100px] w-full" />
+                  <img src={`https://admindashbordforenln.redshiftbusinessgroup.com/${card.image}`} alt="Shoes" className="h-[100px] w-full" />
                 </figure>
               </Link>
               <div className="card-body">
@@ -101,7 +101,7 @@ function BoardCourses({ type }) {
               </Link>
             ) : isInCart(card.id) ? (
               <Link
-                to={`/buy/${card.id}`}
+                to={`/buy/${card.slug}`}
                 className='py-2 rounded-lg bg-primary hover:bg-white text-white px-10 mt-6 mb-2 hover:text-primary hover:border-2 hover:border-primary'
               >
                 Buy Now

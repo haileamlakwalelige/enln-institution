@@ -29,7 +29,7 @@ const Checkout = () => {
           <div className="gap-4 flex flex-col">
             {cartItems.map((item, index) => (
               <div className="flex justify-start gap-2 items-start" key={index}>
-                <img src={item.image} alt="" className="w-[140px] h-[105px] rounded-xl" />
+                <img src={`https://admindashbordforenln.redshiftbusinessgroup.com/${item.image}`} alt="" className="w-[140px] h-[105px] rounded-xl" />
                 <div>
                   <div className="flex flex-col justify-center items-start">
                     <p className="text-black font-medium text-[14px] md:text-[16px]">

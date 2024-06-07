@@ -5,10 +5,15 @@ import { Link } from 'react-router-dom';
 import back from '../../assets/back.png';
 import tom from '../../assets/tom.png';
 import RatingsDisplay from '../Reusable/RatingsDisplay';
+import { useState, useEffect } from 'react';
+import { useQuery } from 'react-query';
+import api from "../../api/api";
 
 const CoursesHero = ({ course }) => {
   const dispatch = useDispatch();
   const cart = useSelector((state) => state.cart) || [];
+  const [userId, setUserId] = useState(null);
+  const [hasAccess, setHasAccess] = useState(false);
 
   const addToCart = (item) => {
     dispatch(add(item));
@@ -17,6 +22,38 @@ const CoursesHero = ({ course }) => {
   const isInCart = (itemId) => {
     return cart.some((cartItem) => cartItem.id === itemId);
   };
+
+  const { data: payments, isLoading: isLoadingPayment, isError: isErrorPayment, error: errorPayment } = useQuery(['payments'], async () => {
+    const response = await api.get('/payments');
+    return response.data.data;
+  });
+
+  useEffect(() => {
+    const user = localStorage.getItem("user");
+    if (user) {
+      const userData = JSON.parse(user);
+      setUserId(userData[0].id);
+    }
+  }, []);
+
+  useEffect(() => {
+    if (userId && course.id && payments) {
+      const pay = payments.find(pay => pay.course_id === course.id && pay.user_id === userId);
+      if (course.price == 0 || (pay && pay.status === "completed")) {
+        setHasAccess(true);
+      } else {
+        setHasAccess(false);
+      }
+    }
+  }, [userId, course, payments]);
+
+  if (isLoadingPayment) {
+    return <div>Loading...</div>;
+  }
+
+  if (isErrorPayment) {
+    return <div>Error: {errorPayment?.message}</div>;
+  }
 
   return (
     <div
@@ -36,9 +73,6 @@ const CoursesHero = ({ course }) => {
                 {course.title}
               </p>
               <p className="text-primary text-[14px] lg:text-[16px] font-medium py-4">
-                {/* Unlock the secrets to optimal health with our Complete Nutrition
-                Course, designed for individuals seeking a holistic
-                understanding of nutrition. */}
                 {course.description}
               </p>
             </div>
@@ -59,7 +93,7 @@ const CoursesHero = ({ course }) => {
               <p className="merb text-black text-[18px] md:text-[20px] lg:text-[22px] text-center font-bold">
                 Birr {course.price}
               </p>
-              {course.price == 0 ? (
+              {hasAccess ? (
                 <Link
                   to={`/course-line/${course.slug}`}
                   className="py-2 rounded-lg bg-primary hover:bg-white text-white px-10 mt-6 mb-2 hover:text-primary hover:border-2 hover:border-primary"
@@ -99,13 +133,9 @@ CoursesHero.propTypes = {
     audience: PropTypes.string.isRequired,
     description: PropTypes.string.isRequired,
     slug: PropTypes.string.isRequired,
-    // notes: PropTypes.arrayOf(PropTypes.string).isRequired,
-    // details: PropTypes.arrayOf(PropTypes.string).isRequired,
-    // image: PropTypes.string.isRequired,
     status: PropTypes.string.isRequired,
     level: PropTypes.string.isRequired,
     type: PropTypes.string.isRequired,
-    // links: PropTypes.string.isRequired,
     instructor_name: PropTypes.string.isRequired,
     price: PropTypes.string.isRequired,
     hour: PropTypes.number.isRequired,

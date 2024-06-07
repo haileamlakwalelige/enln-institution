@@ -26,8 +26,8 @@ const CatCard = ({ items }) => {
               <div className="w-2/6">
                 <img
                   className="h-64 min-w-[70] w-full object-cover"
-                  // src={item.imageUrl}
-                  src=""
+                  src={`https://admindashbordforenln.redshiftbusinessgroup.com/${item.image}`}
+                  // src=""
                   alt={item.title}
                 />
               </div>
