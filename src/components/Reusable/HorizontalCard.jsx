@@ -34,7 +34,7 @@ const HorizontalCard = ({ items }) => {
       const accessMap = {};
       items.forEach(item => {
         const hasPaid = payments.some(pay => pay.course_id === item.id && pay.user_id === userId && pay.status === 'completed');
-        accessMap[item.id] = item.price === '0' || hasPaid;
+        accessMap[item.id] = Number(item.price) == 0 || hasPaid;
       });
       setHasAccess(accessMap);
     }
@@ -75,7 +75,7 @@ const HorizontalCard = ({ items }) => {
               <div className='w-2/6'>
                 <img
                   className='h-64 min-w-[70] w-full object-cover py-4'
-                  src={`https://admindashbordforenln.redshiftbusinessgroup.com/${item.image}`}
+                  src={`https://admindashbordforenln.redshiftbusinessgroup.com/${item?.image}`}
                   alt='Course'
                 />
               </div>
@@ -94,7 +94,7 @@ const HorizontalCard = ({ items }) => {
                   </Link>
 
                   <h2 className='text font-bold hidden lg:block'>
-                    Birr {item.price}
+                    Birr {Number(item.price)}
                   </h2>
                 </div>
 
@@ -104,7 +104,7 @@ const HorizontalCard = ({ items }) => {
 
                 <div className='flex items-center space-x-1'>
                   <div className='flex items-center'>
-                    <RatingsDisplay rating={item.rate} />
+                    <RatingsDisplay rating={Number(item.rate)} />
                   </div>
                 </div>
 
@@ -118,7 +118,7 @@ const HorizontalCard = ({ items }) => {
                   </span>
                 </div>
                 <div className='card-actions justify-end lg:hidden'>
-                  <h2 className='text font-bold'>Birr {item.price}</h2>
+                  <h2 className='text font-bold'>Birr {Number(item.price)}</h2>
                 </div>
               </div>
             </motion.div>

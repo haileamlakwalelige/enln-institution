@@ -6,7 +6,7 @@ import SignUp from "./screens/SignUp";
 import Login from "./screens/Login";
 import ProfileDashboard from "./components/Profile/ProfileDashboard";
 import Support from "./components/Profile/Support";
-import { Setting } from "./components/Profile/Setting";
+import Setting from "./components/Profile/Setting";
 import MyCourses from "./components/Profile/MyCourses";
 import Certificate from "./components/Profile/Certificate";
 import Dashboard from "./components/Profile/Dashboard";
@@ -27,21 +27,34 @@ import Payment from "./screens/Payment";
 import ProtectedRoute from "./components/ProtectedRoute";
 import { useEffect, useState } from "react";
 import Navbar from "./components/layout/Navbar";
-import UpdatePassword from "./screens/UpdatePasswrod";
+import UpdatePassword from "./screens/UpdatePassword";
+import AllCourse from "./screens/AllCourse";
 
 const App = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   useEffect(() => {
-    // Check if the user is logged in (e.g., by checking localStorage or cookies)
-    const token = localStorage.getItem("token");
-    setIsLoggedIn(!!token);
-  }, []);
+    const checkLoginStatus = () => {
+      const token = localStorage.getItem("token");
+      setIsLoggedIn(!!token);
+    };
+
+    // Check login status when component mounts
+    checkLoginStatus();
+
+    // Listen for changes in localStorage
+    window.addEventListener("storage", checkLoginStatus);
+
+    // Clean up the event listener on component unmount
+    return () => {
+      window.removeEventListener("storage", checkLoginStatus);
+    };
+  }, [isLoggedIn]);
+
   return (
     <>
       <HeaderTop />
-      {isLoggedIn ? <Navbar />:<Navbar2 />}
-      {/* <Navbar2 /> */}
+      {isLoggedIn ? <Navbar /> : <Navbar2 />}
       <div className="mt-32"></div>
       <ScrollToTop />
 
@@ -60,14 +73,16 @@ const App = () => {
           }
         />
         <Route path="/coursa" element={<Coursa />} />
-        <Route path="/update-password" element={<UpdatePassword />} />
 
         <Route element={<ProtectedRoute />}>
           <Route path="/pay" element={<Pay />} />
           <Route path="/payment" element={<Payment />} />
-          <Route path="/buy/:slug" element={<Buy />} />{" "}
+          <Route path="/buy/:slug" element={<Buy />} />
           <Route path="/checkout" element={<Checkout />} />
           <Route path="/course-line/:slug" element={<CourseLine />} />
+          <Route path="/allcourse" element={<AllCourse />} />
+          <Route path="/update-password" element={<UpdatePassword />} />
+
           <Route
             path="/certificate"
             element={
@@ -100,9 +115,8 @@ const App = () => {
               </ProfileDashboard>
             }
           />
-          zz
           <Route
-            path="/Dashboard"
+            path="/dashboard"
             element={
               <ProfileDashboard>
                 <Dashboard />

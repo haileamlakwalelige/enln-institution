@@ -81,7 +81,7 @@ const CourseLine = () => {
         (pay) => pay.course_id === single.id && pay.user_id === userId
       );
 
-      if (single.price == 0) {
+      if (Number(single.price) == 0) {
         toast.success(`Welcome to ${single.title} Course`);
       } else if (pay && pay.status === "completed") {
         toast.success(`Welcome to ${single.title} Course`);

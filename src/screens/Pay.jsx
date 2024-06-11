@@ -51,7 +51,7 @@ const Pay = () => {
     });
   };
 
-  console.log("Single Item", singleItem);
+  // console.log("Single Item", singleItem);
 
   return (
     <div className="bg-gray-200 overflow-x-hidden">
@@ -76,7 +76,7 @@ const Pay = () => {
           </div>
           <div className="flex flex-col justify-center items-center">
             <p>Amount</p>
-            <p className="font-semibold text-primary">{singleItem?.price} ETB</p>
+            <p className="font-semibold text-primary">{Number(singleItem?.price)} ETB</p>
           </div>
           <div className="flex flex-col justify-center items-center">
             <p>Current Time</p>

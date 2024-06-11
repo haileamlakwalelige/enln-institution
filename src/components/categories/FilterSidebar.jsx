@@ -43,9 +43,9 @@ function FilterSidebar({ onFilter }) {
   const filterCoursesByPrice = (priceType) => {
     let filteredData = courses;
     if (priceType === 'free') {
-      filteredData = courses.filter(course => course.price == 0);
+      filteredData = courses.filter(course => Number(course.price) == 0);
     } else if (priceType === 'paid') {
-      filteredData = courses.filter(course => course.price > 0);
+      filteredData = courses.filter(course => Number(course.price) > 0);
     } else {
       filteredData = courses; // Show all courses
     }
@@ -127,7 +127,7 @@ function FilterSidebar({ onFilter }) {
                     className="h-4 w-4 rounded-sm border-gray-700 bg-white text-primary focus:ring-1 focus:ring-primary dark:border-gray-500 dark:bg-gray-100 dark:ring-offset-gray-500 dark:focus:ring-primary"
                   />
                   <label htmlFor="free-checkbox" className="smalltext ml-2">
-                    Free ({courses.filter(course => course.price == 0).length})
+                    Free ({courses.filter(course => Number(course.price) == 0).length})
                   </label>
                 </div>
                 <div className="mb-4 ml-3 flex items-center">
@@ -139,7 +139,7 @@ function FilterSidebar({ onFilter }) {
                     className="h-4 w-4 rounded-sm border-gray-700 bg-white text-primary focus:ring-1 focus:ring-primary dark:border-gray-500 dark:bg-gray-100 dark:ring-offset-gray-500 dark:focus:ring-primary"
                   />
                   <label htmlFor="paid-checkbox" className="smalltext ml-2">
-                    Paid ({courses.filter(course => course.price > 0).length})
+                    Paid ({courses.filter(course => Number(course.price )> 0).length})
                   </label>
                 </div>
                 <div className="mb-4 ml-3 flex items-center">

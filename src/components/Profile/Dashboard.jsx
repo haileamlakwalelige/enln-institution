@@ -3,6 +3,7 @@ import api from "../../api/api";
 import { useQuery } from "react-query";
 import { useEffect, useState } from "react";
 
+
 const Dashboard = () => {
   const [userId, setUserId] = useState(null);
   const [bio, setBio]=useState("");
@@ -48,7 +49,7 @@ const Dashboard = () => {
 
        // Filter payments for uncompleted courses associated with the user
        const freeCourse = courses
-       ? courses.filter((payment) => payment.price == 0)
+       ? courses.filter((payment) => Number(payment.price) == 0)
        : [];
 
 
@@ -90,7 +91,7 @@ const Dashboard = () => {
               <p className="text-[24px] pb-3 font-semibold text-white amir">Free Courses</p>
             </div>
           </div>
-          <div className="flex flex-col md:flex-row gap-6 lg:-mt-12 mb-4">
+          <div className="flex flex-col text-justify md:flex-row gap-6 lg:-mt-12 mb-4">
            <div dangerouslySetInnerHTML={{ __html: bio }} />
           </div>
         </div>

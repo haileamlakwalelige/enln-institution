@@ -40,9 +40,9 @@ const Buy = () => {
           </p>
           <div className="gap-8 flex flex-col ">
             <div className="flex flex-wrap xl:flex-nowrap gap-4 justify-start items-start">
-              {singleItem.image ? (
+              {singleItem?.image ? (
                 <img
-                  src={`https://admindashbordforenln.redshiftbusinessgroup.com/${singleItem.image}`}
+                  src={`https://admindashbordforenln.redshiftbusinessgroup.com/${singleItem?.image}`}
                   alt="description"
                   className="h-[200px] w-[200px]"
                 />
@@ -55,7 +55,7 @@ const Buy = () => {
                     {singleItem.title}
                   </p>
                   <p className="font-semibold text-[14px] md:text-[16px] text-black mt-3">
-                    ETB {singleItem.price}
+                    ETB {Number(singleItem.price)}
                   </p>
                 </div>
               </div>
@@ -69,7 +69,7 @@ const Buy = () => {
 
           <div className="flex justify-between items-center gap-10 py-4 border-b-[1px] border-gray-300 hover:bg-gray-100 hover:px-2">
             <p>Total</p>
-            <p>ETB {singleItem.price}</p>
+            <p>ETB {Number(singleItem.price)}</p>
           </div>
           <div className="flex justify-center items-center gap-6 mt-6">
             <img src={chapa} alt="Chapa" className="h-[55px] w-[71px]" />

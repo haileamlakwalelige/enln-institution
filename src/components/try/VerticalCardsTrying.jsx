@@ -67,7 +67,7 @@ function VerticalCardsTrying() {
             >
               <figure>
                 <img
-                  src={`https://admindashbordforenln.redshiftbusinessgroup.com/${card.image}`}
+                  src={`https://admindashbordforenln.redshiftbusinessgroup.com/${card?.image}`}
                   alt="Course"
                   className="h-[100px] w-full"
                 />
@@ -113,7 +113,7 @@ function VerticalCardsTrying() {
                         ))}
                       </div>
                       <div className="card-actions justify-end">
-                        {card.price == 0 ? (
+                        {Number(card.price) == 0 ? (
                           <Link
                             to={`/course/${card.slug}`}
                             className="py-2 rounded-lg bg-primary hover:bg-white text-white px-10 mt-6 mb-2 hover:text-primary hover:border-2 hover:border-primary"

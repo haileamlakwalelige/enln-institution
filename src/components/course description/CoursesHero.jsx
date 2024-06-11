@@ -39,7 +39,7 @@ const CoursesHero = ({ course }) => {
   useEffect(() => {
     if (userId && course.id && payments) {
       const pay = payments.find(pay => pay.course_id === course.id && pay.user_id === userId);
-      if (course.price == 0 || (pay && pay.status === "completed")) {
+      if (Number(course.price) == 0 || (pay && pay.status === "completed")) {
         setHasAccess(true);
       } else {
         setHasAccess(false);
@@ -91,30 +91,42 @@ const CoursesHero = ({ course }) => {
             </p>
             <div className="flex justify-start items-center gap-10">
               <p className="merb text-black text-[18px] md:text-[20px] lg:text-[22px] text-center font-bold">
-                Birr {course.price}
+                Birr {Number(course.price)}
               </p>
-              {hasAccess ? (
-                <Link
-                  to={`/course-line/${course.slug}`}
-                  className="py-2 rounded-lg bg-primary hover:bg-white text-white px-10 mt-6 mb-2 hover:text-primary hover:border-2 hover:border-primary"
-                >
-                  Go to Course
-                </Link>
-              ) : isInCart(course.id) ? (
-                <Link
-                  to="/favorite"
-                  className="py-2 rounded-lg bg-primary hover:bg-white text-white px-10 mt-6 mb-2 hover:text-primary hover:border-2 hover:border-primary"
-                >
-                  Go to Favorite
-                </Link>
-              ) : (
-                <button
-                  onClick={() => addToCart(course)}
-                  className="py-2 rounded-lg bg-primary hover:bg-white text-white px-10 mt-6 mb-2 hover:text-primary hover:border-2 hover:border-primary"
-                >
-                  Add to Favorite
-                </button>
+              {course.slug === 'all-course' ? (
+                 <Link
+                 to="/allcourse"
+                 className="py-2 rounded-lg bg-primary hover:bg-white text-white px-10 mt-6 mb-2 hover:text-primary hover:border-2 hover:border-primary"
+               >
+                 Go to All Course
+               </Link>
+              ):(
+                <div>
+                {hasAccess ? (
+                  <Link
+                    to={`/course-line/${course.slug}`}
+                    className="py-2 rounded-lg bg-primary hover:bg-white text-white px-10 mt-6 mb-2 hover:text-primary hover:border-2 hover:border-primary"
+                  >
+                    Go to Course
+                  </Link>
+                ) : isInCart(course.id) ? (
+                  <Link
+                    to="/favorite"
+                    className="py-2 rounded-lg bg-primary hover:bg-white text-white px-10 mt-6 mb-2 hover:text-primary hover:border-2 hover:border-primary"
+                  >
+                    Go to Favorite
+                  </Link>
+                ) : (
+                  <button
+                    onClick={() => addToCart(course)}
+                    className="py-2 rounded-lg bg-primary hover:bg-white text-white px-10 mt-6 mb-2 hover:text-primary hover:border-2 hover:border-primary"
+                  >
+                    Add to Favorite
+                  </button>
+                )}
+                </div>
               )}
+              
             </div>
           </div>
           <div>
@@ -138,7 +150,7 @@ CoursesHero.propTypes = {
     type: PropTypes.string.isRequired,
     instructor_name: PropTypes.string.isRequired,
     price: PropTypes.string.isRequired,
-    hour: PropTypes.number.isRequired,
+    hour: PropTypes.string.isRequired,
     rate: PropTypes.string.isRequired,
   }).isRequired,
 };

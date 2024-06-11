@@ -59,15 +59,15 @@ const MyCourses = () => {
   return (
     <div className="py-10">
       <p className="text-center font-bold text-4xl py-10">My Courses</p>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 lg:gap-16 px-2 sm:px-6 md:px-16 lg:px-24">
+      <div className="flex flex-wrap gap-10 lg:gap-16 px-2 sm:px-6 md:px-16 lg:px-24">
         {filteredCourses.map((course) => (
           <div
             key={course.id}
-            className="border-2 p-4 hover:shadow-2xl rounded-xl border-gray-200 shadow-md flex flex-col justify-center items-center"
+            className="border-2 p-4 hover:shadow-2xl min-w-[300px] max-w-[0px] rounded-xl border-gray-200 shadow-md flex flex-col justify-center items-center"
           >
             <Link to={`/course/${course.slug}`} className="p-3 flex flex-col justify-center items-center">
               <img
-                src={`https://admindashbordforenln.redshiftbusinessgroup.com/${course.image}`}
+                src={`https://admindashbordforenln.redshiftbusinessgroup.com/${course?.image}`}
                 alt={course.title}
                 className="w-full lg:max-w-[300px]"
               />

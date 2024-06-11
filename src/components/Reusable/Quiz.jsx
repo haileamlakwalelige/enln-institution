@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import api from '../../api/api';
 import PropTypes from 'prop-types';
+import Spinner from '../../assets/Spinner.svg';
 
 const Quiz = ({ slug }) => {
   const [faq, setFaq] = useState([]);
@@ -59,7 +60,7 @@ const Quiz = ({ slug }) => {
   };
 
   if (isLoading) {
-    return <div>Loading...</div>;
+    return <div><img src={Spinner} alt="" className="max-h-[100px] max-w-[100px]"/></div>;
   }
 
   if (isError) {

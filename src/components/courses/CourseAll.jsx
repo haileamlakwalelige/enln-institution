@@ -33,7 +33,7 @@ const CourseAll = () => {
       const accessMap = {};
       courses.forEach(course => {
         const hasPaid = payments.some(pay => pay.course_id === course.id && pay.user_id === userId && pay.status === "completed");
-        accessMap[course.id] = course.price == 0 || hasPaid;
+        accessMap[course.id] = Number(course.price) == 0 || hasPaid;
       });
       setHasAccess(accessMap);
     }
@@ -65,7 +65,7 @@ const CourseAll = () => {
             className='border-2 p-4 hover:shadow-2xl rounded-xl border-gray-200 shadow-md flex flex-col justify-center items-center'
           >
             <Link to={`/course/${course.slug}`} className='p-3 flex flex-col justify-center items-center'>
-              <img src={`https://admindashbordforenln.redshiftbusinessgroup.com/${course.image}`} alt={course.title} className='w-full lg:max-w-[300px]' />
+              <img src={`https://admindashbordforenln.redshiftbusinessgroup.com/${course?.image}`} alt={course.title} className='w-full lg:max-w-[300px]' />
               <p className='font-bold text-center py-2'>{course.title}</p>
               <p className='font-light line-clamp-2 px-2'>{course.description}</p>
               <p className='py-2'>{course.instructor}</p>

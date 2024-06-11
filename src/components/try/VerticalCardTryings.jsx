@@ -52,7 +52,7 @@ const VerticalCardTryings = () => {
             <Link to={`/course/${course.slug}`}>
             <figure>
               <img
-                src={`https://admindashbordforenln.redshiftbusinessgroup.com/${course.image}`} // Image source
+                src={`https://admindashbordforenln.redshiftbusinessgroup.com/${course?.image}`} // Image source
                 alt={course.title} // Alternative text for image
                 className="max-w-[300px]" // Image styles
               />
@@ -68,7 +68,7 @@ const VerticalCardTryings = () => {
               <p>{course.description}</p>
               <div className="card-actions justify-end">
                 {/* Conditionally render buttons based on price and cart status */}
-                {course.price == 0 ? (
+                {Number(course.price) == 0 ? (
                   <Link
                     to={`/course/${course.slug}`}
                     className="py-2 rounded-lg bg-black hover:bg-white text-white px-10 mt-6 mb-2 hover:text-primary hover:border-2 hover:border-primary"

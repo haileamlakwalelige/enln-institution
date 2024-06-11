@@ -6,7 +6,7 @@ import { useSelector } from "react-redux";
 const Checkout = () => {
   const cartItems = useSelector((state) => state.cart);
 
-  const totalPrice = cartItems.reduce((total, item) => total + parseFloat(item.price), 0);
+  const totalPrice = cartItems.reduce((total, item) => total + parseFloat(Number(item.price)), 0);
   return (
     <div className="py-12 lg:py-6 merb font-light">
       <div className="grid grid-cols-2 lg:grid-cols-3 gap-4 justify-center items-center px-6">
@@ -29,14 +29,14 @@ const Checkout = () => {
           <div className="gap-4 flex flex-col">
             {cartItems.map((item, index) => (
               <div className="flex justify-start gap-2 items-start" key={index}>
-                <img src={`https://admindashbordforenln.redshiftbusinessgroup.com/${item.image}`} alt="" className="w-[140px] h-[105px] rounded-xl" />
+                <img src={`https://admindashbordforenln.redshiftbusinessgroup.com/${item?.image}`} alt="" className="w-[140px] h-[105px] rounded-xl" />
                 <div>
                   <div className="flex flex-col justify-center items-start">
                     <p className="text-black font-medium text-[14px] md:text-[16px]">
                       {item.title}
                     </p>
                     <p className="font-semibold text-[14px] md:text-[16px] text-black mt-3">
-                      ETB {item.price}
+                      ETB {Number(item.price)}
                     </p>
                   </div>
                 </div>

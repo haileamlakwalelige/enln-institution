@@ -100,8 +100,7 @@ const ProfileDashboard = ({ children }) => {
             />
             {/* <p
               style={{ display: isOpen ? "block " : "none" }}
-              className="merb font-semibold text-xl text-center text-[#025464]"
-            >
+              className="merb font-semibold text-xl text-center text-[#025464]">
               {email}
             </p> */}
           </div>
@@ -123,7 +122,7 @@ const ProfileDashboard = ({ children }) => {
                 }`}
               >
                 <div className="flex hover:text-primary gap-2 md:gap-5 justify-center items-center" onClick={close}>
-                  <div className="icon mt-2 justify-center items-center  md:-ml-5 ">{item.icon}</div>
+                  <div className="icon mt-2 justify-center items-center">{item.icon}</div>
                   <div
                     style={{ display: isOpen ? "block " : "none" }}
                     className="link_text mt-1"
@@ -134,10 +133,10 @@ const ProfileDashboard = ({ children }) => {
               </NavLink>
             ))}
           </div>
-          <div onClick={handleLogout} className={` active:text-primary active:font-bold hover:text-primary hover:font-bold hover:text-lg ${isOpen ? "flex first-letter justify-start pl-1 md:pl-[45px]  items-center gap-2 cursor-pointer": "flex first-letter justify-start md:ml-2  items-center gap-2 cursor-pointer pl-4 sm:pl-1"}`}>
+          <div onClick={handleLogout} className={` active:text-primary active:font-bold hover:text-primary hover:font-bold hover:text-lg  ${isOpen ? "flex md:ml-6 first-letter justify-start pl-1 md:pl-[45px]  items-center gap-2 cursor-pointer": "flex lg:ml-3 md:ml-4 first-letter justify-start  items-center gap-2 cursor-pointer pl-4 sm:pl-1"}`}>
                 <MdLogout className={`${isOpen ? "icon mt-2 justify-center items-center font-extrabold" : "icon mt-2 -ml-3 justify-center items-center"}`}/>
                 <p onClick={handleLogout} style={{ display: isOpen ? "block " : "none" }}
-                    className="link_text mt-1">Logout</p>
+                    className="link_text mt-1 ">Logout</p>
               </div>
         </div>
         <main className={isOpen ? "hidden sm:block" : "block"}>{children}</main>

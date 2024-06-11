@@ -29,7 +29,7 @@ const VerticalCard = () => {
                 >
                   <div className="flex justify-center items-center py-5 ">
                     <img
-                      src={`https://admindashbordforenln.redshiftbusinessgroup.com/${item.image}`}
+                      src={`https://admindashbordforenln.redshiftbusinessgroup.com/${item?.image}`}
                       alt="Burger"
                       className="h-[200px] w-[200px] rounded-3xl"
                     />
@@ -48,7 +48,7 @@ const VerticalCard = () => {
                     ({item.ratingsCount})
                   </div>
                   <p className="text-black amib py-2 font-bold text-[18px]">
-                    Birr {item.price}
+                    Birr {Number(item.price)}
                   </p>
                   <button onClick={()=>addToCart(item)} className="bg-primary rounded-xl hover:text-primary hover:bg-white hover:border-[1px] hover:border-gray-100 text-white font-semibold text-xl py-2 px-10 max-w-[300px] min-w-[250px] my-4">
                     Add To Favorite

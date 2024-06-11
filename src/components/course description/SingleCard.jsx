@@ -39,7 +39,7 @@ const SingleCard = ({ course }) => {
             </span>
           </p>
           <p className="merb text-black text-[18px] md:text-[20px] lg:text-[22px] text-center font-bold">
-            Birr {course.price}
+            Birr {Number(course.price)}
           </p>
         </div>
       </div>
@@ -108,7 +108,7 @@ SingleCard.propTypes = {
     price: PropTypes.string.isRequired,
     instructor_name: PropTypes.string.isRequired,
     status: PropTypes.string.isRequired,
-    hour: PropTypes.number.isRequired,
+    hour: PropTypes.string.isRequired,
   }).isRequired,
 };
 

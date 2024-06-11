@@ -118,7 +118,7 @@ const Ask = ({ slug }) => {
               dangerouslySetInnerHTML={{ __html: result.description }}
             />
             <div>
-              <RatingsDisplay rating={result.rate} />
+              <RatingsDisplay rating={Number(result.rate)} />
             </div>
           </div>
         )}

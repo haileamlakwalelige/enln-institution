@@ -70,7 +70,7 @@ function BoardCourses({ type }) {
             >
               <Link to={`/course/${card.slug}`}>
                 <figure>
-                  <img src={`https://admindashbordforenln.redshiftbusinessgroup.com/${card.image}`} alt="Shoes" className="h-[100px] w-full" />
+                  <img src={`https://admindashbordforenln.redshiftbusinessgroup.com/${card?.image}`} alt="Shoes" className="h-[100px] w-full" />
                 </figure>
               </Link>
               <div className="card-body">
@@ -92,7 +92,7 @@ function BoardCourses({ type }) {
                       </div>
                       <p className="text-black font-normal line-clamp-6 leading-5 text-[12px] amir text-start">{card.description}</p>
                       <div className="card-actions justify-end">
-                      {card.price == 0 ? (
+                      {Number(card.price) == 0 ? (
               <Link
                 to={`/course/${card.slug}`}
                 className='py-2 rounded-lg bg-primary hover:bg-white text-white px-10 mt-6 mb-2 hover:text-primary hover:border-2 hover:border-primary'

@@ -26,7 +26,7 @@ const CatCard = ({ items }) => {
               <div className="w-2/6">
                 <img
                   className="h-64 min-w-[70] w-full object-cover"
-                  src={`https://admindashbordforenln.redshiftbusinessgroup.com/${item.image}`}
+                  src={`https://admindashbordforenln.redshiftbusinessgroup.com/${item?.image}`}
                   // src=""
                   alt={item.title}
                 />
@@ -40,7 +40,7 @@ const CatCard = ({ items }) => {
                   </Link>
 
                   <h2 className="text font-bold hidden lg:block">
-                    Birr {item.price}
+                    Birr {Number(item.price)}
                   </h2>
                 </div>
 
@@ -57,7 +57,7 @@ const CatCard = ({ items }) => {
 
                 <div className="flex items-center space-x-1">
                   <span className="cardtext text-gray-500 dark:text-gray-400">
-                    2.5 total hours
+                    {item.hour}total hours
                   </span>
                   <span className="cardtext h-1 w-1 items-center justify-center rounded-full bg-gray-300 text-gray-500 dark:text-gray-400"></span>
                   <span className="cardtext text-gray-500 dark:text-gray-400">
@@ -65,7 +65,7 @@ const CatCard = ({ items }) => {
                   </span>
                 </div>
                 <div className="card-actions justify-end lg:hidden">
-                  <h2 className="text font-bold">Birr {item.price}</h2>
+                  <h2 className="text font-bold">Birr {Number(item.price)}</h2>
                 </div>
               </div>
             </motion.div>
@@ -91,7 +91,7 @@ CatCard.propTypes = {
       title: PropTypes.string.isRequired,
       instructor_name: PropTypes.string.isRequired,
       rate: PropTypes.string.isRequired,
-      // imageUrl: PropTypes.string.isRequired,
+      image: PropTypes.string.isRequired,
     }).isRequired
   ).isRequired,
 };

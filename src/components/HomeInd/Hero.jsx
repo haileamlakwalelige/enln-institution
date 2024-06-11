@@ -1,15 +1,9 @@
-import { useState } from "react";
 import { TypeAnimation } from "react-type-animation";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import HeroImage from '../../assets/herosectionimage1.png';
 
 const Hero = () => {
-  const [isOpen, setIsOpen] = useState(false);
-
-  const toggleMenu = () => {
-    setIsOpen(!isOpen);
-  };
 
   return (
     <header className="bg-secondary">

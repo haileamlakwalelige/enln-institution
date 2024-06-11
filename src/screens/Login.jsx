@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { FaRegEyeSlash, FaRegEye } from "react-icons/fa";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import signup from "../assets/login.png";
@@ -10,6 +10,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { loginSuccess, loginFailure } from "../store/authSlice";
 import { useMutation } from "react-query";
 import api from "../api/api";
+import Spinner from '../assets/Spinner.svg';
 
 const login = async ({ email, password }) => {
   const response = await api.post("/login", { email, password });
@@ -25,7 +26,6 @@ const Login = () => {
   const [allUsers, setAllUsers] = useState([]);
 
   const dispatch = useDispatch();
-  const navigate = useNavigate();
   const { loading, error } = useSelector((state) => state.auth);
 
 
@@ -56,7 +56,7 @@ const Login = () => {
       localStorage.setItem('user', JSON.stringify(filteredUsers));
   
       toast.success("Login successful");
-      navigate("/dashboard");
+      window.location.href = '/dashboard';
     },
     onError: (error) => {
       dispatch(loginFailure(error.response.data.message));
@@ -75,7 +75,11 @@ const Login = () => {
     }
   };
 
-  {loading && <div>Loading...</div>}
+  {loading && <div><img src={Spinner} alt="" className="max-h-[100px] max-w-[100px]"/></div>}
+
+  const handleForget=()=>{
+    localStorage.removeItem('token');
+  }
 
   return (
     <div className="py-10 mt-20">
@@ -124,7 +128,7 @@ const Login = () => {
                 {passShow ? <FaRegEye /> : <FaRegEyeSlash />}
               </div>
             </div>
-            <Link to="/forget-password">
+            <Link onClick={handleForget} to="/forget-password">
               <p className="px-3 py-3 text-black text-lg font-medium">
                 Forget Password?
               </p>
