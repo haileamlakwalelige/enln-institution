@@ -1,4 +1,4 @@
-import React from "react";
+// import React from "react";
 import Hero from "../components/HomeInd/Hero";
 import Companies from "../components/Reusable/Companies";
 import WhatWeOffer from "../components/HomeInd/WhatWeOffer";
@@ -11,7 +11,7 @@ import BroadSelection from "../components/HomeInd/BroadSelection";
 
 const HomePage = () => {
   return (
-    <div className="overflow-x-hidden mt-32 lg:pt-4">
+    <div className="overflow-x-hidden">
       <Hero />
       <Companies />
       <WhatWeOffer />
